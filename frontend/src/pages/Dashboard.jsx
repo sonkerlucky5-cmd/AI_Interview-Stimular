@@ -98,6 +98,15 @@ function Dashboard() {
                 View Matches →
               </Link>
             </article>
+
+            <article className="glass-card">
+              <span className="metric-card__label">🎙️ Mock Sessions</span>
+              <strong>{isLoading ? "…" : interviewCount}</strong>
+              <p>Practice interviews conducted with AI rubric scoring.</p>
+              <Link to="/interviews" className="btn btn--outline" style={{ marginTop: "0.75rem", display: "inline-block", fontSize: "0.85rem" }}>
+                Session History →
+              </Link>
+            </article>
           </div>
 
           {/* Quick Actions & Launchpad */}

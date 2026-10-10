@@ -15,6 +15,10 @@ const extractToken = (req) => {
     return authorizationHeader.slice(7);
   }
 
+  if (req.query?.token) {
+    return req.query.token;
+  }
+
   return null;
 };
 
