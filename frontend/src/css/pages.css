@@ -1,0 +1,172 @@
+/* ═══════════════════════════════════════
+   PAGES — Layout & Page-Specific Styles
+   ═══════════════════════════════════════ */
+
+/* ── Shared page wrapper ── */
+.page {
+  display: grid;
+  gap: 1.5rem;
+  animation: fade-in 320ms var(--ease-out) both;
+}
+
+.page--home {
+  padding-top: 0;
+  gap: 0;
+}
+
+/* ════════════════════════════
+   AUTH PAGES
+════════════════════════════ */
+.page--auth {
+  min-height: calc(100vh - 80px);
+  align-items: center;
+}
+
+.auth-shell {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.auth-shell__info {
+  display: grid;
+  gap: 1.25rem;
+  padding: 1rem 0.5rem 1rem 0;
+}
+
+.auth-shell__info h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  line-height: 1.06;
+  color: var(--title);
+  letter-spacing: -0.02em;
+}
+
+.auth-shell__info p {
+  font-size: 1rem;
+  line-height: 1.78;
+  color: var(--text-muted);
+  max-width: 50ch;
+}
+
+/* ════════════════════════════
+   DASHBOARD PAGE
+════════════════════════════ */
+.page--dashboard {
+  padding-top: 0.25rem;
+}
+
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: 1.2rem;
+  align-items: start;
+}
+
+.dashboard-main {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.dashboard-hero {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.25rem;
+  align-items: flex-start;
+  padding: 1.75rem 2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--panel-border);
+  background:
+    radial-gradient(circle at top left, rgba(79, 140, 255, 0.1), transparent 50%),
+    var(--panel);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+}
+
+.dashboard-hero h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
+  color: var(--title);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.6rem;
+  line-height: 1.1;
+}
+
+.dashboard-hero p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  max-width: 56ch;
+}
+
+.dashboard-hero__status {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.dashboard-columns {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 1rem;
+}
+
+/* ════════════════════════════
+   RESPONSIVE PAGES
+════════════════════════════ */
+@media (max-width: 1080px) {
+  .auth-shell,
+  .dashboard-layout,
+  .dashboard-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboard-hero {
+    flex-direction: column;
+  }
+
+  .dashboard-hero__status {
+    justify-content: flex-start;
+  }
+
+  .auth-shell__info {
+    text-align: center;
+    align-items: center;
+    padding: 0;
+  }
+
+  .auth-shell__info p {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-hero {
+    padding: 1.3rem;
+    border-radius: var(--radius-md);
+  }
+
+  .glass-card,
+  .auth-card,
+  .sidebar__card {
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+  }
+}

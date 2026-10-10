@@ -1,0 +1,48 @@
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+import Navbar from "./components/Navbar";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { AuthProvider } from "./context/AuthContext.jsx";
+import Dashboard from "./pages/Dashboard";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AuthProvider>
+        <div className="app-shell">
+          <Navbar />
+
+          <main className="app-main">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+
+              <Route element={<ProtectedRoute />}>
+                <Route path="/dashboard" element={<Dashboard />} />
+              </Route>
+
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </main>
+        </div>
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            style: {
+              background: "#0c1220",
+              color: "#ecf0ff",
+              border: "1px solid rgba(133, 155, 201, 0.16)",
+              borderRadius: "14px",
+            },
+          }}
+        />
+      </AuthProvider>
+    </BrowserRouter>
+  );
+}
+
+export default App;
