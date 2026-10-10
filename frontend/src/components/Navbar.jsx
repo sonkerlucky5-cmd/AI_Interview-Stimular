@@ -110,6 +110,14 @@ function Navbar() {
                 >
                   Matches
                 </NavLink>
+                <NavLink
+                  className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
+                  to="/interviews/new"
+                  onClick={closeMenu}
+                  id="nav-interview"
+                >
+                  🎙️ Mock Interview
+                </NavLink>
               </>
             )}
           </nav>
