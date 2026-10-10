@@ -15,7 +15,8 @@ const buildCookieOptions = () => ({
 });
 
 const sendAuthResponse = (res, statusCode, message, user) => {
-  const token = generateToken(user._id.toString());
+  const userId = (user.id || user._id || user).toString();
+  const token = generateToken(userId);
 
   res.cookie(env.COOKIE_NAME, token, buildCookieOptions());
 
@@ -23,7 +24,7 @@ const sendAuthResponse = (res, statusCode, message, user) => {
     success: true,
     message,
     data: {
-      user: user.toSafeObject(),
+      user: typeof user.toSafeObject === "function" ? user.toSafeObject() : user,
     },
   });
 };

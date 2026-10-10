@@ -18,12 +18,16 @@ const normalizeError = (error) => {
     return new ApiError(400, validationMessage || "Validation failed.");
   }
 
-  if (error.code === 11000) {
-    return new ApiError(409, "A record with this value already exists.");
+  if (error.code === "23505" || error.code === 11000) {
+    return new ApiError(409, "An account with this email already exists.");
   }
 
-  if (error.name === "CastError") {
-    return new ApiError(400, `Invalid value for ${error.path}.`);
+  if (error.code === "22P02" || error.name === "CastError") {
+    return new ApiError(400, "Invalid identifier format.");
+  }
+
+  if (error.code === "23502") {
+    return new ApiError(400, `Required field missing: ${error.column || "field"}.`);
   }
 
   if (error.message === "Not allowed by CORS") {
