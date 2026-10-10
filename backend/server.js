@@ -11,6 +11,8 @@ const resumeRoutes = require("./routes/resumeRoutes");
 const jobDescriptionRoutes = require("./routes/jobDescriptionRoutes");
 const resumeMatchRoutes = require("./routes/resumeMatchRoutes");
 const interviewRoutes = require("./routes/interviewRoutes");
+const analyticsRoutes = require("./routes/analyticsRoutes");
+const reportRoutes = require("./routes/reportRoutes");
 
 const app = express();
 
@@ -48,6 +50,8 @@ app.use("/api/resumes", resumeRoutes);
 app.use("/api/job-descriptions", jobDescriptionRoutes);
 app.use("/api/resume-matches", resumeMatchRoutes);
 app.use("/api/interviews", interviewRoutes);
+app.use("/api/interviews", reportRoutes);
+app.use("/api/analytics", analyticsRoutes);
 app.use(notFound);
 app.use(errorHandler);
 

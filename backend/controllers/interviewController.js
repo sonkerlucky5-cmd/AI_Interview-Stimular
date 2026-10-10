@@ -60,10 +60,27 @@ const createInterviewHandler = async (req, res, next) => {
 
 const getInterviewsHandler = async (req, res, next) => {
   try {
-    const interviews = await Interview.findByUser(req.user.id);
+    const { status, search, page = 1, limit = 10 } = req.query;
+    const pageNum = Math.max(1, parseInt(page, 10) || 1);
+    const limitNum = Math.min(50, Math.max(1, parseInt(limit, 10) || 10));
+    const offset = (pageNum - 1) * limitNum;
+
+    const result = await Interview.findByUser(req.user.id, {
+      status,
+      search,
+      limit: limitNum,
+      offset,
+    });
+
     res.status(200).json({
       success: true,
-      data: interviews,
+      data: result.items,
+      pagination: {
+        totalCount: result.totalCount,
+        page: result.page,
+        totalPages: result.totalPages,
+        limit: limitNum,
+      },
     });
   } catch (error) {
     next(error);

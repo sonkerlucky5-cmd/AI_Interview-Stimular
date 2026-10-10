@@ -49,25 +49,63 @@ class Interview {
     return rows[0] || null;
   }
 
-  static async findByUser(userId) {
+  static async findByUser(userId, { status, search, limit = 10, offset = 0 } = {}) {
+    let whereClauses = ["i.user_id = $1"];
+    let values = [userId];
+    let idx = 2;
+
+    if (status && status !== "all") {
+      whereClauses.push(`i.status = $${idx++}`);
+      values.push(status);
+    }
+
+    if (search && search.trim()) {
+      whereClauses.push(`(i.target_role ILIKE $${idx} OR COALESCE(jd.title, '') ILIKE $${idx})`);
+      values.push(`%${search.trim()}%`);
+      idx++;
+    }
+
+    const whereStr = whereClauses.join(" AND ");
+
     const query = `
       SELECT 
         i.*,
         r.file_name AS resume_file_name,
         jd.title AS job_title,
         COUNT(DISTINCT iq.id) AS questions_created,
-        COUNT(DISTINCT ia.id) AS answers_submitted
+        COUNT(DISTINCT ia.id) AS answers_submitted,
+        ROUND(AVG((ae.scores->>'overall')::numeric), 0) AS average_score
       FROM interviews i
       LEFT JOIN resumes r ON r.id = i.resume_id
       LEFT JOIN job_descriptions jd ON jd.id = i.job_description_id
       LEFT JOIN interview_questions iq ON iq.interview_id = i.id
       LEFT JOIN interview_answers ia ON ia.question_id = iq.id
-      WHERE i.user_id = $1
+      LEFT JOIN answer_evaluations ae ON ae.answer_id = ia.id
+      WHERE ${whereStr}
       GROUP BY i.id, r.file_name, jd.title
-      ORDER BY i.created_at DESC;
+      ORDER BY i.created_at DESC
+      LIMIT $${idx++} OFFSET $${idx++};
     `;
-    const { rows } = await pool.query(query, [userId]);
-    return rows;
+
+    const countValues = [...values];
+    values.push(limit, offset);
+    const { rows } = await pool.query(query, values);
+
+    const countQuery = `
+      SELECT COUNT(DISTINCT i.id) AS total
+      FROM interviews i
+      LEFT JOIN job_descriptions jd ON jd.id = i.job_description_id
+      WHERE ${whereStr};
+    `;
+    const countRes = await pool.query(countQuery, countValues);
+    const totalCount = parseInt(countRes.rows[0]?.total || "0", 10);
+
+    return {
+      items: rows,
+      totalCount,
+      page: Math.floor(offset / limit) + 1,
+      totalPages: Math.ceil(totalCount / limit) || 1,
+    };
   }
 
   static async updateStatus(id, userId, status) {
