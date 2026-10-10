@@ -4,11 +4,11 @@ const {
   getMatchesHandler,
   getMatchByIdHandler,
 } = require("../controllers/resumeMatchController");
-const requireAuth = require("../middleware/authMiddleware");
+const { protect } = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-router.use(requireAuth);
+router.use(protect);
 
 router.post("/", createMatchHandler);
 router.get("/", getMatchesHandler);

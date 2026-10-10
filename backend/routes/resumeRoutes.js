@@ -5,12 +5,12 @@ const {
   getResumeByIdHandler,
   deleteResumeHandler,
 } = require("../controllers/resumeController");
-const requireAuth = require("../middleware/authMiddleware");
+const { protect } = require("../middleware/authMiddleware");
 const { uploadResume } = require("../middleware/uploadMiddleware");
 
 const router = express.Router();
 
-router.use(requireAuth);
+router.use(protect);
 
 router.post("/", uploadResume, uploadResumeHandler);
 router.get("/", getResumesHandler);

@@ -6,11 +6,11 @@ const {
   updateJobDescriptionHandler,
   deleteJobDescriptionHandler,
 } = require("../controllers/jobDescriptionController");
-const requireAuth = require("../middleware/authMiddleware");
+const { protect } = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
-router.use(requireAuth);
+router.use(protect);
 
 router.post("/", createJobDescriptionHandler);
 router.get("/", getJobDescriptionsHandler);
