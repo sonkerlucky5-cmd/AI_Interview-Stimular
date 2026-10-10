@@ -17,6 +17,7 @@ const env = {
   COOKIE_NAME: process.env.COOKIE_NAME || "rais_token",
   COOKIE_MAX_AGE_MS: Number(process.env.COOKIE_MAX_AGE_MS) || 1000 * 60 * 60 * 24 * 7,
   CLIENT_URLS: parseOrigins(process.env.CLIENT_URLS || process.env.CLIENT_URL || "http://localhost:5173"),
+  GEMINI_API_KEY: process.env.GEMINI_API_KEY || "",
 };
 
 const validateEnv = () => {
