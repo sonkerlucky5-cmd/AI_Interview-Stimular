@@ -10,6 +10,9 @@ import Signup from "./pages/Signup";
 import ResumeManager from "./pages/ResumeManager";
 import JobDescriptions from "./pages/JobDescriptions";
 import MatchResults from "./pages/MatchResults";
+import InterviewSetup from "./pages/InterviewSetup";
+import InterviewRoom from "./pages/InterviewRoom";
+import InterviewResult from "./pages/InterviewResult";
 
 function App() {
   return (
@@ -29,6 +32,9 @@ function App() {
                 <Route path="/resumes" element={<ResumeManager />} />
                 <Route path="/jobs" element={<JobDescriptions />} />
                 <Route path="/matches" element={<MatchResults />} />
+                <Route path="/interviews/new" element={<InterviewSetup />} />
+                <Route path="/interviews/:id" element={<InterviewRoom />} />
+                <Route path="/interviews/:id/result" element={<InterviewResult />} />
               </Route>
 
               <Route path="*" element={<Navigate to="/" replace />} />
