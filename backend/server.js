@@ -13,6 +13,7 @@ const resumeMatchRoutes = require("./routes/resumeMatchRoutes");
 const interviewRoutes = require("./routes/interviewRoutes");
 const analyticsRoutes = require("./routes/analyticsRoutes");
 const reportRoutes = require("./routes/reportRoutes");
+const learningPlanRoutes = require("./routes/learningPlanRoutes");
 
 const app = express();
 
@@ -52,6 +53,7 @@ app.use("/api/resume-matches", resumeMatchRoutes);
 app.use("/api/interviews", interviewRoutes);
 app.use("/api/interviews", reportRoutes);
 app.use("/api/analytics", analyticsRoutes);
+app.use("/api/learning-plans", learningPlanRoutes);
 app.use(notFound);
 app.use(errorHandler);
 

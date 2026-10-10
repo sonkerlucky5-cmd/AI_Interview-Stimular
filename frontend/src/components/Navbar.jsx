@@ -134,6 +134,14 @@ function Navbar() {
                 >
                   Analytics
                 </NavLink>
+                <NavLink
+                  className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
+                  to="/roadmap"
+                  onClick={closeMenu}
+                  id="nav-roadmap"
+                >
+                  Roadmap
+                </NavLink>
               </>
             )}
           </nav>

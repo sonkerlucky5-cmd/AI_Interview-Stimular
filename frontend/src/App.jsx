@@ -15,6 +15,7 @@ import InterviewRoom from "./pages/InterviewRoom";
 import InterviewResult from "./pages/InterviewResult";
 import InterviewHistory from "./pages/InterviewHistory";
 import Analytics from "./pages/Analytics";
+import LearningRoadmap from "./pages/LearningRoadmap";
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
                 <Route path="/interviews/:id" element={<InterviewRoom />} />
                 <Route path="/interviews/:id/result" element={<InterviewResult />} />
                 <Route path="/analytics" element={<Analytics />} />
+                <Route path="/roadmap" element={<LearningRoadmap />} />
               </Route>
 
               <Route path="*" element={<Navigate to="/" replace />} />

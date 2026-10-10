@@ -189,6 +189,15 @@ const fullSchemaSql = `
   );
   CREATE INDEX IF NOT EXISTS idx_learning_plan_items_plan_pos ON learning_plan_items (plan_id, position);
 
+  -- Safe additive columns for Learning Plans & Items (Phase 5)
+  ALTER TABLE learning_plans ADD COLUMN IF NOT EXISTS title VARCHAR(255);
+  ALTER TABLE learning_plans ADD COLUMN IF NOT EXISTS learning_style VARCHAR(50) DEFAULT 'balanced';
+  ALTER TABLE learning_plans ADD COLUMN IF NOT EXISTS skill_gaps JSONB DEFAULT '[]'::jsonb;
+  ALTER TABLE learning_plan_items ADD COLUMN IF NOT EXISTS stage VARCHAR(100);
+  ALTER TABLE learning_plan_items ADD COLUMN IF NOT EXISTS practice_outcome TEXT;
+  ALTER TABLE learning_plan_items ADD COLUMN IF NOT EXISTS resource_url VARCHAR(500);
+  ALTER TABLE learning_plan_items ADD COLUMN IF NOT EXISTS notes TEXT;
+
   -- 14. Interview Reports
   CREATE TABLE IF NOT EXISTS interview_reports (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),

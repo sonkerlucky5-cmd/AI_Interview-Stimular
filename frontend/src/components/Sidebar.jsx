@@ -34,6 +34,9 @@ function Sidebar() {
         <NavLink className={({ isActive }) => `sidebar__link${isActive ? " active" : ""}`} to="/analytics">
           📈 Skill Analytics
         </NavLink>
+        <NavLink className={({ isActive }) => `sidebar__link${isActive ? " active" : ""}`} to="/roadmap">
+          🗺️ Learning Roadmap
+        </NavLink>
       </nav>
 
       <div className="sidebar__card sidebar__card--accent">
