@@ -13,6 +13,8 @@ import MatchResults from "./pages/MatchResults";
 import InterviewSetup from "./pages/InterviewSetup";
 import InterviewRoom from "./pages/InterviewRoom";
 import InterviewResult from "./pages/InterviewResult";
+import InterviewHistory from "./pages/InterviewHistory";
+import Analytics from "./pages/Analytics";
 
 function App() {
   return (

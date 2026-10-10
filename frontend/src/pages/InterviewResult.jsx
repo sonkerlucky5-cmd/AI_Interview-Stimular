@@ -4,6 +4,7 @@ import { toast } from "react-hot-toast";
 import Sidebar from "../components/Sidebar";
 import Loader from "../components/Loader";
 import { getInterviewEvaluationsRequest } from "../services/interviewService";
+import { getPrintableReportUrl } from "../services/reportService";
 import { getApiErrorMessage } from "../services/api";
 
 function InterviewResult() {
@@ -65,7 +66,19 @@ function InterviewResult() {
               </p>
             </div>
 
-            <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", alignItems: "center" }}>
+              <a
+                href={getPrintableReportUrl(id)}
+                target="_blank"
+                rel="noreferrer"
+                className="btn btn--outline"
+                id="btn-export-pdf"
+              >
+                🖨️ Export PDF Report
+              </a>
+              <Link to="/interviews" className="btn btn--outline">
+                📋 All Sessions
+              </Link>
               <Link to="/interviews/new" className="btn btn--primary">
                 + Practice Another Role
               </Link>
