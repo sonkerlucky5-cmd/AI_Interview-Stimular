@@ -82,22 +82,8 @@ const withTransaction = async (callback) => {
 };
 
 const initTables = async () => {
-  const createSchemaSql = `
-    CREATE TABLE IF NOT EXISTS users (
-      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-      name VARCHAR(60) NOT NULL,
-      email VARCHAR(255) NOT NULL,
-      password VARCHAR(255) NOT NULL,
-      role VARCHAR(20) NOT NULL DEFAULT 'candidate',
-      created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
-      updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
-    );
-
-    CREATE UNIQUE INDEX IF NOT EXISTS idx_users_email_unique ON users (LOWER(email));
-    CREATE INDEX IF NOT EXISTS idx_users_role ON users (role);
-  `;
-
-  await pool.query(createSchemaSql);
+  const { fullSchemaSql } = require("../scripts/migrate");
+  await pool.query(fullSchemaSql);
 };
 
 const ensureDatabaseExists = async () => {

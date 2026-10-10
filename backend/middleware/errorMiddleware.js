@@ -37,12 +37,17 @@ const normalizeError = (error) => {
   return new ApiError(500, error.message || "Something went wrong on the server.");
 };
 
-const errorHandler = (error, _req, res, _next) => {
+const errorHandler = (error, req, res, _next) => {
   const normalizedError = normalizeError(error);
 
   return res.status(normalizedError.statusCode || 500).json({
     success: false,
     message: normalizedError.message,
+    error: {
+      code: normalizedError.code || `ERR_${normalizedError.statusCode || 500}`,
+      message: normalizedError.message,
+      requestId: req?.id || null,
+    },
     ...(env.NODE_ENV === "development" && { stack: normalizedError.stack }),
   });
 };
