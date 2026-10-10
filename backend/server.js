@@ -10,6 +10,7 @@ const authRoutes = require("./routes/authRoutes");
 const resumeRoutes = require("./routes/resumeRoutes");
 const jobDescriptionRoutes = require("./routes/jobDescriptionRoutes");
 const resumeMatchRoutes = require("./routes/resumeMatchRoutes");
+const interviewRoutes = require("./routes/interviewRoutes");
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/resumes", resumeRoutes);
 app.use("/api/job-descriptions", jobDescriptionRoutes);
 app.use("/api/resume-matches", resumeMatchRoutes);
+app.use("/api/interviews", interviewRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
