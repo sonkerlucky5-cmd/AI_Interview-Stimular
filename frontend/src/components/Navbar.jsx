@@ -118,6 +118,22 @@ function Navbar() {
                 >
                   🎙️ Mock Interview
                 </NavLink>
+                <NavLink
+                  className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
+                  to="/interviews"
+                  onClick={closeMenu}
+                  id="nav-history"
+                >
+                  History
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
+                  to="/analytics"
+                  onClick={closeMenu}
+                  id="nav-analytics"
+                >
+                  Analytics
+                </NavLink>
               </>
             )}
           </nav>

@@ -5,12 +5,14 @@ import useAuth from "../hooks/useAuth";
 import { getResumesRequest } from "../services/resumeService";
 import { getJobsRequest } from "../services/jobService";
 import { getMatchesRequest } from "../services/matchService";
+import { getInterviewsRequest } from "../services/interviewService";
 
 function Dashboard() {
   const { user } = useAuth();
   const [resumeCount, setResumeCount] = useState(0);
   const [jobCount, setJobCount] = useState(0);
   const [matchCount, setMatchCount] = useState(0);
+  const [interviewCount, setInterviewCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
 
   const formattedDate = user?.createdAt
@@ -20,10 +22,11 @@ function Dashboard() {
   useEffect(() => {
     const fetchCounts = async () => {
       try {
-        const [rRes, jRes, mRes] = await Promise.allSettled([
+        const [rRes, jRes, mRes, iRes] = await Promise.allSettled([
           getResumesRequest(),
           getJobsRequest(),
           getMatchesRequest(),
+          getInterviewsRequest({ limit: 1 }),
         ]);
         if (rRes.status === "fulfilled" && rRes.value.success) {
           setResumeCount(rRes.value.data?.length || 0);
@@ -33,6 +36,9 @@ function Dashboard() {
         }
         if (mRes.status === "fulfilled" && mRes.value.success) {
           setMatchCount(mRes.value.data?.length || 0);
+        }
+        if (iRes.status === "fulfilled" && iRes.value.success) {
+          setInterviewCount(iRes.value.pagination?.totalCount ?? (iRes.value.data?.length || 0));
         }
       } finally {
         setIsLoading(false);

@@ -28,12 +28,17 @@ function Sidebar() {
         <NavLink className={({ isActive }) => `sidebar__link${isActive ? " active" : ""}`} to="/interviews/new">
           🎙️ Mock Interview
         </NavLink>
-        <span className="sidebar__link sidebar__link--muted">📈 Reports & History (Phase 4)</span>
+        <NavLink className={({ isActive }) => `sidebar__link${isActive ? " active" : ""}`} to="/interviews">
+          📋 Session History
+        </NavLink>
+        <NavLink className={({ isActive }) => `sidebar__link${isActive ? " active" : ""}`} to="/analytics">
+          📈 Skill Analytics
+        </NavLink>
       </nav>
 
       <div className="sidebar__card sidebar__card--accent">
-        <span className="eyebrow">Adaptive AI Engine</span>
-        <p>Dynamic questions & multi-dimensional rubric evaluations are live.</p>
+        <span className="eyebrow">Analytics & Reports Live</span>
+        <p>Review evaluations, competency trends & export PDF reports anytime.</p>
       </div>
     </aside>
   );
