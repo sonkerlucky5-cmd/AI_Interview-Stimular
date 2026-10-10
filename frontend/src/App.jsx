@@ -7,6 +7,9 @@ import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import ResumeManager from "./pages/ResumeManager";
+import JobDescriptions from "./pages/JobDescriptions";
+import MatchResults from "./pages/MatchResults";
 
 function App() {
   return (
@@ -23,6 +26,9 @@ function App() {
 
               <Route element={<ProtectedRoute />}>
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/resumes" element={<ResumeManager />} />
+                <Route path="/jobs" element={<JobDescriptions />} />
+                <Route path="/matches" element={<MatchResults />} />
               </Route>
 
               <Route path="*" element={<Navigate to="/" replace />} />

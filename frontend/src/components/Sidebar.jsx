@@ -14,18 +14,24 @@ function Sidebar() {
 
       <nav className="sidebar__nav">
         <NavLink className={({ isActive }) => `sidebar__link${isActive ? " active" : ""}`} to="/dashboard">
-          Overview
+          📊 Overview
         </NavLink>
-        <NavLink className={({ isActive }) => `sidebar__link${isActive ? " active" : ""}`} to="/" end>
-          Public landing
+        <NavLink className={({ isActive }) => `sidebar__link${isActive ? " active" : ""}`} to="/resumes">
+          📄 Resume Library
         </NavLink>
-        <span className="sidebar__link sidebar__link--muted">Interview room soon</span>
-        <span className="sidebar__link sidebar__link--muted">AI feedback soon</span>
+        <NavLink className={({ isActive }) => `sidebar__link${isActive ? " active" : ""}`} to="/jobs">
+          💼 Target Jobs
+        </NavLink>
+        <NavLink className={({ isActive }) => `sidebar__link${isActive ? " active" : ""}`} to="/matches">
+          🎯 Match Analysis
+        </NavLink>
+        <span className="sidebar__link sidebar__link--muted">🎙️ Mock Interview (Phase 3)</span>
+        <span className="sidebar__link sidebar__link--muted">📈 Reports & History (Phase 4)</span>
       </nav>
 
       <div className="sidebar__card sidebar__card--accent">
-        <span className="eyebrow">Phase 1</span>
-        <p>Authentication, routing, API structure, and a clean dashboard shell are ready.</p>
+        <span className="eyebrow">Document Intelligence</span>
+        <p>Resume parsing & job matching are fully live and connected to PostgreSQL.</p>
       </div>
     </aside>
   );

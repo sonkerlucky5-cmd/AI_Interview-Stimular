@@ -77,14 +77,40 @@ function Navbar() {
               Home
             </NavLink>
             {isAuthenticated && (
-              <NavLink
-                className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
-                to="/dashboard"
-                onClick={closeMenu}
-                id="nav-dashboard"
-              >
-                Dashboard
-              </NavLink>
+              <>
+                <NavLink
+                  className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
+                  to="/dashboard"
+                  onClick={closeMenu}
+                  id="nav-dashboard"
+                >
+                  Dashboard
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
+                  to="/resumes"
+                  onClick={closeMenu}
+                  id="nav-resumes"
+                >
+                  Resumes
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
+                  to="/jobs"
+                  onClick={closeMenu}
+                  id="nav-jobs"
+                >
+                  Jobs
+                </NavLink>
+                <NavLink
+                  className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
+                  to="/matches"
+                  onClick={closeMenu}
+                  id="nav-matches"
+                >
+                  Matches
+                </NavLink>
+              </>
             )}
           </nav>
 
