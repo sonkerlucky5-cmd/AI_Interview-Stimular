@@ -1,5 +1,29 @@
-const { Pool } = require("pg");
+const { Client, Pool } = require("pg");
 const { env } = require("./env");
+
+const normalizeDatabaseUrl = (urlStr) => {
+  if (!urlStr) return urlStr;
+  try {
+    new URL(urlStr);
+    return urlStr;
+  } catch {
+    const protocolMatch = urlStr.match(/^([a-z]+:\/\/)(.*)$/i);
+    if (!protocolMatch) return urlStr;
+    const rest = protocolMatch[2];
+    const lastAtIndex = rest.lastIndexOf("@");
+    if (lastAtIndex !== -1) {
+      const authPart = rest.slice(0, lastAtIndex);
+      const hostPart = rest.slice(lastAtIndex + 1);
+      const colonIndex = authPart.indexOf(":");
+      if (colonIndex !== -1) {
+        const user = authPart.slice(0, colonIndex);
+        const pass = authPart.slice(colonIndex + 1);
+        return `${protocolMatch[1]}${encodeURIComponent(user)}:${encodeURIComponent(pass)}@${hostPart}`;
+      }
+    }
+    return urlStr;
+  }
+};
 
 const getSslConfig = () => {
   if (process.env.PGSSLMODE === "disable") {
@@ -7,18 +31,16 @@ const getSslConfig = () => {
   }
 
   if (env.NODE_ENV === "production") {
-    // In production, enforce certificate verification
     return {
       rejectUnauthorized: true,
     };
   }
 
-  // In development/test, enable SSL if required by cloud providers
+  const rawUrl = env.DATABASE_URL || "";
   if (
-    env.DATABASE_URL &&
-    (env.DATABASE_URL.includes("sslmode=require") ||
-      env.DATABASE_URL.includes("sslmode=verify-full") ||
-      env.DATABASE_URL.includes("ssl=true"))
+    rawUrl.includes("sslmode=require") ||
+    rawUrl.includes("sslmode=verify-full") ||
+    rawUrl.includes("ssl=true")
   ) {
     return {
       rejectUnauthorized: false,
@@ -28,8 +50,10 @@ const getSslConfig = () => {
   return false;
 };
 
+const normalizedUrl = normalizeDatabaseUrl(env.DATABASE_URL);
+
 const pool = new Pool({
-  connectionString: env.DATABASE_URL,
+  connectionString: normalizedUrl,
   ssl: getSslConfig(),
   max: 20,
   idleTimeoutMillis: 30000,
@@ -76,8 +100,43 @@ const initTables = async () => {
   await pool.query(createSchemaSql);
 };
 
+const ensureDatabaseExists = async () => {
+  try {
+    const parsed = new URL(normalizedUrl);
+    const dbName = parsed.pathname.slice(1);
+    if (!dbName || dbName === "postgres") return;
+
+    const adminUrl = new URL(normalizedUrl);
+    adminUrl.pathname = "/postgres";
+
+    const adminClient = new Client({
+      connectionString: adminUrl.toString(),
+      ssl: getSslConfig(),
+    });
+
+    await adminClient.connect();
+    try {
+      const checkRes = await adminClient.query(
+        "SELECT 1 FROM pg_database WHERE datname = $1",
+        [dbName]
+      );
+      if (checkRes.rows.length === 0) {
+        console.log(`Database '${dbName}' not found. Creating database...`);
+        await adminClient.query(`CREATE DATABASE "${dbName}"`);
+        console.log(`Database '${dbName}' created successfully.`);
+      }
+    } finally {
+      await adminClient.end();
+    }
+  } catch {
+    // If adminClient cannot connect or lacks privileges, ignore and let primary pool attempt
+  }
+};
+
 const connectDB = async () => {
   try {
+    await ensureDatabaseExists();
+
     const client = await pool.connect();
     try {
       const result = await client.query("SELECT current_database(), current_user;");
@@ -89,7 +148,28 @@ const connectDB = async () => {
       client.release();
     }
   } catch (error) {
-    console.error(`PostgreSQL connection failed: ${error.message}`);
+    if (error.code === "3D000") {
+      console.error(`PostgreSQL: Database does not exist. Attempting auto-creation...`);
+      try {
+        await ensureDatabaseExists();
+        const client = await pool.connect();
+        try {
+          await initTables();
+          console.log(`PostgreSQL connected successfully after database creation.`);
+          return;
+        } finally {
+          client.release();
+        }
+      } catch (retryErr) {
+        console.error(`Failed to auto-create database: ${retryErr.message}`);
+      }
+    } else if (error.code === "28P01") {
+      console.error(`PostgreSQL authentication failed for user. Please check your password in .env`);
+    } else if (error.code === "ECONNREFUSED") {
+      console.error(`Could not connect to PostgreSQL server. Please make sure PostgreSQL service is running on port 5432.`);
+    } else {
+      console.error(`PostgreSQL connection failed: ${error.message}`);
+    }
     process.exit(1);
   }
 };
@@ -98,5 +178,6 @@ connectDB.pool = pool;
 connectDB.query = query;
 connectDB.withTransaction = withTransaction;
 connectDB.connectDB = connectDB;
+connectDB.normalizeDatabaseUrl = normalizeDatabaseUrl;
 
 module.exports = connectDB;
