@@ -32,8 +32,8 @@ function Navbar() {
           <span className="brand__mark" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
               <circle cx="12" cy="8" r="4" fill="url(#ng)" />
-              <rect x="8" y="14" width="8" height="2" rx="1" fill="url(#ng)" opacity="0.7"/>
-              <rect x="6" y="18" width="12" height="2" rx="1" fill="url(#ng)" opacity="0.5"/>
+              <rect x="8" y="14" width="8" height="2" rx="1" fill="url(#ng)" opacity="0.7" />
+              <rect x="6" y="18" width="12" height="2" rx="1" fill="url(#ng)" opacity="0.5" />
               <defs>
                 <linearGradient id="ng" x1="0" y1="0" x2="1" y2="1">
                   <stop offset="0%" stopColor="#4f8cff" />
