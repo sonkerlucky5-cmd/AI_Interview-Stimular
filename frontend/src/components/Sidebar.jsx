@@ -25,13 +25,15 @@ function Sidebar() {
         <NavLink className={({ isActive }) => `sidebar__link${isActive ? " active" : ""}`} to="/matches">
           🎯 Match Analysis
         </NavLink>
-        <span className="sidebar__link sidebar__link--muted">🎙️ Mock Interview (Phase 3)</span>
+        <NavLink className={({ isActive }) => `sidebar__link${isActive ? " active" : ""}`} to="/interviews/new">
+          🎙️ Mock Interview
+        </NavLink>
         <span className="sidebar__link sidebar__link--muted">📈 Reports & History (Phase 4)</span>
       </nav>
 
       <div className="sidebar__card sidebar__card--accent">
-        <span className="eyebrow">Document Intelligence</span>
-        <p>Resume parsing & job matching are fully live and connected to PostgreSQL.</p>
+        <span className="eyebrow">Adaptive AI Engine</span>
+        <p>Dynamic questions & multi-dimensional rubric evaluations are live.</p>
       </div>
     </aside>
   );
