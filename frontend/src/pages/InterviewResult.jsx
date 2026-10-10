@@ -79,6 +79,13 @@ function InterviewResult() {
               <Link to="/interviews" className="btn btn--outline">
                 📋 All Sessions
               </Link>
+              <Link
+                to={`/roadmap?role=${encodeURIComponent(interview?.target_role || "")}&sourceInterviewId=${id}`}
+                className="btn btn--outline"
+                id="btn-generate-roadmap"
+              >
+                🗺️ Study Roadmap
+              </Link>
               <Link to="/interviews/new" className="btn btn--primary">
                 + Practice Another Role
               </Link>

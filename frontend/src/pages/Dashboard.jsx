@@ -153,6 +153,19 @@ function Dashboard() {
                     </Link>
                   </div>
                 </div>
+
+                <div style={{ display: "flex", gap: "1rem", alignItems: "flex-start" }}>
+                  <span style={{ fontSize: "1.5rem" }}>4️⃣</span>
+                  <div>
+                    <strong>Follow personalized study roadmap</strong>
+                    <p style={{ margin: "0.2rem 0", color: "var(--text-muted)", fontSize: "0.85rem" }}>
+                      Track task checkoffs and study recommendations tailored to your role.
+                    </p>
+                    <Link to="/roadmap" style={{ color: "var(--blue)", fontSize: "0.85rem", fontWeight: 500 }}>
+                      Open Learning Roadmap →
+                    </Link>
+                  </div>
+                </div>
               </div>
             </article>
 

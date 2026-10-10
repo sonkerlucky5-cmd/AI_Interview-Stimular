@@ -355,6 +355,17 @@ function MatchResults() {
                             </span>
                           ))}
                         </div>
+                        {activeMatch.match_data?.missingSkills?.length > 0 && (
+                          <div style={{ marginTop: "1rem" }}>
+                            <Link
+                              to={`/roadmap?role=${encodeURIComponent(activeMatch.job_role || "")}&gaps=${encodeURIComponent((activeMatch.match_data?.missingSkills || []).join(","))}`}
+                              className="btn btn--outline"
+                              style={{ fontSize: "0.82rem", padding: "0.35rem 0.75rem" }}
+                            >
+                              🗺️ Create Learning Roadmap for Gaps →
+                            </Link>
+                          </div>
+                        )}
                       </div>
                     </div>
 
