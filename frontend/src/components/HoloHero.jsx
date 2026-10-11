@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { Link } from "react-router-dom";
 import "./HoloHero.css";
 
@@ -70,24 +69,6 @@ const cards = [
 ];
 
 export default function HoloHero() {
-  const sceneRef = useRef(null);
-  const stageRef = useRef(null);
-
-  const onMove = (e) => {
-    if (!sceneRef.current || !stageRef.current) return;
-    const r = sceneRef.current.getBoundingClientRect();
-    const x = (e.clientX - r.left) / r.width - 0.5;
-    const y = (e.clientY - r.top) / r.height - 0.5;
-    stageRef.current.style.setProperty("--rx", `${-y * 18}deg`);
-    stageRef.current.style.setProperty("--ry", `${x * 22}deg`);
-  };
-
-  const onLeave = () => {
-    if (!stageRef.current) return;
-    stageRef.current.style.setProperty("--rx", "0deg");
-    stageRef.current.style.setProperty("--ry", "0deg");
-  };
-
   return (
     <section className="holo">
       <div className="holo-text">
@@ -100,40 +81,34 @@ export default function HoloHero() {
         </div>
       </div>
 
-      <div
-        className="holo-scene"
-        ref={sceneRef}
-        onMouseMove={onMove}
-        onMouseLeave={onLeave}
-      >
-        <div className="holo-stage" ref={stageRef}>
-          {cards.map((c, i) => (
-            <div key={c.label} className={`holo-card c${i + 1}`}>
-              <div className="holo-card-header">
-                <span className="holo-card-icon">{c.icon}</span>
-                <span className="holo-card-label">{c.label}</span>
-                {c.isLive ? (
-                  <span className="holo-live-tag">
-                    <span className="holo-live-pulse" />
-                    LIVE
-                  </span>
-                ) : (
-                  <span className="holo-card-badge">{c.badge}</span>
-                )}
-              </div>
-
-              {c.center}
-
-              <div className="holo-card-body">
-                <strong className="holo-card-value">{c.value}</strong>
-                <span className="holo-card-sub">{c.sub}</span>
-              </div>
+      <div className="holo-cards-wrapper">
+        {cards.map((c, i) => (
+          <div key={c.label} className={`holo-card card-${i + 1}`}>
+            <div className="holo-card-header">
+              <span className="holo-card-icon">{c.icon}</span>
+              <span className="holo-card-label">{c.label}</span>
+              {c.isLive ? (
+                <span className="holo-live-tag">
+                  <span className="holo-live-pulse" />
+                  LIVE
+                </span>
+              ) : (
+                <span className="holo-card-badge">{c.badge}</span>
+              )}
             </div>
-          ))}
-        </div>
+
+            {c.center}
+
+            <div className="holo-card-body">
+              <strong className="holo-card-value">{c.value}</strong>
+              <span className="holo-card-sub">{c.sub}</span>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );
 }
+
 
 
