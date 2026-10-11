@@ -1,0 +1,185 @@
+import { Link } from "react-router-dom";
+
+export default function Footer() {
+  const scrollToTop = () => {
+    if (window.__lenis) {
+      window.__lenis.scrollTo(0, { duration: 1.2 });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  return (
+    <footer
+      style={{
+        background: "linear-gradient(180deg, #0b0d1a 0%, #060710 100%)",
+        borderTop: "1px solid rgba(255, 255, 255, 0.08)",
+        padding: "4rem 6% 2.5rem",
+        color: "var(--text-muted)",
+        position: "relative",
+        zIndex: 10,
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "1280px",
+          margin: "0 auto",
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+          gap: "2.5rem",
+          marginBottom: "3rem",
+        }}
+      >
+        <div>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "1rem" }}>
+            <span
+              style={{
+                width: "28px",
+                height: "28px",
+                borderRadius: "8px",
+                background: "linear-gradient(135deg, #00ffd0, #7b61ff)",
+                display: "grid",
+                placeItems: "center",
+                color: "#05060f",
+                fontWeight: 800,
+                fontSize: "14px",
+              }}
+            >
+              AI
+            </span>
+            <strong style={{ fontSize: "1.2rem", color: "#fff", letterSpacing: "-0.01em" }}>
+              Interview<span style={{ color: "var(--accent-cyan)" }}>AI</span>
+            </strong>
+          </div>
+          <p style={{ fontSize: "0.9rem", lineHeight: 1.6, maxWidth: "300px" }}>
+            The candidate-first AI interview simulator. Realistic questions, instant scoring, and tailored DSA practice.
+          </p>
+        </div>
+
+        <div>
+          <h4 style={{ color: "#fff", fontSize: "0.95rem", marginBottom: "1rem", letterSpacing: "0.05em" }}>
+            PRACTICE
+          </h4>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: "0.6rem", fontSize: "0.88rem" }}>
+            <li>
+              <Link to="/interview" style={{ color: "inherit", transition: "color 0.2s" }}>
+                🎙️ Mock Interview
+              </Link>
+            </li>
+            <li>
+              <Link to="/dsa" style={{ color: "inherit", transition: "color 0.2s" }}>
+                ⚡ DSA Practice
+              </Link>
+            </li>
+            <li>
+              <Link to="/results" style={{ color: "inherit", transition: "color 0.2s" }}>
+                📊 Evaluation & Rubric
+              </Link>
+            </li>
+            <li>
+              <Link to="/dashboard" style={{ color: "inherit", transition: "color 0.2s" }}>
+                📈 Performance Dashboard
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style={{ color: "#fff", fontSize: "0.95rem", marginBottom: "1rem", letterSpacing: "0.05em" }}>
+            PLATFORM
+          </h4>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: "0.6rem", fontSize: "0.88rem" }}>
+            <li>
+              <a
+                href="#features"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.__lenis?.scrollTo("#features", { offset: -80 });
+                }}
+                style={{ color: "inherit" }}
+              >
+                Features
+              </a>
+            </li>
+            <li>
+              <a
+                href="#how-it-works"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.__lenis?.scrollTo("#how-it-works", { offset: -80 });
+                }}
+                style={{ color: "inherit" }}
+              >
+                How It Works
+              </a>
+            </li>
+            <li>
+              <a
+                href="#pricing"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.__lenis?.scrollTo("#pricing", { offset: -80 });
+                }}
+                style={{ color: "inherit" }}
+              >
+                Pricing Plans
+              </a>
+            </li>
+            <li>
+              <Link to="/admin" style={{ color: "inherit" }}>
+                Admin Portal
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 style={{ color: "#fff", fontSize: "0.95rem", marginBottom: "1rem", letterSpacing: "0.05em" }}>
+            STAY CONNECTED
+          </h4>
+          <p style={{ fontSize: "0.85rem", marginBottom: "1rem" }}>
+            Ready to ace your next technical or behavioral round?
+          </p>
+          <button
+            type="button"
+            onClick={scrollToTop}
+            style={{
+              padding: "0.55rem 1.1rem",
+              borderRadius: "999px",
+              background: "rgba(255, 255, 255, 0.05)",
+              border: "1px solid rgba(255, 255, 255, 0.15)",
+              color: "var(--accent-cyan)",
+              fontSize: "0.85rem",
+              fontWeight: 600,
+              cursor: "pointer",
+            }}
+          >
+            ↑ Back to Top
+          </button>
+        </div>
+      </div>
+
+      <div
+        style={{
+          maxWidth: "1280px",
+          margin: "0 auto",
+          paddingTop: "2rem",
+          borderTop: "1px solid rgba(255, 255, 255, 0.06)",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: "1rem",
+          fontSize: "0.82rem",
+        }}
+      >
+        <div>© {new Date().getFullYear()} InterviewAI Inc. All rights reserved.</div>
+        <div style={{ display: "flex", gap: "1.5rem" }}>
+          <span>Privacy Policy</span>
+          <span>Terms of Service</span>
+          <span>Security</span>
+        </div>
+      </div>
+    </footer>
+  );
+}
