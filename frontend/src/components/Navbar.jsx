@@ -76,6 +76,19 @@ function Navbar() {
             >
               Home
             </NavLink>
+            {!isAuthenticated && (
+              <>
+                <a href="#features" className="navbar__link" onClick={closeMenu} id="nav-features">
+                  Features
+                </a>
+                <a href="#roles" className="navbar__link" onClick={closeMenu} id="nav-roles">
+                  Interview Types
+                </a>
+                <a href="#process" className="navbar__link" onClick={closeMenu} id="nav-process">
+                  How It Works
+                </a>
+              </>
+            )}
             {isAuthenticated && (
               <>
                 <NavLink

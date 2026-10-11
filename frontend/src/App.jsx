@@ -16,8 +16,11 @@ import InterviewResult from "./pages/InterviewResult";
 import InterviewHistory from "./pages/InterviewHistory";
 import Analytics from "./pages/Analytics";
 import LearningRoadmap from "./pages/LearningRoadmap";
+import useSmoothScroll from "./hooks/useSmoothScroll";
 
 function App() {
+  useSmoothScroll();
+
   return (
     <BrowserRouter>
       <AuthProvider>
