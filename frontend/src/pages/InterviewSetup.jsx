@@ -139,7 +139,7 @@ function InterviewSetup() {
                 <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: 600, color: "var(--title)" }}>
                   Interview Style / Focus
                 </label>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "0.75rem" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "0.75rem" }}>
                   {[
                     { id: "technical", label: "💻 Technical & Architecture", desc: "System design, frameworks, APIs, databases" },
                     { id: "behavioral", label: "🤝 Behavioral (STAR)", desc: "Conflict resolution, leadership, past ownership" },
@@ -166,7 +166,7 @@ function InterviewSetup() {
               </div>
 
               {/* Difficulty & Question Count */}
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem", marginBottom: "1.5rem" }}>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1.25rem", marginBottom: "1.5rem" }}>
                 <div>
                   <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: 600, color: "var(--title)" }}>
                     Seniority / Difficulty Level
@@ -203,7 +203,7 @@ function InterviewSetup() {
               {/* Optional Context */}
               <div style={{ marginBottom: "2rem" }}>
                 <span className="eyebrow">Tailored Personalization (Optional)</span>
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.25rem", marginTop: "0.5rem" }}>
+                <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "1.25rem", marginTop: "0.5rem" }}>
                   <div>
                     <label style={{ display: "block", marginBottom: "0.4rem", fontSize: "0.85rem", color: "var(--text-muted)" }}>
                       Attach Resume Context

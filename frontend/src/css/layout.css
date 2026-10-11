@@ -266,64 +266,105 @@
 }
 
 /* ══════════════════════════
-   RESPONSIVE NAVBAR
-══════════════════════════ */
-@media (max-width: 860px) {
+   RESPONSIVE NAVBAR & SHELL
+   ══════════════════════════ */
+@media (max-width: 1040px) {
   .navbar__toggle {
     display: flex;
   }
 
   .navbar__panel {
     position: absolute;
-    top: calc(100% + 0.6rem);
-    left: 1rem;
-    right: 1rem;
+    top: calc(100% + 0.5rem);
+    left: 0.75rem;
+    right: 0.75rem;
     display: none;
     flex-direction: column;
     align-items: stretch;
-    padding: 1rem;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 22px;
-    background: rgba(7, 11, 18, 0.96);
-    backdrop-filter: blur(24px);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+    padding: 1.1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    background: rgba(7, 11, 20, 0.97);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.65), 0 0 40px rgba(79, 140, 255, 0.12);
+    max-height: calc(100vh - 85px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    z-index: 1000;
   }
 
   .navbar__panel.is-open {
     display: flex;
+    animation: navPanelFade 0.22s var(--ease-out) both;
   }
 
   .navbar__links {
     flex-direction: column;
     align-items: stretch;
-    gap: 0.25rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-    padding-bottom: 0.75rem;
-    margin-bottom: 0.75rem;
+    gap: 0.35rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 0.85rem;
+    margin-bottom: 0.85rem;
   }
 
   .navbar__link {
-    border-radius: 14px;
+    border-radius: 12px;
     padding: 0.75rem 1rem;
+    font-size: 0.95rem;
   }
 
   .navbar__actions {
     flex-direction: column;
     align-items: stretch;
-    gap: 0.6rem;
+    gap: 0.65rem;
   }
 
   .navbar__btn {
     justify-content: center;
-    padding: 0.78rem 1rem;
-    border-radius: 14px;
+    padding: 0.82rem 1.2rem;
+    border-radius: 12px;
+    font-size: 0.92rem;
   }
 
   .navbar__user {
     border-radius: 14px;
+    padding: 0.6rem 0.9rem;
   }
 
   .app-main {
     padding-top: 1.5rem;
+  }
+}
+
+@keyframes navPanelFade {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 640px) {
+  .navbar__inner {
+    padding: 0.75rem 1rem;
+  }
+
+  .brand__name {
+    font-size: 0.98rem;
+  }
+
+  .brand__mark {
+    width: 36px;
+    height: 36px;
+    border-radius: 11px;
+  }
+
+  .app-main {
+    padding: 1.25rem 1rem 4rem;
   }
 }

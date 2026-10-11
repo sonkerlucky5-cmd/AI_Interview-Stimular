@@ -35,7 +35,7 @@ function HeroDemoModal({ isOpen, onClose }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: "1.5rem",
+        padding: "clamp(0.5rem, 3vw, 1.5rem)",
         zIndex: 2000,
         animation: "fadeIn 0.25s ease-out",
       }}
@@ -46,11 +46,12 @@ function HeroDemoModal({ isOpen, onClose }) {
         style={{
           maxWidth: "760px",
           width: "100%",
+          maxHeight: "90vh",
+          overflowY: "auto",
           background: "#080d1e",
           border: "1px solid rgba(0, 240, 255, 0.3)",
           boxShadow: "0 25px 80px rgba(0, 0, 0, 0.8), 0 0 50px rgba(0, 240, 255, 0.15)",
           borderRadius: "20px",
-          overflow: "hidden",
           position: "relative",
         }}
         onClick={(e) => e.stopPropagation()}

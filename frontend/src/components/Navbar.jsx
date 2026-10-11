@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 
@@ -7,8 +7,50 @@ function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const { isAuthenticated, logout, user } = useAuth();
+  const location = useLocation();
+  const navRef = useRef(null);
 
   const closeMenu = () => setIsMenuOpen(false);
+
+  // Close menu on route change
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
+
+  // Close menu on click outside or Escape key
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const handleClickOutside = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setIsMenuOpen(false);
+      }
+    };
+
+    const handleResize = () => {
+      if (window.innerWidth > 1040) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside, { passive: true });
+    document.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [isMenuOpen]);
 
   const handleLogout = async () => {
     setIsLoggingOut(true);
@@ -24,7 +66,7 @@ function Navbar() {
   };
 
   return (
-    <header className="navbar">
+    <header className="navbar" ref={navRef}>
       <div className="navbar__inner">
 
         {/* Brand */}
