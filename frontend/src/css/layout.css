@@ -6,9 +6,10 @@
 }
 
 .app-main {
-  width: min(100%, var(--max-width));
-  margin: 0 auto;
-  padding: 2rem 1.5rem 5rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  flex: 1;
 }
 
 /* ═══════════════════════════

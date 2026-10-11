@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 
@@ -8,6 +8,7 @@ function Navbar() {
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const { isAuthenticated, logout, user } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
   const navRef = useRef(null);
 
   const closeMenu = () => setIsMenuOpen(false);
@@ -65,10 +66,30 @@ function Navbar() {
     }
   };
 
+  const handleAnchorClick = (e, selector) => {
+    e.preventDefault();
+    closeMenu();
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        if (window.__lenis) {
+          window.__lenis.scrollTo(selector, { offset: -80 });
+        } else {
+          document.querySelector(selector)?.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 300);
+    } else {
+      if (window.__lenis) {
+        window.__lenis.scrollTo(selector, { offset: -80 });
+      } else {
+        document.querySelector(selector)?.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
   return (
     <header className="navbar" ref={navRef}>
       <div className="navbar__inner">
-
         {/* Brand */}
         <Link className="brand" to="/" onClick={closeMenu} id="nav-brand">
           <span className="brand__mark" aria-hidden="true">
@@ -78,15 +99,15 @@ function Navbar() {
               <rect x="6" y="18" width="12" height="2" rx="1" fill="url(#ng)" opacity="0.5" />
               <defs>
                 <linearGradient id="ng" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#4f8cff" />
-                  <stop offset="100%" stopColor="#8a5cff" />
+                  <stop offset="0%" stopColor="#00ffd0" />
+                  <stop offset="100%" stopColor="#7b61ff" />
                 </linearGradient>
               </defs>
             </svg>
           </span>
           <span className="brand__text">
             <strong className="brand__name">
-              AI <span className="brand__accent">Interview</span>
+              Interview<span className="brand__accent">AI</span>
             </strong>
             <small className="brand__sub">Simulator</small>
           </span>
@@ -118,20 +139,53 @@ function Navbar() {
             >
               Home
             </NavLink>
-            {!isAuthenticated && (
-              <>
-                <a href="#features" className="navbar__link" onClick={closeMenu} id="nav-features">
-                  Features
-                </a>
-                <a href="#roles" className="navbar__link" onClick={closeMenu} id="nav-roles">
-                  Interview Types
-                </a>
-                <a href="#process" className="navbar__link" onClick={closeMenu} id="nav-process">
-                  How It Works
-                </a>
-              </>
-            )}
-            {isAuthenticated && (
+
+            <NavLink
+              className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
+              to="/interview"
+              onClick={closeMenu}
+              id="nav-mock-interview"
+            >
+              🎙️ Mock Interview
+            </NavLink>
+
+            <NavLink
+              className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
+              to="/dsa"
+              onClick={closeMenu}
+              id="nav-dsa"
+            >
+              ⚡ DSA Arena
+            </NavLink>
+
+            <a
+              href="#features"
+              className="navbar__link"
+              onClick={(e) => handleAnchorClick(e, "#features")}
+              id="nav-features"
+            >
+              Features
+            </a>
+
+            <a
+              href="#how-it-works"
+              className="navbar__link"
+              onClick={(e) => handleAnchorClick(e, "#how-it-works")}
+              id="nav-process"
+            >
+              How It Works
+            </a>
+
+            <a
+              href="#pricing"
+              className="navbar__link"
+              onClick={(e) => handleAnchorClick(e, "#pricing")}
+              id="nav-pricing"
+            >
+              Pricing
+            </a>
+
+            {isAuthenticated ? (
               <>
                 <NavLink
                   className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
@@ -143,68 +197,45 @@ function Navbar() {
                 </NavLink>
                 <NavLink
                   className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
-                  to="/resumes"
+                  to="/results"
                   onClick={closeMenu}
-                  id="nav-resumes"
+                  id="nav-results"
                 >
-                  Resumes
+                  Results
                 </NavLink>
                 <NavLink
                   className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
-                  to="/jobs"
+                  to="/profile"
                   onClick={closeMenu}
-                  id="nav-jobs"
+                  id="nav-profile"
                 >
-                  Jobs
+                  Profile
                 </NavLink>
                 <NavLink
                   className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
-                  to="/matches"
+                  to="/admin"
                   onClick={closeMenu}
-                  id="nav-matches"
+                  id="nav-admin"
                 >
-                  Matches
-                </NavLink>
-                <NavLink
-                  className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
-                  to="/interviews/new"
-                  onClick={closeMenu}
-                  id="nav-interview"
-                >
-                  🎙️ Mock Interview
-                </NavLink>
-                <NavLink
-                  className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
-                  to="/interviews"
-                  onClick={closeMenu}
-                  id="nav-history"
-                >
-                  History
-                </NavLink>
-                <NavLink
-                  className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
-                  to="/analytics"
-                  onClick={closeMenu}
-                  id="nav-analytics"
-                >
-                  Analytics
-                </NavLink>
-                <NavLink
-                  className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
-                  to="/roadmap"
-                  onClick={closeMenu}
-                  id="nav-roadmap"
-                >
-                  Roadmap
+                  Admin
                 </NavLink>
               </>
+            ) : (
+              <NavLink
+                className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
+                to="/dashboard"
+                onClick={closeMenu}
+                id="nav-dashboard-guest"
+              >
+                Dashboard
+              </NavLink>
             )}
           </nav>
 
           <div className="navbar__actions">
             {isAuthenticated ? (
               <>
-                <div className="navbar__user" aria-label="User info">
+                <Link to="/profile" className="navbar__user" aria-label="User info" onClick={closeMenu}>
                   <span className="navbar__user-avatar">
                     {user?.name?.[0]?.toUpperCase() ?? "U"}
                   </span>
@@ -212,7 +243,7 @@ function Navbar() {
                     <span>{user?.name}</span>
                     <small>{user?.role}</small>
                   </div>
-                </div>
+                </Link>
                 <button
                   type="button"
                   className="navbar__btn navbar__btn--ghost"
@@ -239,11 +270,11 @@ function Navbar() {
                   className={({ isActive }) =>
                     `navbar__btn navbar__btn--primary${isActive ? " active" : ""}`
                   }
-                  to="/signup"
+                  to="/register"
                   onClick={closeMenu}
                   id="nav-signup"
                 >
-                  Get Started
+                  Start Free
                 </NavLink>
               </>
             )}
