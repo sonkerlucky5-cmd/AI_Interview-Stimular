@@ -1581,3 +1581,210 @@
   }
 }
 
+/* ═════════════════════════════════════════════
+   PREMIUM ANIMATION ENHANCEMENTS
+   ═════════════════════════════════════════════ */
+
+/* Animated gradient shimmer on hero gradient text */
+.cyber-hero__gradient-text {
+  background-size: 200% 200%;
+  animation: gradientShimmer 4s ease-in-out infinite;
+}
+
+@keyframes gradientShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Feature card interactive glow trail */
+.home-feature-card {
+  --glow-x: 50%;
+  --glow-y: 50%;
+  overflow: hidden;
+}
+
+.home-feature-card::after {
+  content: "";
+  position: absolute;
+  top: var(--glow-y);
+  left: var(--glow-x);
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(79, 140, 255, 0.12), transparent 65%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.home-feature-card:hover::after {
+  opacity: 1;
+}
+
+/* Animated gradient divider between sections */
+.home-section::before {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  margin: 0 auto 2rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #00f0ff, #a855f7, #ec4899);
+  background-size: 200% 100%;
+  animation: dividerPulse 3s ease-in-out infinite;
+}
+
+@keyframes dividerPulse {
+  0%, 100% { background-position: 0% 50%; opacity: 0.5; }
+  50% { background-position: 100% 50%; opacity: 1; width: 120px; }
+}
+
+/* Stats counter glow on hover */
+.home-stats__item {
+  position: relative;
+  overflow: hidden;
+}
+
+.home-stats__item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, #4f8cff, #8a5cff);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.home-stats__item:hover::after {
+  width: 70%;
+}
+
+/* Step number pulse effect */
+.home-step__number {
+  position: relative;
+}
+
+.home-step__number::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(79, 140, 255, 0.25);
+  animation: stepRing 2.5s ease-in-out infinite;
+}
+
+@keyframes stepRing {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.15); opacity: 0; }
+}
+
+/* Role pill shimmer on hover */
+.home-role-pill {
+  position: relative;
+  overflow: hidden;
+}
+
+.home-role-pill::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(79, 140, 255, 0.08), transparent);
+  transition: left 0.6s ease;
+}
+
+.home-role-pill:hover::before {
+  left: 100%;
+}
+
+/* Testimonial card subtle border glow */
+.home-testimonial::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), transparent 50%, rgba(168, 85, 247, 0.1));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.home-testimonial {
+  position: relative;
+}
+
+.home-testimonial:hover::before {
+  opacity: 1;
+}
+
+/* CTA section floating particles effect */
+.home-cta::before {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: 15%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4f8cff;
+  box-shadow: 
+    120px 80px 0 #8a5cff,
+    240px -30px 0 #39d0c7,
+    350px 60px 0 #00f0ff,
+    -80px 100px 0 #ec4899,
+    420px -50px 0 #a855f7;
+  animation: ctaParticles 6s ease-in-out infinite alternate;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+@keyframes ctaParticles {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(20px, -30px); }
+}
+
+/* Waveform enhanced bounce with varying delays */
+.wave-bar:nth-child(odd) {
+  animation-duration: 0.8s;
+}
+
+.wave-bar:nth-child(3n) {
+  animation-duration: 1.4s;
+}
+
+/* Enhanced mascot hover */
+.cyber-mascot-wrap:hover .cyber-mascot-img {
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.6)) drop-shadow(0 0 25px rgba(0, 240, 255, 0.5));
+  transform: scale(1.08);
+  transition: all 0.3s ease;
+}
+
+.cyber-mascot-img {
+  transition: all 0.3s ease;
+}
+
+/* Smooth reveal utility for GSAP ScrollTrigger */
+.gsap-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Global page transition smoothness */
+.home-page > section {
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+/* ── fadeIn keyframe (used by HeroDemoModal) ── */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: scale(0.96); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
