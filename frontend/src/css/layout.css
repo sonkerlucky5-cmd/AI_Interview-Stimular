@@ -265,10 +265,36 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
+/* ── Laptop compact navigation (992px to 1200px) ── */
+@media (min-width: 993px) and (max-width: 1200px) {
+  .navbar__inner {
+    padding: 0.8rem 1rem;
+    gap: 0.5rem;
+  }
+
+  .navbar__links {
+    gap: 0.15rem;
+  }
+
+  .navbar__link {
+    padding: 0.45rem 0.65rem;
+    font-size: 0.85rem;
+  }
+
+  .navbar__btn {
+    padding: 0.55rem 0.95rem;
+    font-size: 0.84rem;
+  }
+
+  .navbar__user {
+    padding: 0.35rem 0.65rem 0.35rem 0.35rem;
+  }
+}
+
 /* ══════════════════════════
-   RESPONSIVE NAVBAR & SHELL
+   RESPONSIVE NAVBAR & SHELL (Tablet & Mobile <= 992px)
    ══════════════════════════ */
-@media (max-width: 1040px) {
+@media (max-width: 992px) {
   .navbar__toggle {
     display: flex;
   }

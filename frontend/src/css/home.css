@@ -1847,8 +1847,8 @@
 
   /* Compact Non-Overlapping Holographic Cards */
   .cyber-float-card--progress {
-    top: -12px;
-    left: -8px;
+    top: -18px;
+    left: -10px;
     width: 148px;
     padding: 0.5rem 0.6rem;
     border-radius: 12px;
@@ -1868,8 +1868,8 @@
   }
 
   .cyber-float-card--feedback {
-    top: -6px;
-    right: -8px;
+    top: -14px;
+    right: -10px;
     width: 144px;
     padding: 0.5rem 0.6rem;
     border-radius: 12px;

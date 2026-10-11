@@ -34,7 +34,7 @@ function Navbar() {
     };
 
     const handleResize = () => {
-      if (window.innerWidth > 1040) {
+      if (window.innerWidth > 992) {
         setIsMenuOpen(false);
       }
     };
