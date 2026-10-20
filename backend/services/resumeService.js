@@ -41,23 +41,45 @@ const extractTextFromFile = async (filePath, mimeType) => {
   try {
     if (ext === ".pdf" || mimeType === "application/pdf") {
       const dataBuffer = await fs.promises.readFile(filePath);
-      const data = await pdfParse(dataBuffer);
-      if (!data.text || !data.text.trim()) {
-        throw new ApiError(400, "Unable to extract text. The PDF might be scanned or image-only.");
+      let extractedText = "";
+
+      const PDFParserClass =
+        pdfParse.PDFParse ||
+        (typeof pdfParse === "function" && pdfParse.prototype?.getText ? pdfParse : null);
+
+      if (PDFParserClass) {
+        const parser = new PDFParserClass({ data: dataBuffer });
+        try {
+          const result = await parser.getText();
+          extractedText = result?.text || "";
+        } finally {
+          if (typeof parser.destroy === "function") {
+            await parser.destroy().catch(() => {});
+          }
+        }
+      } else if (typeof pdfParse === "function") {
+        const result = await pdfParse(dataBuffer);
+        extractedText = result?.text || "";
+      } else {
+        throw new ApiError(500, "PDF parsing engine is not properly initialized.", "PARSER_INIT_ERROR");
       }
-      return data.text.trim();
+
+      if (!extractedText || !extractedText.trim()) {
+        throw new ApiError(400, "Unable to extract text. The PDF might be scanned or image-only.", "SCANNED_PDF_ERROR");
+      }
+      return extractedText.trim();
     } else if (ext === ".docx" || mimeType?.includes("wordprocessingml")) {
       const result = await mammoth.extractRawText({ path: filePath });
       if (!result.value || !result.value.trim()) {
-        throw new ApiError(400, "Unable to extract text from DOCX file.");
+        throw new ApiError(400, "Unable to extract text from DOCX file.", "EMPTY_DOCX_ERROR");
       }
       return result.value.trim();
     } else {
-      throw new ApiError(400, "Unsupported resume file type for parsing.");
+      throw new ApiError(400, "Unsupported resume file type for parsing.", "UNSUPPORTED_FILE_TYPE");
     }
   } catch (err) {
     if (err instanceof ApiError) throw err;
-    throw new ApiError(400, `Failed to parse resume: ${err.message}`);
+    throw new ApiError(400, `Failed to parse resume: ${err.message}`, "RESUME_PARSE_ERROR");
   }
 };
 
