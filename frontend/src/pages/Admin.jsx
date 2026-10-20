@@ -21,12 +21,12 @@ export default function Admin() {
               fontSize: "0.75rem",
               textTransform: "uppercase",
               letterSpacing: "0.15em",
-              color: "var(--accent-pink)",
+              color: "var(--accent-mint)",
               fontWeight: 800,
-              padding: "0.2rem 0.65rem",
-              borderRadius: "999px",
-              background: "rgba(255, 110, 199, 0.15)",
-              border: "1px solid rgba(255, 110, 199, 0.3)",
+              padding: "0.25rem 0.75rem",
+              borderRadius: "9999px",
+              background: "rgba(98, 245, 160, 0.12)",
+              border: "1px solid rgba(98, 245, 160, 0.28)",
             }}
           >
             Admin Control Center (Demo Guard)
@@ -83,7 +83,7 @@ export default function Admin() {
 
         <table style={{ width: "100%", borderCollapse: "collapse", textAlign: "left" }}>
           <thead>
-            <tr style={{ background: "rgba(14, 18, 38, 0.95)", borderBottom: "1px solid rgba(255, 255, 255, 0.08)" }}>
+            <tr style={{ background: "rgba(11, 17, 15, 0.95)", borderBottom: "1px solid rgba(150, 255, 195, 0.12)" }}>
               <th style={{ padding: "1.1rem 1.5rem", fontSize: "0.82rem", color: "var(--text-muted)", textTransform: "uppercase" }}>User Name</th>
               <th style={{ padding: "1.1rem 1.5rem", fontSize: "0.82rem", color: "var(--text-muted)", textTransform: "uppercase" }}>Email</th>
               <th style={{ padding: "1.1rem 1.5rem", fontSize: "0.82rem", color: "var(--text-muted)", textTransform: "uppercase" }}>Role</th>
@@ -104,12 +104,13 @@ export default function Admin() {
                 <td style={{ padding: "1.1rem 1.5rem", fontSize: "0.88rem" }}>
                   <span
                     style={{
-                      padding: "0.2rem 0.55rem",
-                      borderRadius: "6px",
-                      background: u.role === "Admin" ? "rgba(255, 110, 199, 0.15)" : "rgba(0, 255, 208, 0.1)",
-                      color: u.role === "Admin" ? "var(--accent-pink)" : "var(--accent-cyan)",
+                      padding: "0.25rem 0.65rem",
+                      borderRadius: "9999px",
+                      background: u.role === "Admin" ? "rgba(255, 110, 138, 0.15)" : "rgba(98, 245, 160, 0.12)",
+                      color: u.role === "Admin" ? "var(--danger)" : "var(--accent-mint)",
                       fontWeight: 700,
                       fontSize: "0.78rem",
+                      border: u.role === "Admin" ? "1px solid rgba(255, 110, 138, 0.3)" : "1px solid rgba(98, 245, 160, 0.25)",
                     }}
                   >
                     {u.role}
@@ -122,7 +123,7 @@ export default function Admin() {
                   <span
                     style={{
                       fontSize: "0.82rem",
-                      color: u.status === "Active" ? "var(--accent-cyan)" : "#fbbf24",
+                      color: u.status === "Active" ? "var(--accent-mint)" : "var(--warning)",
                       fontWeight: 600,
                     }}
                   >
@@ -134,14 +135,15 @@ export default function Admin() {
                     type="button"
                     onClick={() => handleManageUser(u.name)}
                     style={{
-                      padding: "0.45rem 1rem",
-                      borderRadius: "999px",
-                      background: "rgba(255, 255, 255, 0.08)",
-                      border: "1px solid rgba(255, 255, 255, 0.15)",
-                      color: "#fff",
+                      padding: "0.45rem 1.1rem",
+                      borderRadius: "9999px",
+                      background: "rgba(98, 245, 160, 0.08)",
+                      border: "1px solid rgba(98, 245, 160, 0.22)",
+                      color: "var(--accent-mint)",
                       fontSize: "0.82rem",
-                      fontWeight: 600,
+                      fontWeight: 700,
                       cursor: "pointer",
+                      transition: "all 0.2s ease",
                     }}
                   >
                     Manage ⚙

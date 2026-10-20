@@ -194,8 +194,8 @@ function HeroDemoModal({ isOpen, onClose }) {
           {step >= 2 && (
             <div
               style={{
-                background: "rgba(138, 92, 255, 0.06)",
-                border: "1px solid rgba(138, 92, 255, 0.25)",
+                background: "rgba(98, 245, 160, 0.08)",
+                border: "1px solid rgba(98, 245, 160, 0.25)",
                 borderRadius: "12px",
                 padding: "1.25rem",
                 marginBottom: "1.5rem",
@@ -203,10 +203,10 @@ function HeroDemoModal({ isOpen, onClose }) {
               }}
             >
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
-                <strong style={{ color: "#a855f7", fontSize: "0.95rem" }}>
+                <strong style={{ color: "var(--accent-mint)", fontSize: "0.95rem" }}>
                   ⭐ Real-Time Rubric Evaluation
                 </strong>
-                <span style={{ fontSize: "1.4rem", fontWeight: 800, color: "var(--teal)" }}>
+                <span style={{ fontSize: "1.4rem", fontWeight: 800, color: "var(--accent-mint)" }}>
                   94 / 100
                 </span>
               </div>
@@ -264,15 +264,15 @@ function HeroDemoModal({ isOpen, onClose }) {
               </button>
               <Link
                 to="/signup"
-                className="btn btn--primary"
+                className="button button--primary pill-btn-primary"
                 onClick={onClose}
                 style={{
                   fontSize: "0.85rem",
-                  padding: "0.5rem 1.25rem",
-                  background: "linear-gradient(135deg, #00f0ff, #8a5cff)",
+                  padding: "0.55rem 1.4rem",
+                  borderRadius: "9999px",
                 }}
               >
-                Start Your Own Interview →
+                Start Your Own Interview ↗
               </Link>
             </div>
           </div>
