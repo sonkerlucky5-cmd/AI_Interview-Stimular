@@ -9,22 +9,22 @@ const createMatchHandler = async (req, res, next) => {
     const { resumeId, jobDescriptionId } = req.body;
 
     if (!resumeId) {
-      throw new ApiError(400, "Please provide a valid resumeId.");
+      throw new ApiError(400, "Please provide a valid resumeId.", "MISSING_RESUME_ID");
     }
     if (!jobDescriptionId) {
-      throw new ApiError(400, "Please provide a valid jobDescriptionId.");
+      throw new ApiError(400, "Please provide a valid jobDescriptionId.", "MISSING_JOB_ID");
     }
 
     // 1. Fetch and verify ownership of resume
     const resume = await Resume.findByIdAndUser(resumeId, req.user.id);
     if (!resume) {
-      throw new ApiError(404, "Resume not found or does not belong to your account.");
+      throw new ApiError(404, "Resume not found or does not belong to your account.", "RESUME_NOT_FOUND");
     }
 
     // 2. Fetch and verify ownership of job description
     const job = await JobDescription.findByIdAndUser(jobDescriptionId, req.user.id);
     if (!job) {
-      throw new ApiError(404, "Job description not found or does not belong to your account.");
+      throw new ApiError(404, "Job description not found or does not belong to your account.", "JOB_NOT_FOUND");
     }
 
     // 3. Compute matching result
@@ -71,7 +71,7 @@ const getMatchByIdHandler = async (req, res, next) => {
   try {
     const match = await ResumeMatch.findByIdAndUser(req.params.id, req.user.id);
     if (!match) {
-      throw new ApiError(404, "Resume match report not found.");
+      throw new ApiError(404, "Resume match report not found.", "MATCH_NOT_FOUND");
     }
 
     res.status(200).json({

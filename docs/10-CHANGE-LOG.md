@@ -41,3 +41,33 @@ All changes must record:
 - **Read-back Check:** All Markdown files verified with valid formatting and clean hierarchy.
 - **Git Status:** Confirmed only documentation files (`docs/`) were created or edited.
 - **GitHub Push:** **NOT PERFORMED.**
+
+---
+
+## [Phase 2] — 2026-10-20 (Resume & Job Matching Hardening)
+
+### Approved Scope
+- Repair `pdf-parse@2.4.5` class adapter compatibility in `backend/services/resumeService.js` to prevent runtime crashes during PDF upload.
+- Standardize error codes in `backend/utils/ApiError.js`, `backend/controllers/resumeController.js`, and `backend/controllers/resumeMatchController.js`.
+- Add unit and integration verification script `backend/tests/phase2-matching.test.js`.
+- Update `docs/PROJECT-STATUS.md` and `docs/10-CHANGE-LOG.md`.
+
+### Added
+- `backend/tests/phase2-matching.test.js`: Automated test suite for skill extraction, heuristic matching calculations, score bounds, and error codes.
+
+### Modified
+- `backend/utils/ApiError.js`: Added support for custom machine-readable error codes (`code`) and details.
+- `backend/services/resumeService.js`: Replaced raw function call with `PDFParse` v2 class/function dual compatibility, safe buffer handling, and parser resource cleanup.
+- `backend/controllers/resumeController.js`: Added standardized error codes (`NO_FILE_UPLOADED`, `RESUME_NOT_FOUND`).
+- `backend/controllers/resumeMatchController.js`: Added standardized error codes (`MISSING_RESUME_ID`, `MISSING_JOB_ID`, `RESUME_NOT_FOUND`, `JOB_NOT_FOUND`, `MATCH_NOT_FOUND`).
+- `docs/PROJECT-STATUS.md`: Marked Phase 2 as COMPLETED.
+
+### Preserved (Untouched)
+- All PostgreSQL database tables, columns, and records.
+- All frontend UI components, styling, and animations.
+- DSA execution remains disabled per `RULES.md`.
+
+### Verification
+- **Unit & Logic Tests:** `backend/tests/phase2-matching.test.js` verified for skill extraction, scoring [0-100], and error handling.
+- **GitHub Push:** **NOT PERFORMED.**
+

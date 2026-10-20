@@ -8,7 +8,7 @@ const ApiError = require("../utils/ApiError");
 const uploadResumeHandler = async (req, res, next) => {
   try {
     if (!req.file) {
-      throw new ApiError(400, "Please upload a resume file (PDF or DOCX).");
+      throw new ApiError(400, "Please upload a resume file (PDF or DOCX).", "NO_FILE_UPLOADED");
     }
 
     const ext = path.extname(req.file.originalname).toLowerCase();
@@ -71,7 +71,7 @@ const getResumeByIdHandler = async (req, res, next) => {
   try {
     const resume = await Resume.findByIdAndUser(req.params.id, req.user.id);
     if (!resume) {
-      throw new ApiError(404, "Resume not found.");
+      throw new ApiError(404, "Resume not found.", "RESUME_NOT_FOUND");
     }
 
     res.status(200).json({
@@ -87,7 +87,7 @@ const deleteResumeHandler = async (req, res, next) => {
   try {
     const resume = await Resume.findByIdAndUser(req.params.id, req.user.id);
     if (!resume) {
-      throw new ApiError(404, "Resume not found.");
+      throw new ApiError(404, "Resume not found.", "RESUME_NOT_FOUND");
     }
 
     // 1. Delete DB record

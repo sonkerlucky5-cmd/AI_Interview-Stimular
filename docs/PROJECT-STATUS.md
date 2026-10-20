@@ -21,7 +21,7 @@
 |---|---|---|---|
 | **Phase 0** | Baseline Audit, Rules & Specs | **COMPLETED** | Docs pack aligned with `RULES.md`; read-only verification |
 | **Phase 1** | Foundation & Auth Hardening | **PARTIAL** | JWT auth active; request ID & rate limiting middleware configured |
-| **Phase 2** | Resume & Job Matching | **PARTIAL** | Resume upload & JD controllers present; parser validation in progress |
+| **Phase 2** | Resume & Job Matching | **COMPLETED** | PDFParse v2 adapter repaired; heuristic matching & ownership checks verified |
 | **Phase 3** | Mock Interview & AI Evaluation | **PARTIAL** | Adaptive session model drafted; centralized AI adapter ready |
 | **Phase 4** | History, Analytics & Reports | **PARTIAL** | Analytics page & history endpoints exist; PDF export pending |
 | **Phase 5** | Personalized Learning Roadmap | **PARTIAL** | LearningRoadmap.jsx UI rendered; server generation in progress |
