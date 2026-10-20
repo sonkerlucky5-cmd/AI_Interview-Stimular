@@ -94,13 +94,18 @@ function Navbar() {
         <Link className="brand" to="/" onClick={closeMenu} id="nav-brand">
           <span className="brand__mark" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="8" r="4" fill="url(#ng)" />
-              <rect x="8" y="14" width="8" height="2" rx="1" fill="url(#ng)" opacity="0.7" />
-              <rect x="6" y="18" width="12" height="2" rx="1" fill="url(#ng)" opacity="0.5" />
+              <path
+                d="M12 2.5L3 21.5H8.5L12 14L15.5 21.5H21L12 2.5Z"
+                fill="url(#emerald-logo-grad)"
+              />
+              <path
+                d="M8.2 16.5H15.8L12 8.5L8.2 16.5Z"
+                fill="#050907"
+              />
               <defs>
-                <linearGradient id="ng" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#00ffd0" />
-                  <stop offset="100%" stopColor="#7b61ff" />
+                <linearGradient id="emerald-logo-grad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stopColor="#62F5A0" />
+                  <stop offset="100%" stopColor="#25E27B" />
                 </linearGradient>
               </defs>
             </svg>
