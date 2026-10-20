@@ -274,10 +274,10 @@ function MatchResults() {
                     {/* Disclaimer */}
                     <div
                       style={{
-                        background: "rgba(79, 140, 255, 0.08)",
-                        borderLeft: "3px solid var(--blue)",
+                        background: "rgba(98, 245, 160, 0.08)",
+                        borderLeft: "3px solid var(--accent-mint)",
                         padding: "0.75rem 1rem",
-                        borderRadius: "4px",
+                        borderRadius: "8px",
                         fontSize: "0.85rem",
                         color: "var(--text-muted)",
                         marginBottom: "1.5rem",
@@ -298,13 +298,13 @@ function MatchResults() {
                       {/* Matched Skills */}
                       <div
                         style={{
-                          background: "rgba(57, 208, 199, 0.05)",
-                          border: "1px solid rgba(57, 208, 199, 0.2)",
+                          background: "rgba(98, 245, 160, 0.05)",
+                          border: "1px solid rgba(98, 245, 160, 0.22)",
                           borderRadius: "12px",
                           padding: "1.25rem",
                         }}
                       >
-                        <h3 style={{ margin: "0 0 0.75rem", color: "var(--teal)", fontSize: "1.05rem" }}>
+                        <h3 style={{ margin: "0 0 0.75rem", color: "var(--accent-mint)", fontSize: "1.05rem" }}>
                           ✔ Matched Competencies ({activeMatch.match_data?.matchedSkills?.length || 0})
                         </h3>
                         <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
@@ -312,12 +312,13 @@ function MatchResults() {
                             <span
                               key={skill}
                               style={{
-                                background: "rgba(57, 208, 199, 0.15)",
-                                color: "var(--teal)",
-                                padding: "0.25rem 0.6rem",
-                                borderRadius: "6px",
+                                background: "rgba(98, 245, 160, 0.15)",
+                                color: "var(--accent-mint)",
+                                border: "1px solid rgba(98, 245, 160, 0.25)",
+                                padding: "0.28rem 0.7rem",
+                                borderRadius: "9999px",
                                 fontSize: "0.85rem",
-                                fontWeight: 500,
+                                fontWeight: 600,
                               }}
                             >
                               {skill}

@@ -51,7 +51,7 @@ export default function Profile() {
             fontSize: "0.78rem",
             textTransform: "uppercase",
             letterSpacing: "0.15em",
-            color: "var(--accent-cyan)",
+            color: "var(--accent-mint)",
             fontWeight: 700,
           }}
         >
@@ -89,13 +89,13 @@ export default function Profile() {
               width: "74px",
               height: "74px",
               borderRadius: "50%",
-              background: "linear-gradient(135deg, #00ffd0, #7b61ff)",
+              background: "linear-gradient(135deg, #62F5A0, #25E27B)",
               display: "grid",
               placeItems: "center",
               fontSize: "1.8rem",
               fontWeight: 800,
-              color: "#05060f",
-              boxShadow: "0 0 25px rgba(0, 255, 208, 0.4)",
+              color: "#050907",
+              boxShadow: "0 0 25px rgba(98, 245, 160, 0.4)",
             }}
           >
             {profile.name[0]?.toUpperCase() || "U"}
@@ -105,7 +105,7 @@ export default function Profile() {
             <h2 style={{ fontSize: "1.3rem", fontWeight: 800, color: "#fff", margin: 0 }}>
               {profile.name || "Candidate"}
             </h2>
-            <span style={{ fontSize: "0.85rem", color: "var(--accent-cyan)" }}>
+            <span style={{ fontSize: "0.85rem", color: "var(--accent-mint)", fontWeight: 600 }}>
               {profile.targetRole || "No target role set"}
             </span>
             <div style={{ fontSize: "0.78rem", color: "var(--text-muted)", marginTop: "0.2rem" }}>
@@ -238,19 +238,21 @@ export default function Profile() {
             type="submit"
             disabled={isSaving}
             style={{
-              padding: "0.95rem 2rem",
-              borderRadius: "999px",
-              background: "linear-gradient(90deg, #00ffd0, #7b61ff)",
+              padding: "0.95rem 2.2rem",
+              borderRadius: "9999px",
+              background: "var(--accent-mint)",
               border: "none",
-              color: "#05060f",
+              color: "#050907",
               fontWeight: 800,
               fontSize: "1rem",
               cursor: isSaving ? "wait" : "pointer",
               justifySelf: "start",
               opacity: isSaving ? 0.75 : 1,
+              boxShadow: "0 0 25px rgba(98, 245, 160, 0.3)",
+              transition: "all 0.25s ease",
             }}
           >
-            {isSaving ? "Saving…" : "Save Profile Changes"}
+            {isSaving ? "Saving…" : "Save Profile Changes ↗"}
           </button>
         </form>
       </div>
