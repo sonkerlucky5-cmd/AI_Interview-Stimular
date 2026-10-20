@@ -27,7 +27,7 @@
 | **Phase 5** | Personalized Learning Roadmap | **COMPLETED** | Multi-stage curriculum, regeneration preserving completed items & progress verified |
 | **Phase 6** | Voice Interview (Speech) | **COMPLETED** | Browser WebSpeech dictation, privacy compliance & text fallback verified |
 | **Phase 7** | DSA Coding Arena | **COMPLETED** | Problem catalogue, modal preview, multi-language starter code & execution security gate verified |
-| **Phase 8** | UI Polish & Responsive Audit | **IN PROGRESS** | Hero cards & full-width navbar verified on mobile, tablet & desktop |
+| **Phase 8** | UI Polish & Responsive Audit | **COMPLETED** | Design tokens, focus-visible rings, motion reduction & mobile breakpoints verified |
 | **Phase 9** | SaaS Release Hardening & Quotas | **PLANNED** | Spec documented in `08_SaaS_Pricing_Tiers_and_Quota_Limits.md` |
 
 ---

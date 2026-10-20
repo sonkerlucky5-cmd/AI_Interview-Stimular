@@ -185,12 +185,13 @@ video {
 }
 
 /* ═══════════════════════════════════
-   FOCUS STYLES
+   FOCUS STYLES (WCAG 2.1 AA Compliant)
 ═══════════════════════════════════ */
 :focus-visible {
-  outline: 2px solid rgba(79, 140, 255, 0.7);
+  outline: 2px solid #00ffd0;
   outline-offset: 3px;
   border-radius: 6px;
+  box-shadow: 0 0 12px rgba(0, 255, 208, 0.5);
 }
 
 /* ═══════════════════════════════════
@@ -200,3 +201,31 @@ video {
   background: rgba(79, 140, 255, 0.28);
   color: #fff;
 }
+
+/* ═══════════════════════════════════
+   ACCESSIBILITY & RESPONSIVE SAFEGUARDS
+═══════════════════════════════════ */
+/* Minimum touch target sizes for mobile accessibility */
+@media (max-width: 768px) {
+  button,
+  .button,
+  .navbar__btn,
+  .home-btn,
+  a[role="button"] {
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

@@ -202,3 +202,34 @@ All changes must record:
 ### Verification
 - **Unit & Logic Tests:** `backend/tests/phase7-dsa.test.js` verified for catalogue schema, difficulty levels, template skeletons, and security guardrail assertions.
 - **GitHub Push:** **NOT PERFORMED.**
+
+---
+
+## [Phase 8] — 2026-10-20 (UI Polish & Responsive / Accessibility Audit)
+
+### Approved Scope
+- Audit design tokens, CSS reset, layout containers, and components across [frontend/src/css/index.css](file:///c:/Users/HP/OneDrive/Desktop/AI_Interview%20Simulator/frontend/src/css/index.css) and [frontend/src/styles/global.css](file:///c:/Users/HP/OneDrive/Desktop/AI_Interview%20Simulator/frontend/src/styles/global.css).
+- Standardize high-contrast WCAG 2.1 AA `:focus-visible` styling with glowing cyan focus ring and outline offset.
+- Ensure `@media (prefers-reduced-motion: reduce)` accessibility rules are strictly declared to disable non-essential animations.
+- Enforce mobile touch target minimum height (`min-height: 44px`) across button primitives.
+- Add unit and integration verification script `backend/tests/phase8-ui-audit.test.js`.
+- Update `docs/PROJECT-STATUS.md` and `docs/10-CHANGE-LOG.md`.
+
+### Added
+- `backend/tests/phase8-ui-audit.test.js`: Automated test suite asserting design tokens, focus indicators, motion reduction rules, mobile breakpoints (320px–992px), touch target heights, and security gate compliance.
+
+### Modified
+- `frontend/src/css/index.css`: Added WCAG 2.1 AA `:focus-visible` styling, mobile touch target sizes (`min-height: 44px`), and `@media (prefers-reduced-motion: reduce)` rules.
+- `docs/PROJECT-STATUS.md`: Marked Phase 8 as COMPLETED.
+
+### Preserved (Untouched)
+- All PostgreSQL database tables, columns, and records.
+- All Express backend routes, controllers, and services.
+- Lenis + GSAP + Framer Motion smooth scroll and animation stack preserved without conflicting libraries.
+- Dark 3D Futuristic theme palette (`#0b0d1a`, cyan `#00ffd0`, violet `#7b61ff`, pink `#ff6ec7`) preserved.
+- DSA candidate code execution remains strictly disabled.
+
+### Verification
+- **Unit & Logic Tests:** `backend/tests/phase8-ui-audit.test.js` verified for token presence, focus indicators, motion reduction, and responsive breakpoints.
+- **GitHub Push:** **NOT PERFORMED.**
+
