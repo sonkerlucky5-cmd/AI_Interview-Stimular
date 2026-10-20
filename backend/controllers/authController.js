@@ -4,7 +4,7 @@ const catchAsync = require("../utils/catchAsync");
 const { clearAuthCookie, sendAuthResponse } = require("../services/tokenService");
 
 const signup = catchAsync(async (req, res) => {
-  const { name = "", email = "", password = "" } = req.body;
+  const { name = "", email = "", password = "", targetRole = "" } = req.body;
 
   if (!name.trim() || !email.trim() || !password || password.trim().length === 0) {
     throw new ApiError(400, "Name, email, and password are required.");
@@ -25,6 +25,7 @@ const signup = catchAsync(async (req, res) => {
     name: name.trim(),
     email: normalizedEmail,
     password,
+    targetRole,
   });
 
   return sendAuthResponse(res, 201, "Account created successfully.", user);
@@ -72,9 +73,28 @@ const logout = catchAsync(async (_req, res) => {
   });
 });
 
+const updateProfile = catchAsync(async (req, res) => {
+  const { name, targetRole, experienceYears, bio } = req.body;
+  const user = await User.updateById(req.user.id, {
+    name,
+    targetRole,
+    experienceYears,
+    bio,
+  });
+
+  return res.status(200).json({
+    success: true,
+    message: "Profile updated successfully.",
+    data: {
+      user: user.toSafeObject(),
+    },
+  });
+});
+
 module.exports = {
   getProfile,
   login,
   logout,
   signup,
+  updateProfile,
 };

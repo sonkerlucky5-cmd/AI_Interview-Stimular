@@ -82,6 +82,36 @@ const getAnalyticsOverview = async (req, res, next) => {
       });
     }
 
+    const weeklyRes = await pool.query(
+      `
+        SELECT timezone('UTC', created_at)::date AS day, COUNT(*)::int AS count
+        FROM interviews
+        WHERE user_id = $1
+          AND created_at >= (CURRENT_TIMESTAMP - INTERVAL '6 days')
+        GROUP BY day
+      `,
+      [userId]
+    );
+    const weeklyMap = new Map(
+      weeklyRes.rows.map((row) => {
+        const raw = row.day;
+        const key = raw instanceof Date ? raw.toISOString().slice(0, 10) : String(raw).slice(0, 10);
+        return [key, Number(row.count)];
+      })
+    );
+    const weeklyActivity = [];
+    for (let offset = 6; offset >= 0; offset -= 1) {
+      const date = new Date();
+      date.setUTCHours(0, 0, 0, 0);
+      date.setUTCDate(date.getUTCDate() - offset);
+      const key = date.toISOString().slice(0, 10);
+      weeklyActivity.push({
+        date: key,
+        day: date.toLocaleDateString("en-US", { weekday: "short", timeZone: "UTC" }),
+        count: weeklyMap.get(key) || 0,
+      });
+    }
+
     res.status(200).json({
       success: true,
       data: {
@@ -100,6 +130,7 @@ const getAnalyticsOverview = async (req, res, next) => {
         },
         dimensionAverages,
         progressionTimeline: history,
+        weeklyActivity,
       },
     });
   } catch (error) {

@@ -19,3 +19,8 @@ export const getProfileRequest = async () => {
   const { data } = await api.get("/auth/profile");
   return data;
 };
+
+export const updateProfileRequest = async (payload) => {
+  const { data } = await api.patch("/auth/profile", payload);
+  return data;
+};

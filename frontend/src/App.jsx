@@ -1,24 +1,23 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Navbar from "./components/Navbar";
 import ScrollToTop from "./components/ScrollToTop";
 import ScrollProgress from "./components/ScrollProgress";
+import ProtectedRoute from "./components/ProtectedRoute";
+import AdminRoute from "./components/AdminRoute";
 import { AuthProvider } from "./context/AuthContext.jsx";
 import useSmoothScroll from "./hooks/useSmoothScroll";
 
-// Pages
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
-import Interview from "./pages/Interview";
 import Dsa from "./pages/Dsa";
 import Results from "./pages/Results";
 import Profile from "./pages/Profile";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
-// Additional Preserved Workspace Pages
 import ResumeManager from "./pages/ResumeManager";
 import JobDescriptions from "./pages/JobDescriptions";
 import MatchResults from "./pages/MatchResults";
@@ -40,30 +39,32 @@ function AppContent() {
 
       <main className="app-main">
         <Routes>
-          {/* Core Routes */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/signup" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/interview" element={<Interview />} />
-          <Route path="/dsa" element={<Dsa />} />
-          <Route path="/results" element={<Results />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/admin" element={<Admin />} />
 
-          {/* Preserved Workspace Routes */}
-          <Route path="/resumes" element={<ResumeManager />} />
-          <Route path="/jobs" element={<JobDescriptions />} />
-          <Route path="/matches" element={<MatchResults />} />
-          <Route path="/interviews" element={<InterviewHistory />} />
-          <Route path="/interviews/new" element={<InterviewSetup />} />
-          <Route path="/interviews/:id" element={<InterviewRoom />} />
-          <Route path="/interviews/:id/result" element={<InterviewResult />} />
-          <Route path="/analytics" element={<Analytics />} />
-          <Route path="/roadmap" element={<LearningRoadmap />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/interview" element={<Navigate to="/interviews/new" replace />} />
+            <Route path="/dsa" element={<Dsa />} />
+            <Route path="/results" element={<InterviewHistory />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/resumes" element={<ResumeManager />} />
+            <Route path="/jobs" element={<JobDescriptions />} />
+            <Route path="/matches" element={<MatchResults />} />
+            <Route path="/interviews" element={<InterviewHistory />} />
+            <Route path="/interviews/new" element={<InterviewSetup />} />
+            <Route path="/interviews/:id" element={<InterviewRoom />} />
+            <Route path="/interviews/:id/result" element={<InterviewResult />} />
+            <Route path="/analytics" element={<Analytics />} />
+            <Route path="/roadmap" element={<LearningRoadmap />} />
+          </Route>
 
-          {/* 404 Catch-All */}
+          <Route element={<AdminRoute />}>
+            <Route path="/admin" element={<Admin />} />
+          </Route>
+
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

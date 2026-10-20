@@ -5,8 +5,8 @@ export const createInterviewRequest = async (payload) => {
   return data;
 };
 
-export const getInterviewsRequest = async () => {
-  const { data } = await api.get("/interviews");
+export const getInterviewsRequest = async (params = {}) => {
+  const { data } = await api.get("/interviews", { params });
   return data;
 };
 

@@ -1,20 +1,46 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
+import useAuth from "../hooks/useAuth";
+import { getApiErrorMessage } from "../services/api";
 
 export default function Profile() {
-  const storedUser = JSON.parse(localStorage.getItem("user") || "{}");
+  const { user, updateProfile } = useAuth();
   const [profile, setProfile] = useState({
-    name: storedUser.name || "Alex Chen",
-    email: storedUser.email || "alex@example.com",
-    targetRole: storedUser.targetRole || "Senior Frontend Engineer",
-    experienceYears: "4",
-    bio: "Passionate about building scalable UI components, design systems, and optimizing web performance.",
+    name: "",
+    email: "",
+    targetRole: "",
+    experienceYears: "",
+    bio: "",
   });
+  const [isSaving, setIsSaving] = useState(false);
 
-  const handleSave = (e) => {
+  useEffect(() => {
+    if (!user) return;
+    setProfile({
+      name: user.name || "",
+      email: user.email || "",
+      targetRole: user.targetRole || "",
+      experienceYears: user.experienceYears ?? "",
+      bio: user.bio || "",
+    });
+  }, [user]);
+
+  const handleSave = async (e) => {
     e.preventDefault();
-    localStorage.setItem("user", JSON.stringify({ ...storedUser, ...profile }));
-    toast.success("Profile updated successfully!");
+    setIsSaving(true);
+    try {
+      await updateProfile({
+        name: profile.name,
+        targetRole: profile.targetRole,
+        experienceYears: profile.experienceYears === "" ? null : profile.experienceYears,
+        bio: profile.bio,
+      });
+      toast.success("Profile updated successfully!");
+    } catch (error) {
+      toast.error(getApiErrorMessage(error, "Unable to save profile."));
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   return (
@@ -35,7 +61,7 @@ export default function Profile() {
           Candidate Profile & Settings
         </h1>
         <p style={{ color: "var(--text-muted)", fontSize: "0.95rem", margin: 0 }}>
-          Manage your personal information, target role rubrics, and portfolio details.
+          Manage your personal information and target role. Answers and interview records stay private to your account.
         </p>
       </div>
 
@@ -47,7 +73,6 @@ export default function Profile() {
           border: "1px solid rgba(255, 255, 255, 0.12)",
         }}
       >
-        {/* Avatar Header */}
         <div
           style={{
             display: "flex",
@@ -73,30 +98,30 @@ export default function Profile() {
               boxShadow: "0 0 25px rgba(0, 255, 208, 0.4)",
             }}
           >
-            {profile.name[0]?.toUpperCase() || "A"}
+            {profile.name[0]?.toUpperCase() || "U"}
           </div>
 
           <div>
             <h2 style={{ fontSize: "1.3rem", fontWeight: 800, color: "#fff", margin: 0 }}>
-              {profile.name}
+              {profile.name || "Candidate"}
             </h2>
             <span style={{ fontSize: "0.85rem", color: "var(--accent-cyan)" }}>
-              {profile.targetRole}
+              {profile.targetRole || "No target role set"}
             </span>
             <div style={{ fontSize: "0.78rem", color: "var(--text-muted)", marginTop: "0.2rem" }}>
-              Status: Active Practice Tier • 14 Interviews Completed
+              {profile.email}
             </div>
           </div>
         </div>
 
-        {/* Editable Form */}
         <form onSubmit={handleSave} style={{ display: "grid", gap: "1.5rem" }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "1.2rem" }}>
             <div>
-              <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>
+              <label htmlFor="profile-name" style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>
                 Full Name
               </label>
               <input
+                id="profile-name"
                 type="text"
                 value={profile.name}
                 onChange={(e) => setProfile({ ...profile, name: e.target.value })}
@@ -115,21 +140,21 @@ export default function Profile() {
             </div>
 
             <div>
-              <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>
+              <label htmlFor="profile-email" style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>
                 Email Address
               </label>
               <input
+                id="profile-email"
                 type="email"
                 value={profile.email}
-                onChange={(e) => setProfile({ ...profile, email: e.target.value })}
-                required
+                readOnly
                 style={{
                   width: "100%",
                   padding: "0.85rem 1rem",
                   borderRadius: "12px",
-                  background: "rgba(255, 255, 255, 0.05)",
-                  border: "1px solid rgba(255, 255, 255, 0.12)",
-                  color: "#fff",
+                  background: "rgba(255, 255, 255, 0.03)",
+                  border: "1px solid rgba(255, 255, 255, 0.08)",
+                  color: "var(--text-muted)",
                   fontSize: "0.95rem",
                   outline: "none",
                 }}
@@ -139,14 +164,15 @@ export default function Profile() {
 
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "1.2rem" }}>
             <div>
-              <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>
+              <label htmlFor="profile-role" style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>
                 Target Role Track
               </label>
               <input
+                id="profile-role"
                 type="text"
                 value={profile.targetRole}
                 onChange={(e) => setProfile({ ...profile, targetRole: e.target.value })}
-                required
+                placeholder="e.g. Frontend Engineer"
                 style={{
                   width: "100%",
                   padding: "0.85rem 1rem",
@@ -161,11 +187,14 @@ export default function Profile() {
             </div>
 
             <div>
-              <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>
+              <label htmlFor="profile-experience" style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>
                 Years of Experience
               </label>
               <input
+                id="profile-experience"
                 type="number"
+                min="0"
+                max="50"
                 value={profile.experienceYears}
                 onChange={(e) => setProfile({ ...profile, experienceYears: e.target.value })}
                 style={{
@@ -183,10 +212,11 @@ export default function Profile() {
           </div>
 
           <div>
-            <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>
+            <label htmlFor="profile-bio" style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>
               Short Bio / Goals
             </label>
             <textarea
+              id="profile-bio"
               rows="3"
               value={profile.bio}
               onChange={(e) => setProfile({ ...profile, bio: e.target.value })}
@@ -206,6 +236,7 @@ export default function Profile() {
 
           <button
             type="submit"
+            disabled={isSaving}
             style={{
               padding: "0.95rem 2rem",
               borderRadius: "999px",
@@ -214,11 +245,12 @@ export default function Profile() {
               color: "#05060f",
               fontWeight: 800,
               fontSize: "1rem",
-              cursor: "pointer",
+              cursor: isSaving ? "wait" : "pointer",
               justifySelf: "start",
+              opacity: isSaving ? 0.75 : 1,
             }}
           >
-            Save Profile Changes
+            {isSaving ? "Saving…" : "Save Profile Changes"}
           </button>
         </form>
       </div>

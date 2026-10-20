@@ -15,7 +15,8 @@ export default function Dsa() {
   });
 
   const handleSolve = (problemTitle) => {
-    toast.success(`Opening DSA editor for "${problemTitle}"!`);
+    toast("Code execution is disabled until an isolated runner is approved.");
+    void problemTitle;
   };
 
   const getDifficultyBadge = (diff) => {
@@ -58,10 +59,10 @@ export default function Dsa() {
           Algorithm Arena
         </span>
         <h1 style={{ fontSize: "clamp(2rem, 3.5vw, 2.8rem)", fontWeight: 800, margin: "0.4rem 0 0.8rem", color: "#fff" }}>
-          DSA Problem Solved: <span style={{ color: "var(--accent-cyan)" }}>112</span> / 300
+          DSA Problem Bank
         </h1>
-        <p style={{ color: "var(--text-muted)", fontSize: "1rem", maxWidth: "600px", margin: 0 }}>
-          Master key data structures and algorithmic patterns tested at top tech companies.
+        <p style={{ color: "var(--text-muted)", fontSize: "1rem", maxWidth: "640px", margin: 0 }}>
+          Browse curated algorithm prompts. Code execution is disabled until a separate isolated runner is approved (P2).
         </p>
       </div>
 

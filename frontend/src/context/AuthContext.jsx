@@ -4,6 +4,7 @@ import {
   loginRequest,
   logoutRequest,
   signupRequest,
+  updateProfileRequest,
 } from "../services/authService";
 import { AuthContext } from "./authContext";
 
@@ -49,6 +50,12 @@ export function AuthProvider({ children }) {
     return response.data.user;
   };
 
+  const updateProfile = async (payload) => {
+    const response = await updateProfileRequest(payload);
+    setUser(response.data.user);
+    return response.data.user;
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -58,6 +65,7 @@ export function AuthProvider({ children }) {
         login,
         logout,
         refreshProfile,
+        updateProfile,
         signup,
       }}
     >

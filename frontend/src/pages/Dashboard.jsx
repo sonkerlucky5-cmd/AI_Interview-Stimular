@@ -6,35 +6,34 @@ import useAuth from "../hooks/useAuth";
 import { getResumesRequest } from "../services/resumeService";
 import { getJobsRequest } from "../services/jobService";
 import { getMatchesRequest } from "../services/matchService";
-import { getInterviewsRequest } from "../services/interviewService";
+import { getAnalyticsOverviewRequest } from "../services/analyticsService";
+
+const emptyWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => ({
+  day,
+  count: 0,
+}));
 
 export default function Dashboard() {
   const { user } = useAuth();
-  const [interviewCount, setInterviewCount] = useState(14);
+  const [interviewCount, setInterviewCount] = useState(0);
+  const [completedCount, setCompletedCount] = useState(0);
+  const [inProgressCount, setInProgressCount] = useState(0);
+  const [averageScore, setAverageScore] = useState(null);
   const [resumeCount, setResumeCount] = useState(0);
   const [jobCount, setJobCount] = useState(0);
   const [matchCount, setMatchCount] = useState(0);
+  const [weeklyActivity, setWeeklyActivity] = useState(emptyWeek);
   const [isLoading, setIsLoading] = useState(true);
-
-  // Weekly activity data for CSS bar chart
-  const weeklyActivity = [
-    { day: "Mon", height: "45%", count: 2 },
-    { day: "Tue", height: "70%", count: 4 },
-    { day: "Wed", height: "35%", count: 1 },
-    { day: "Thu", height: "90%", count: 5 },
-    { day: "Fri", height: "60%", count: 3 },
-    { day: "Sat", height: "100%", count: 6 },
-    { day: "Sun", height: "50%", count: 2 },
-  ];
+  const [loadError, setLoadError] = useState("");
 
   useEffect(() => {
     const fetchCounts = async () => {
       try {
-        const [rRes, jRes, mRes, iRes] = await Promise.allSettled([
+        const [rRes, jRes, mRes, aRes] = await Promise.allSettled([
           getResumesRequest(),
           getJobsRequest(),
           getMatchesRequest(),
-          getInterviewsRequest({ limit: 1 }),
+          getAnalyticsOverviewRequest(),
         ]);
         if (rRes.status === "fulfilled" && rRes.value.success) {
           setResumeCount(rRes.value.data?.length || 0);
@@ -45,9 +44,25 @@ export default function Dashboard() {
         if (mRes.status === "fulfilled" && mRes.value.success) {
           setMatchCount(mRes.value.data?.length || 0);
         }
-        if (iRes.status === "fulfilled" && iRes.value.success) {
-          const total = iRes.value.pagination?.totalCount ?? (iRes.value.data?.length || 0);
-          if (total > 0) setInterviewCount(total);
+        if (aRes.status === "fulfilled" && aRes.value.success) {
+          const metrics = aRes.value.data?.metrics || {};
+          setInterviewCount(metrics.totalInterviews || 0);
+          setCompletedCount(metrics.completedCount || 0);
+          setInProgressCount(metrics.inProgressCount || 0);
+          setAverageScore(
+            metrics.completedCount > 0 ? metrics.averageOverallScore : null
+          );
+          const week = aRes.value.data?.weeklyActivity;
+          if (Array.isArray(week) && week.length > 0) {
+            setWeeklyActivity(week);
+          }
+        }
+        if (
+          rRes.status === "rejected" &&
+          jRes.status === "rejected" &&
+          aRes.status === "rejected"
+        ) {
+          setLoadError("Could not load dashboard stats. Retry in a moment.");
         }
       } finally {
         setIsLoading(false);
@@ -57,32 +72,36 @@ export default function Dashboard() {
     fetchCounts();
   }, []);
 
+  const maxWeekly = Math.max(1, ...weeklyActivity.map((day) => day.count || 0));
+  const hasAnyActivity = interviewCount > 0 || resumeCount > 0 || jobCount > 0;
+  const targetLabel = user?.targetRole || "your target role";
+
   return (
     <div className="page page--dashboard" style={{ maxWidth: "1280px", margin: "0 auto", padding: "1.5rem 1rem 5rem" }}>
       <div className="dashboard-layout">
         <Sidebar />
 
         <section className="dashboard-main">
-          {/* Welcome Banner */}
           <div className="dashboard-hero" style={{ border: "1px solid rgba(0, 255, 208, 0.25)" }}>
             <div>
               <span className="eyebrow" style={{ color: "var(--accent-cyan)" }}>
-                Active Session Hub
+                Practice workspace
               </span>
               <h1 style={{ fontSize: "clamp(1.8rem, 3vw, 2.4rem)", fontWeight: 800, margin: "0.2rem 0 0.5rem" }}>
                 Welcome back, {user?.name || "Candidate"}.
               </h1>
               <p style={{ color: "var(--text-muted)", fontSize: "0.95rem", maxWidth: "560px", margin: 0 }}>
-                Track your real-time interview performance, solve algorithm challenges, and practice live AI rounds.
+                Stats below come from your saved interviews, resumes, and job descriptions.
+                {user?.targetRole ? ` Target role: ${user.targetRole}.` : " Set a target role in Profile."}
               </p>
             </div>
 
             <div className="dashboard-hero__status">
               <span className="status-pill" style={{ color: "var(--accent-cyan)", border: "1px solid rgba(0, 255, 208, 0.3)" }}>
-                ● Active Practice Streak
+                {inProgressCount > 0 ? `${inProgressCount} in progress` : "Ready to practise"}
               </span>
               <Link
-                to="/interview"
+                to="/interviews/new"
                 style={{
                   padding: "0.55rem 1.25rem",
                   borderRadius: "999px",
@@ -98,7 +117,12 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* 4 Stat Cards */}
+          {loadError && (
+            <p role="alert" style={{ color: "#ff6ec7", margin: "0 0 1rem" }}>
+              {loadError}
+            </p>
+          )}
+
           <div
             style={{
               display: "grid",
@@ -111,34 +135,53 @@ export default function Dashboard() {
               value={isLoading ? "…" : `${interviewCount}`}
               icon="🎙️"
               color="cyan"
-              change="+3 this week"
+              change={completedCount ? `${completedCount} completed` : "No completed sessions yet"}
             />
             <StatCard
               label="Average Rubric Score"
-              value="92%"
+              value={isLoading ? "…" : averageScore === null ? "—" : `${averageScore}`}
               icon="⭐"
               color="violet"
-              badge="Top 8%"
+              badge={completedCount < 3 && completedCount > 0 ? "Small sample" : undefined}
+              change={averageScore === null ? "Complete an interview to see scores" : `${completedCount} scored sessions`}
             />
             <StatCard
-              label="DSA Solved"
-              value="112"
-              icon="⚡"
+              label="Resumes"
+              value={isLoading ? "…" : `${resumeCount}`}
+              icon="📄"
               color="pink"
-              change="112 / 300 problems"
+              change={jobCount ? `${jobCount} job descriptions` : "Add a resume to match roles"}
             />
             <StatCard
-              label="Current Streak"
-              value="7 Days"
-              icon="🔥"
+              label="Resume matches"
+              value={isLoading ? "…" : `${matchCount}`}
+              icon="🎯"
               color="blue"
-              badge="Active"
+              change={inProgressCount ? `${inProgressCount} interview(s) in progress` : "No active sessions"}
             />
           </div>
 
-          {/* Activity Chart & Next Interview Cards */}
+          {!isLoading && !hasAnyActivity && (
+            <article
+              className="glass-panel"
+              style={{
+                marginTop: "1.2rem",
+                padding: "1.5rem 1.75rem",
+                borderRadius: "20px",
+                border: "1px solid rgba(0, 255, 208, 0.2)",
+              }}
+            >
+              <h2 style={{ fontSize: "1.15rem", margin: "0 0 0.4rem" }}>Start your first session</h2>
+              <p style={{ color: "var(--text-muted)", margin: "0 0 1rem" }}>
+                You do not have saved interviews or resumes yet. Set up a mock interview to generate questions and keep answers in your account.
+              </p>
+              <Link to="/interviews/new" style={{ color: "var(--accent-cyan)", fontWeight: 700 }}>
+                Create interview setup →
+              </Link>
+            </article>
+          )}
+
           <div className="dashboard-columns">
-            {/* Weekly Activity Bar Chart (CSS) */}
             <article
               className="glass-panel"
               style={{
@@ -152,16 +195,15 @@ export default function Dashboard() {
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
                 <div>
                   <span className="eyebrow" style={{ color: "var(--accent-cyan)", marginBottom: "0.2rem" }}>
-                    Performance Velocity
+                    Last 7 days
                   </span>
                   <h2 style={{ fontSize: "1.25rem", fontWeight: 800, color: "#fff", margin: 0 }}>
                     Weekly Practice Activity
                   </h2>
                 </div>
-                <span style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>Last 7 Days</span>
+                <span style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>From your interviews</span>
               </div>
 
-              {/* CSS Bar Chart */}
               <div
                 style={{
                   height: "180px",
@@ -175,7 +217,7 @@ export default function Dashboard() {
               >
                 {weeklyActivity.map((w) => (
                   <div
-                    key={w.day}
+                    key={w.date || w.day}
                     style={{
                       flex: 1,
                       display: "flex",
@@ -190,10 +232,12 @@ export default function Dashboard() {
                       style={{
                         width: "100%",
                         maxWidth: "32px",
-                        height: w.height,
-                        background: "linear-gradient(180deg, #00ffd0 0%, #7b61ff 100%)",
+                        height: `${Math.max(6, ((w.count || 0) / maxWeekly) * 100)}%`,
+                        background: w.count
+                          ? "linear-gradient(180deg, #00ffd0 0%, #7b61ff 100%)"
+                          : "rgba(255, 255, 255, 0.08)",
                         borderRadius: "8px 8px 2px 2px",
-                        boxShadow: "0 0 15px rgba(0, 255, 208, 0.3)",
+                        boxShadow: w.count ? "0 0 15px rgba(0, 255, 208, 0.3)" : "none",
                         transition: "height 0.6s cubic-bezier(0.16, 1, 0.3, 1)",
                       }}
                       title={`${w.count} sessions on ${w.day}`}
@@ -206,14 +250,16 @@ export default function Dashboard() {
               </div>
 
               <div style={{ display: "flex", justifyContent: "space-between", marginTop: "1rem", fontSize: "0.82rem", color: "var(--text-muted)" }}>
-                <span>🎯 Consistency: <strong>High (94%)</strong></span>
-                <Link to="/interview" style={{ color: "var(--accent-cyan)", fontWeight: 600 }}>
-                  Practice Today →
+                <span>
+                  Sessions this week:{" "}
+                  <strong>{weeklyActivity.reduce((sum, day) => sum + (day.count || 0), 0)}</strong>
+                </span>
+                <Link to="/interviews" style={{ color: "var(--accent-cyan)", fontWeight: 600 }}>
+                  View history →
                 </Link>
               </div>
             </article>
 
-            {/* Next Interview Card */}
             <article
               className="glass-panel"
               style={{
@@ -238,33 +284,21 @@ export default function Dashboard() {
                       color: "var(--accent-violet)",
                     }}
                   >
-                    RECOMMENDED NEXT
+                    NEXT STEP
                   </span>
-                  <span style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>~25 mins</span>
+                  <span style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>Text mock</span>
                 </div>
 
                 <h3 style={{ fontSize: "1.3rem", fontWeight: 800, color: "#fff", marginBottom: "0.6rem" }}>
-                  Frontend Architecture & State Management
+                  Practise {targetLabel}
                 </h3>
                 <p style={{ fontSize: "0.88rem", color: "var(--text-muted)", lineHeight: 1.55, margin: "0 0 1.25rem" }}>
-                  Evaluate component lifecycles, memoization performance pitfalls, and micro-frontend patterns.
+                  Start a saved interview session. Questions and answers persist in your account so you can review scoring later.
                 </p>
-
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "1.5rem" }}>
-                  <span style={{ fontSize: "0.75rem", padding: "0.2rem 0.5rem", borderRadius: "6px", background: "rgba(255, 255, 255, 0.05)", color: "#fff" }}>
-                    React 19
-                  </span>
-                  <span style={{ fontSize: "0.75rem", padding: "0.2rem 0.5rem", borderRadius: "6px", background: "rgba(255, 255, 255, 0.05)", color: "#fff" }}>
-                    Virtual DOM
-                  </span>
-                  <span style={{ fontSize: "0.75rem", padding: "0.2rem 0.5rem", borderRadius: "6px", background: "rgba(255, 255, 255, 0.05)", color: "#fff" }}>
-                    System Design
-                  </span>
-                </div>
               </div>
 
               <Link
-                to="/interview"
+                to="/interviews/new"
                 style={{
                   display: "block",
                   textAlign: "center",

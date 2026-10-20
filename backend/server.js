@@ -5,6 +5,7 @@ const morgan = require("morgan");
 const connectDB = require("./config/db");
 const { env, validateEnv } = require("./config/env");
 const requestIdMiddleware = require("./middleware/requestIdMiddleware");
+const rateLimit = require("./middleware/rateLimitMiddleware");
 const { errorHandler, notFound } = require("./middleware/errorMiddleware");
 const authRoutes = require("./routes/authRoutes");
 const resumeRoutes = require("./routes/resumeRoutes");
@@ -30,6 +31,7 @@ const corsOptions = {
 
 app.set("trust proxy", 1);
 app.use(requestIdMiddleware);
+app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 300, prefix: "api" }));
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -46,7 +48,11 @@ app.get("/api/health", (_req, res) => {
   });
 });
 
-app.use("/api/auth", authRoutes);
+app.use(
+  "/api/auth",
+  rateLimit({ windowMs: 15 * 60 * 1000, max: 40, prefix: "auth" }),
+  authRoutes
+);
 app.use("/api/resumes", resumeRoutes);
 app.use("/api/job-descriptions", jobDescriptionRoutes);
 app.use("/api/resume-matches", resumeMatchRoutes);

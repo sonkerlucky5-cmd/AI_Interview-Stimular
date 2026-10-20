@@ -189,6 +189,11 @@ const fullSchemaSql = `
   );
   CREATE INDEX IF NOT EXISTS idx_learning_plan_items_plan_pos ON learning_plan_items (plan_id, position);
 
+  -- Profile fields for target role (P0)
+  ALTER TABLE users ADD COLUMN IF NOT EXISTS target_role VARCHAR(100);
+  ALTER TABLE users ADD COLUMN IF NOT EXISTS experience_years INT;
+  ALTER TABLE users ADD COLUMN IF NOT EXISTS bio TEXT;
+
   -- Safe additive columns for Learning Plans & Items (Phase 5)
   ALTER TABLE learning_plans ADD COLUMN IF NOT EXISTS title VARCHAR(255);
   ALTER TABLE learning_plans ADD COLUMN IF NOT EXISTS learning_style VARCHAR(50) DEFAULT 'balanced';

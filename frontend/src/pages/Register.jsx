@@ -1,15 +1,29 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import useAuth from "../hooks/useAuth";
+import { getApiErrorMessage } from "../services/api";
 
 export default function Register() {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState({ name: "", email: "", password: "", targetRole: "Frontend" });
+  const { isAuthenticated, signup } = useAuth();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    targetRole: "Frontend",
+  });
   const [errors, setErrors] = useState({});
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  if (isAuthenticated) return <Navigate to="/dashboard" replace />;
 
   const validate = () => {
     const errs = {};
-    if (!formData.name.trim()) errs.name = "Full name is required";
+    if (!formData.name.trim() || formData.name.trim().length < 2) {
+      errs.name = "Full name must be at least 2 characters";
+    }
     if (!formData.email.trim()) {
       errs.email = "Email address is required";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
@@ -17,27 +31,30 @@ export default function Register() {
     }
     if (!formData.password) {
       errs.password = "Password is required";
-    } else if (formData.password.length < 6) {
-      errs.password = "Password must be at least 6 characters";
+    } else if (formData.password.length < 8) {
+      errs.password = "Password must be at least 8 characters";
     }
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMessage("");
     if (!validate()) return;
 
-    // Fake user registration demo
-    const fakeUser = {
-      name: formData.name,
-      email: formData.email,
-      targetRole: formData.targetRole,
-      token: "demo_jwt_token_" + Date.now(),
-    };
-    localStorage.setItem("user", JSON.stringify(fakeUser));
-    toast.success("Account created successfully!");
-    navigate("/dashboard");
+    setIsSubmitting(true);
+    try {
+      await signup(formData);
+      toast.success("Account created successfully!");
+      navigate("/dashboard", { replace: true });
+    } catch (error) {
+      const msg = getApiErrorMessage(error, "Unable to create your account right now.");
+      setErrorMessage(msg);
+      toast.error(msg);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -84,11 +101,14 @@ export default function Register() {
 
         <form onSubmit={handleSubmit} style={{ display: "grid", gap: "1.2rem" }}>
           <div>
-            <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>
+            <label htmlFor="register-name" style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>
               Full Name
             </label>
             <input
+              id="register-name"
               type="text"
+              name="name"
+              autoComplete="name"
               placeholder="e.g. Alex Chen"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -107,11 +127,14 @@ export default function Register() {
           </div>
 
           <div>
-            <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>
+            <label htmlFor="register-email" style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>
               Email Address
             </label>
             <input
+              id="register-email"
               type="email"
+              name="email"
+              autoComplete="email"
               placeholder="alex@company.com"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -130,10 +153,11 @@ export default function Register() {
           </div>
 
           <div>
-            <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>
+            <label htmlFor="register-role" style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>
               Target Role
             </label>
             <select
+              id="register-role"
               value={formData.targetRole}
               onChange={(e) => setFormData({ ...formData, targetRole: e.target.value })}
               style={{
@@ -155,11 +179,14 @@ export default function Register() {
           </div>
 
           <div>
-            <label style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>
-              Password (min. 6 characters)
+            <label htmlFor="register-password" style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>
+              Password (min. 8 characters)
             </label>
             <input
+              id="register-password"
               type="password"
+              name="password"
+              autoComplete="new-password"
               placeholder="••••••••"
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
@@ -177,8 +204,15 @@ export default function Register() {
             {errors.password && <small style={{ color: "#ff6ec7", fontSize: "0.78rem" }}>{errors.password}</small>}
           </div>
 
+          {errorMessage && (
+            <p role="alert" style={{ color: "#ff6ec7", fontSize: "0.85rem", margin: 0 }}>
+              {errorMessage}
+            </p>
+          )}
+
           <button
             type="submit"
+            disabled={isSubmitting}
             style={{
               marginTop: "0.5rem",
               padding: "0.95rem",
@@ -188,10 +222,11 @@ export default function Register() {
               color: "#05060f",
               fontWeight: 800,
               fontSize: "1rem",
-              cursor: "pointer",
+              cursor: isSubmitting ? "wait" : "pointer",
+              opacity: isSubmitting ? 0.75 : 1,
             }}
           >
-            Create Account & Launch Dashboard →
+            {isSubmitting ? "Creating account…" : "Create Account & Launch Dashboard →"}
           </button>
         </form>
 

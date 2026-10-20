@@ -52,7 +52,7 @@ function Login() {
           </p>
           <div className="info-list">
             <div className="info-list__item">Cookie-based JWT session handling</div>
-            <div className="info-list__item">MongoDB-backed user accounts</div>
+            <div className="info-list__item">PostgreSQL-backed user accounts</div>
             <div className="info-list__item">Protected routes with persisted auth state</div>
           </div>
 
