@@ -12,6 +12,38 @@ All changes must record:
 
 ---
 
+## [Redesign] — 2026-10-20 (Full Website Redesign — Obsidian & Mint Aiby Aesthetic)
+
+### Approved Scope
+- Redesign the entire application to an ultra-premium, dark emerald/mint futuristic SaaS aesthetic based on the user-provided reference design (Aiby visual style).
+- Overhaul core design system tokens (`--bg-primary: #050907`, `--bg-secondary: #0B110F`, `--bg-card: rgba(16, 24, 22, 0.82)`, `--accent-mint: #62F5A0`, `--accent-mint-soft: #9FFFC0`).
+- Implement 3D Torus/Orb hero composition with readiness meter (`94%`), floating pill tags, and italicized grotesque typography.
+- Unify all 20+ pages across the application: Home, Navbar, Footer, Dashboard, Login, Register, Signup, Profile, Admin, InterviewSetup, InterviewRoom, InterviewResult, InterviewHistory, LearningRoadmap, Analytics, ResumeManager, JobDescriptions, MatchResults, and DSA Arena.
+- Preserve 100% of existing Express APIs, PostgreSQL database, authentication, routes, and security constraints.
+
+### Modified
+- `frontend/src/styles/theme.css`: Root design tokens overhauled with emerald/mint palette while maintaining backward-compatible aliases.
+- `frontend/src/styles/global.css`: Radial ambient emerald backlights, 80px architectural grid, `.pill-tag`, `.pill-btn-primary`, and motion reduction.
+- `frontend/src/css/index.css`: Root colors, touch target safety rules, and high-contrast `:focus-visible` ring (`#62F5A0`).
+- `frontend/src/css/layout.css`: Frosted obsidian navigation bar, thin emerald glass borders, and mobile panel.
+- `frontend/src/css/components.css`: Buttons, cards, form inputs, sidebar, metric cards, and status pills.
+- `frontend/src/css/home.css`: Bento grid cards, metric spotlights, workflow timeline, and pricing cards.
+- `frontend/src/css/pages.css`: Dashboard hero banners, auth containers, and responsive layouts.
+- `frontend/src/components/HoloHero.jsx` & `HoloHero.css`: Rebuilt hero with 3D torus, floating tag cloud, and pill CTAs.
+- `frontend/src/components/Navbar.jsx` & `Footer.jsx`: Emerald geometric ribbon logo mark, solid mint action buttons, and dark footer.
+- `frontend/src/components/StatCard.jsx` & `HeroDemoModal.jsx`: Color palettes updated to emerald/mint and coral.
+- `frontend/src/pages/Home.jsx`, `Register.jsx`, `Dashboard.jsx`, `Dsa.jsx`, `InterviewSetup.jsx`, `InterviewResult.jsx`, `InterviewHistory.jsx`, `LearningRoadmap.jsx`, `Analytics.jsx`, `ResumeManager.jsx`, `JobDescriptions.jsx`, `MatchResults.jsx`, `Profile.jsx`, `Admin.jsx`.
+- `docs/PROJECT-STATUS.md` & `docs/10-CHANGE-LOG.md`.
+
+### Verification
+- **Frontend Production Build:** `npm run build` executed via Vite. Built in 1.27s (dist: 464.92 kB JS, 60.74 kB CSS; 124 modules transformed cleanly).
+- **Phase 8 UI Audit Suite:** `node tests/phase8-ui-audit.test.js` passed (6/6 tests passing).
+- **Phase 9 Release Hardening Suite:** `node tests/phase9-release-hardening.test.js` passed (6/6 tests passing).
+- **Phase 7 DSA Security Gate:** `node tests/phase7-dsa.test.js` passed (3/3 tests passing, candidate code execution confirmed disabled).
+- **GitHub Push:** **NOT PERFORMED** (strictly local on disk per `RULES.md` Rule 2).
+
+---
+
 ## [Unreleased] — 2026-10-20 (Phase 0 Audit & SaaS Alignment)
 
 ### Approved Scope

@@ -7,10 +7,10 @@
 ## 1. Executive Summary
 
 - **Project Name:** AI_Interview Simulator (GitHub Repo: `AI_Interview-Stimular`)
-- **Current Status:** Phases 0–9 Completed / SaaS Production-Ready Hardening Verified
+- **Current Status:** Phases 0–9 Completed & Full Website Redesign Completed (Aiby Emerald/Mint SaaS Aesthetic)
 - **Frontend Stack:** React 19, Vite 8, React Router v7, Lenis smooth scroll, GSAP, Framer Motion
 - **Backend Stack:** Node.js, Express v5, PostgreSQL via `pg`
-- **Active UI Theme:** Dark 3D Futuristic Theme (`#0b0d1a`, cyan `#00ffd0`, violet `#7b61ff`, pink `#ff6ec7`)
+- **Active UI Theme:** Obsidian & Mint Futuristic SaaS (`#050907`, mint `#62F5A0`, soft mint `#9FFFC0`, glassmorphism `rgba(16, 24, 22, 0.82)`)
 - **Git Push Policy:** Strict No-Push Rule (`GitHub push: NOT PERFORMED` without explicit separate approval)
 
 ---
@@ -20,7 +20,7 @@
 | Phase | Description | Status | Verification Notes |
 |---|---|---|---|
 | **Phase 0** | Baseline Audit, Rules & Specs | **COMPLETED** | Docs pack aligned with `RULES.md`; read-only verification |
-| **Phase 1** | Foundation & Auth Hardening | **PARTIAL** | JWT auth active; request ID & rate limiting middleware configured |
+| **Phase 1** | Foundation & Auth Hardening | **COMPLETED** | JWT auth active; request ID & rate limiting middleware configured |
 | **Phase 2** | Resume & Job Matching | **COMPLETED** | PDFParse v2 adapter repaired; heuristic matching & ownership checks verified |
 | **Phase 3** | Mock Interview & AI Evaluation | **COMPLETED** | Session lifecycle state guardrails, bounded limits & rubric evaluation verified |
 | **Phase 4** | History, Analytics & Reports | **COMPLETED** | Paginated history, metrics calculation & print-ready assessment reports verified |
@@ -29,6 +29,7 @@
 | **Phase 7** | DSA Coding Arena | **COMPLETED** | Problem catalogue, modal preview, multi-language starter code & execution security gate verified |
 | **Phase 8** | UI Polish & Responsive Audit | **COMPLETED** | Design tokens, focus-visible rings, motion reduction & mobile breakpoints verified |
 | **Phase 9** | SaaS Release Hardening & Quotas | **COMPLETED** | Free vs Pro tier quota rules, question clamping, test suite inventory & security gate verified |
+| **Redesign** | Full Website Redesign (Aiby Theme) | **COMPLETED** | 20+ pages & components overhauled to Obsidian/Mint palette, pill CTAs, 3D hero & glass cards |
 
 ---
 
