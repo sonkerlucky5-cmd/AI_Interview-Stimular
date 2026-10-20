@@ -2,7 +2,8 @@
 
 ## 1. Product vision
 
-AI_Interview-Stimular is a candidate-first practice platform for preparing for software and other job interviews. It should help users understand role requirements, practise realistic interviews, receive evidence-based feedback, review progress, practise DSA safely, and follow a personalized learning plan.
+AI_Interview Simulator (GitHub repo: `AI_Interview-Stimular`) is a candidate-first practice platform for preparing for software and other job interviews. It should help users understand role requirements, practise realistic interviews, receive evidence-based feedback, review progress, practise DSA safely, and follow a personalized learning plan.
+
 
 **Product promise:** structured practice and actionable feedback—not a guaranteed job offer, hiring prediction, or professional certification.
 

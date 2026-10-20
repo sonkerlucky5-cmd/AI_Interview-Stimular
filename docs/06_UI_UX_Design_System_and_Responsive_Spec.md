@@ -2,22 +2,32 @@
 
 ## 1. Design objective
 
-Make AI_Interview-Stimular feel like a polished, trustworthy, modern AI SaaS product for candidates. It should feel calm and focused during interviews, informative on analytics pages, and clear about what AI can and cannot conclude.
+Make AI_Interview Simulator feel like a polished, trustworthy, modern AI SaaS product for candidates. It should feel calm and focused during interviews, informative on analytics pages, and clear about what AI can and cannot conclude.
 
-**Visual direction:** premium, clean, product-led SaaS; deep navy for structure, blue/indigo for primary actions, teal for positive progress, neutral surfaces, restrained gradients. Avoid a noisy “AI neon everywhere” look.
+**Active Production Theme (Per RULES.md Section 3):**
+The active application uses an established **Dark 3D Futuristic Theme** (`#0b0d1a` dark base, cyan `#00ffd0`, violet `#7b61ff`, pink `#ff6ec7`) and smooth scrolling powered by **Lenis + GSAP + Framer Motion**. As strictly governed by `RULES.md` Section 3 (*Existing website protection*), this established visual identity, card design, and motion system must be preserved across all pages.
 
-**Important:** first inspect the actual site and existing brand. Preserve any established identity that already fits this system. If the existing theme conflicts strongly, propose a small migration plan and show a before/after rationale before changing unrelated pages.
+**Visual direction:** premium, clean, product-led SaaS; deep dark backgrounds for focus, glowing cyan/violet for primary actions and metrics, neutral glass surfaces, restrained gradients.
 
 ## 2. Color tokens
 
-Use semantic tokens instead of scattering hex codes throughout components. Define CSS variables in the existing global theme file or its current equivalent.
+Use semantic tokens instead of scattering hex codes throughout components. Define CSS variables in `frontend/src/styles/theme.css` and `frontend/src/css/index.css`.
 
-### Light theme (default recommendation)
+### Active Dark Theme (Default Production Theme)
 | Token | Hex | Usage |
 |---|---|---|
-| `--color-brand-950` | `#101828` | Deep headings / high-emphasis brand |
-| `--color-brand-900` | `#172554` | Dark brand areas |
-| `--color-primary-700` | `#1D4ED8` | Primary buttons / links |
+| `--bg-primary` / `--color-bg` | `#0B0D1A` | Main application background |
+| `--panel` / `--color-surface` | `#0D1226` / `#111C2E` | Cards / glass panels |
+| `--panel-border` / `--color-border`| `rgba(255, 255, 255, 0.12)` | Subtle glass borders |
+| `--accent-cyan` / `--color-primary` | `#00FFD0` | Tech scores / positive action accents |
+| `--accent-violet` | `#7B61FF` | Secondary primary accent / brand glow |
+| `--accent-pink` | `#FF6EC7` | Live indicators / highlights |
+| `--accent-amber` | `#FFB84D` | Warnings / problem metrics |
+| `--text-main` / `--color-text` | `#F2F4FF` | Body & primary headings |
+| `--text-muted` | `#94A3B8` | Secondary & meta text |
+
+### Light theme (Optional secondary theme)
+
 | `--color-primary-600` | `#2563EB` | Main primary accent |
 | `--color-primary-100` | `#DBEAFE` | Selected surfaces |
 | `--color-accent-600` | `#0F766E` | Secondary accent / progress |

@@ -1,7 +1,7 @@
 # 07 — Antigravity Master Prompt and End-to-End Acceptance Checklist
 
 ## 1. How to use
-1. Put all seven numbered Markdown files plus `README_FIRST.md` in `docs/` at the project root.
+1. Put all documentation files (including `RULES.md`) in `docs/` at the project root.
 2. Open the existing project in Antigravity.
 3. Paste the prompt below.
 4. Review the Phase 0 audit before approving implementation.
@@ -9,10 +9,11 @@
 
 ## 2. Copy/paste master prompt
 
-You are the senior full-stack engineer, UI/UX engineer, QA engineer and security reviewer for my existing AI_Interview-Stimular application.
+You are the senior full-stack engineer, UI/UX engineer, QA engineer and security reviewer for my existing AI_Interview Simulator application.
 
 ### Mandatory reading
 Read all files in `docs/`, especially:
+- `RULES.md` (**Mandatory: read-only by default, no-push rule, explicit scope approvals**)
 - `README_FIRST.md`
 - `01_PRD_and_Product_Requirements.md`
 - `02_Architecture_and_Data_Flows.md`
@@ -21,6 +22,10 @@ Read all files in `docs/`, especially:
 - `05_Implementation_Testing_Deployment_Runbook.md`
 - `06_UI_UX_Design_System_and_Responsive_Spec.md`
 - `07_Antigravity_Master_Prompt_and_Acceptance_Checklist.md`
+- `08_SaaS_Pricing_Tiers_and_Quota_Limits.md`
+- `PROJECT-STATUS.md`
+- `10-CHANGE-LOG.md`
+
 
 ### Phase 0: audit only — do not edit files
 Inspect the real repository, current routes, current UI, CSS/theme tokens, auth, API client, Express middleware, database schema/migrations, tests, environment examples, and deployment settings. Run baseline build/test/lint commands if safe and available. Record pre-existing failures.
