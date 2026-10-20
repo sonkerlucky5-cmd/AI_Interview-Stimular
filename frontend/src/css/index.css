@@ -5,51 +5,51 @@
 @import "./home.css";
 
 /* ═══════════════════════════════════
-   DESIGN TOKENS
-═══════════════════════════════════ */
+   DESIGN TOKENS — EMERALD / MINT THEME
+   ═══════════════════════════════════ */
 :root {
   color-scheme: dark;
 
-  /* Background */
-  --bg:           #04060c;
-  --bg-soft:      #080e1a;
-  --bg-card:      rgba(10, 15, 27, 0.88);
+  /* Backgrounds */
+  --bg:           #050907;
+  --bg-soft:      #0B110F;
+  --bg-card:      rgba(16, 24, 22, 0.82);
 
   /* Panels */
-  --panel:        rgba(11, 17, 32, 0.85);
-  --panel-strong: rgba(14, 21, 38, 0.97);
-  --panel-border: rgba(120, 148, 210, 0.13);
+  --panel:        rgba(11, 17, 15, 0.85);
+  --panel-strong: rgba(16, 24, 22, 0.97);
+  --panel-border: rgba(150, 255, 195, 0.14);
 
   /* Typography */
-  --text:         #dce8ff;
-  --text-muted:   #8a9bbf;
-  --title:        #f0f5ff;
+  --text:         #F5F7F6;
+  --text-muted:   #A7B2AD;
+  --title:        #FFFFFF;
 
-  /* Accent palette */
-  --blue:         #4f8cff;
-  --blue-dim:     rgba(79, 140, 255, 0.15);
-  --purple:       #8a5cff;
-  --purple-dim:   rgba(138, 92, 255, 0.15);
-  --teal:         #39d0c7;
-  --teal-dim:     rgba(57, 208, 199, 0.15);
-  --danger:       #ff6b8a;
+  /* Accent palette (Emerald & Mint) */
+  --blue:         #62F5A0;
+  --blue-dim:     rgba(98, 245, 160, 0.15);
+  --purple:       #9FFFC0;
+  --purple-dim:   rgba(159, 255, 192, 0.15);
+  --teal:         #25E27B;
+  --teal-dim:     rgba(37, 226, 123, 0.15);
+  --danger:       #FF6E8A;
 
   /* Shadows */
-  --shadow-sm:  0 4px 16px rgba(0, 0, 0, 0.28);
-  --shadow:     0 20px 60px rgba(0, 0, 0, 0.42);
-  --shadow-xl:  0 40px 100px rgba(0, 0, 0, 0.55);
-  --glow-blue:  0 0 40px rgba(79, 140, 255, 0.25);
-  --glow-purple: 0 0 40px rgba(138, 92, 255, 0.25);
+  --shadow-sm:    0 4px 16px rgba(0, 0, 0, 0.35);
+  --shadow:       0 20px 60px rgba(0, 0, 0, 0.55);
+  --shadow-xl:    0 40px 100px rgba(0, 0, 0, 0.7);
+  --glow-blue:    0 0 35px rgba(98, 245, 160, 0.22);
+  --glow-purple:  0 0 35px rgba(159, 255, 192, 0.22);
 
   /* Radii */
-  --radius-xs:  10px;
-  --radius-sm:  16px;
-  --radius-md:  22px;
-  --radius-lg:  30px;
-  --radius-xl:  40px;
+  --radius-xs:    8px;
+  --radius-sm:    14px;
+  --radius-md:    20px;
+  --radius-lg:    28px;
+  --radius-xl:    36px;
 
   /* Layout */
-  --max-width:  1240px;
+  --max-width:    1280px;
 
   /* Fonts */
   --font-body:    "Outfit", "Segoe UI", system-ui, sans-serif;
@@ -85,41 +85,13 @@ body {
   color: var(--text);
   background-color: var(--bg);
   background-image:
-    radial-gradient(ellipse 80% 50% at 15% -5%,  rgba(79, 140, 255, 0.2),  transparent),
-    radial-gradient(ellipse 60% 40% at 90%  10%,  rgba(138, 92, 255, 0.16), transparent),
-    radial-gradient(ellipse 50% 35% at 50% 100%,  rgba(57, 208, 199, 0.07), transparent),
-    linear-gradient(180deg, #050912 0%, #060b14 60%, #040810 100%);
+    radial-gradient(ellipse 70% 35% at 50% -5%, rgba(98, 245, 160, 0.12), transparent 70%),
+    radial-gradient(ellipse 50% 30% at 90% 20%, rgba(37, 226, 123, 0.06), transparent 60%),
+    linear-gradient(180deg, #050907 0%, #080D0B 100%);
   background-attachment: fixed;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* Subtle grid overlay */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.028) 1px, transparent 1px);
-  background-size: 80px 80px;
-  mask-image: radial-gradient(ellipse 90% 70% at 50% 30%, black 10%, transparent 100%);
-  opacity: 0.6;
-}
-
-/* Noise grain overlay */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.025;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
 }
 
 #root {
@@ -135,6 +107,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   font-family: var(--font-heading);
   color: var(--title);
+  letter-spacing: -0.015em;
 }
 
 p {
@@ -176,29 +149,29 @@ video {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(79, 140, 255, 0.25);
+  background: rgba(98, 245, 160, 0.22);
   border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(79, 140, 255, 0.45);
+  background: rgba(98, 245, 160, 0.45);
 }
 
 /* ═══════════════════════════════════
    FOCUS STYLES (WCAG 2.1 AA Compliant)
 ═══════════════════════════════════ */
 :focus-visible {
-  outline: 2px solid #00ffd0;
+  outline: 2px solid #62F5A0;
   outline-offset: 3px;
   border-radius: 6px;
-  box-shadow: 0 0 12px rgba(0, 255, 208, 0.5);
+  box-shadow: 0 0 12px rgba(98, 245, 160, 0.5);
 }
 
 /* ═══════════════════════════════════
    SELECTION
 ═══════════════════════════════════ */
 ::selection {
-  background: rgba(79, 140, 255, 0.28);
+  background: rgba(98, 245, 160, 0.28);
   color: #fff;
 }
 
@@ -211,6 +184,8 @@ video {
   .button,
   .navbar__btn,
   .home-btn,
+  .pill-btn-primary,
+  .pill-btn-ghost,
   a[role="button"] {
     min-height: 44px;
     touch-action: manipulation;
@@ -228,4 +203,3 @@ video {
     scroll-behavior: auto !important;
   }
 }
-
