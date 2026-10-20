@@ -12,9 +12,9 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background: "linear-gradient(180deg, #0b0d1a 0%, #060710 100%)",
-        borderTop: "1px solid rgba(255, 255, 255, 0.08)",
-        padding: "4rem 6% 2.5rem",
+        background: "linear-gradient(180deg, #050907 0%, #030604 100%)",
+        borderTop: "1px solid rgba(150, 255, 195, 0.12)",
+        padding: "4.5rem 6% 2.5rem",
         color: "var(--text-muted)",
         position: "relative",
         zIndex: 10,
@@ -34,33 +34,34 @@ export default function Footer() {
           <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "1rem" }}>
             <span
               style={{
-                width: "28px",
-                height: "28px",
-                borderRadius: "8px",
-                background: "linear-gradient(135deg, #00ffd0, #7b61ff)",
+                width: "32px",
+                height: "32px",
+                borderRadius: "10px",
+                background: "rgba(98, 245, 160, 0.12)",
+                border: "1px solid rgba(98, 245, 160, 0.28)",
                 display: "grid",
                 placeItems: "center",
-                color: "#05060f",
+                color: "#62F5A0",
                 fontWeight: 800,
                 fontSize: "14px",
               }}
             >
               AI
             </span>
-            <strong style={{ fontSize: "1.2rem", color: "#fff", letterSpacing: "-0.01em" }}>
-              Interview<span style={{ color: "var(--accent-cyan)" }}>AI</span>
+            <strong style={{ fontSize: "1.2rem", color: "#fff", letterSpacing: "-0.015em" }}>
+              Interview<span style={{ color: "var(--accent-mint)" }}>AI</span>
             </strong>
           </div>
-          <p style={{ fontSize: "0.9rem", lineHeight: 1.6, maxWidth: "300px" }}>
+          <p style={{ fontSize: "0.9rem", lineHeight: 1.65, maxWidth: "300px", color: "var(--text-muted)" }}>
             The candidate-first AI interview simulator. Realistic questions, instant scoring, and tailored DSA practice.
           </p>
         </div>
 
         <div>
-          <h4 style={{ color: "#fff", fontSize: "0.95rem", marginBottom: "1rem", letterSpacing: "0.05em" }}>
+          <h4 style={{ color: "#fff", fontSize: "0.95rem", marginBottom: "1.1rem", letterSpacing: "0.06em" }}>
             PRACTICE
           </h4>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: "0.6rem", fontSize: "0.88rem" }}>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: "0.65rem", fontSize: "0.88rem" }}>
             <li>
               <Link to="/interview" style={{ color: "inherit", transition: "color 0.2s" }}>
                 🎙️ Mock Interview
@@ -85,10 +86,10 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 style={{ color: "#fff", fontSize: "0.95rem", marginBottom: "1rem", letterSpacing: "0.05em" }}>
+          <h4 style={{ color: "#fff", fontSize: "0.95rem", marginBottom: "1.1rem", letterSpacing: "0.06em" }}>
             PLATFORM
           </h4>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: "0.6rem", fontSize: "0.88rem" }}>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: "0.65rem", fontSize: "0.88rem" }}>
             <li>
               <a
                 href="#features"
@@ -134,24 +135,25 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 style={{ color: "#fff", fontSize: "0.95rem", marginBottom: "1rem", letterSpacing: "0.05em" }}>
+          <h4 style={{ color: "#fff", fontSize: "0.95rem", marginBottom: "1.1rem", letterSpacing: "0.06em" }}>
             STAY CONNECTED
           </h4>
-          <p style={{ fontSize: "0.85rem", marginBottom: "1rem" }}>
+          <p style={{ fontSize: "0.88rem", marginBottom: "1.2rem", color: "var(--text-muted)" }}>
             Ready to ace your next technical or behavioral round?
           </p>
           <button
             type="button"
             onClick={scrollToTop}
             style={{
-              padding: "0.55rem 1.1rem",
+              padding: "0.6rem 1.2rem",
               borderRadius: "999px",
-              background: "rgba(255, 255, 255, 0.05)",
-              border: "1px solid rgba(255, 255, 255, 0.15)",
-              color: "var(--accent-cyan)",
+              background: "rgba(98, 245, 160, 0.08)",
+              border: "1px solid rgba(150, 255, 195, 0.22)",
+              color: "var(--accent-mint)",
               fontSize: "0.85rem",
-              fontWeight: 600,
+              fontWeight: 700,
               cursor: "pointer",
+              transition: "all 0.2s ease",
             }}
           >
             ↑ Back to Top
@@ -164,7 +166,7 @@ export default function Footer() {
           maxWidth: "1280px",
           margin: "0 auto",
           paddingTop: "2rem",
-          borderTop: "1px solid rgba(255, 255, 255, 0.06)",
+          borderTop: "1px solid rgba(150, 255, 195, 0.08)",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",

@@ -279,7 +279,7 @@ function Navbar() {
                   onClick={closeMenu}
                   id="nav-signup"
                 >
-                  Start Free
+                  Free Trial ↗
                 </NavLink>
               </>
             )}
