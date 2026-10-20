@@ -118,13 +118,15 @@ function InterviewSetup() {
                       key={role}
                       type="button"
                       style={{
-                        background: targetRole === role ? "var(--blue)" : "rgba(79, 140, 255, 0.1)",
-                        color: targetRole === role ? "#fff" : "var(--blue)",
-                        border: "none",
-                        padding: "0.3rem 0.65rem",
-                        borderRadius: "6px",
+                        background: targetRole === role ? "var(--accent-mint)" : "rgba(98, 245, 160, 0.08)",
+                        color: targetRole === role ? "#050907" : "var(--accent-mint)",
+                        border: targetRole === role ? "none" : "1px solid rgba(98, 245, 160, 0.22)",
+                        padding: "0.35rem 0.8rem",
+                        borderRadius: "9999px",
                         fontSize: "0.8rem",
+                        fontWeight: targetRole === role ? "700" : "500",
                         cursor: "pointer",
+                        transition: "all 0.2s ease",
                       }}
                       onClick={() => setTargetRole(role)}
                     >
@@ -149,11 +151,13 @@ function InterviewSetup() {
                       key={type.id}
                       onClick={() => setInterviewType(type.id)}
                       style={{
-                        background: interviewType === type.id ? "rgba(79, 140, 255, 0.15)" : "var(--panel)",
-                        border: interviewType === type.id ? "2px solid var(--blue)" : "1px solid var(--panel-border)",
+                        background: interviewType === type.id ? "rgba(98, 245, 160, 0.12)" : "var(--panel)",
+                        border: interviewType === type.id ? "1.5px solid var(--accent-mint)" : "1px solid var(--panel-border)",
+                        boxShadow: interviewType === type.id ? "0 0 20px rgba(98, 245, 160, 0.15)" : "none",
                         padding: "1rem",
-                        borderRadius: "10px",
+                        borderRadius: "12px",
                         cursor: "pointer",
+                        transition: "all 0.2s ease",
                       }}
                     >
                       <strong style={{ display: "block", color: "var(--title)", fontSize: "0.95rem", marginBottom: "0.25rem" }}>
@@ -245,11 +249,11 @@ function InterviewSetup() {
               {/* Launch Button */}
               <button
                 type="submit"
-                className="btn btn--primary"
+                className="button button--primary pill-btn-primary"
                 disabled={isStarting}
-                style={{ width: "100%", padding: "0.9rem", fontSize: "1.05rem" }}
+                style={{ width: "100%", padding: "0.95rem", fontSize: "1.05rem", borderRadius: "9999px" }}
               >
-                {isStarting ? "Initializing Interview Environment..." : "🚀 Launch Practice Interview Room"}
+                {isStarting ? "Initializing Interview Environment..." : "🚀 Launch Practice Interview Room ↗"}
               </button>
             </form>
           </div>

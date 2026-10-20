@@ -171,10 +171,10 @@ function InterviewResult() {
 
             <div
               style={{
-                background: "rgba(79, 140, 255, 0.08)",
-                borderLeft: "3px solid var(--blue)",
+                background: "rgba(98, 245, 160, 0.08)",
+                borderLeft: "3px solid var(--accent-mint)",
                 padding: "0.75rem 1rem",
-                borderRadius: "4px",
+                borderRadius: "8px",
                 fontSize: "0.85rem",
                 color: "var(--text-muted)",
               }}
@@ -329,14 +329,14 @@ function InterviewResult() {
                       {item.ideal_answer && (
                         <div
                           style={{
-                            background: "rgba(79, 140, 255, 0.06)",
-                            border: "1px solid rgba(79, 140, 255, 0.2)",
-                            borderRadius: "8px",
+                            background: "rgba(98, 245, 160, 0.06)",
+                            border: "1px solid rgba(98, 245, 160, 0.2)",
+                            borderRadius: "10px",
                             padding: "1rem",
                           }}
                         >
                           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.4rem" }}>
-                            <strong style={{ color: "var(--blue)", fontSize: "0.9rem" }}>
+                            <strong style={{ color: "var(--accent-mint)", fontSize: "0.9rem" }}>
                               💡 Exemplary Benchmark Response
                             </strong>
                             <small style={{ color: "var(--text-muted)", fontSize: "0.75rem" }}>
