@@ -19,10 +19,10 @@ export default function StatCard({ label, value, icon, change, badge, color = "c
   };
 
   const colorStyles = {
-    cyan: { accent: "var(--accent-cyan)", border: "rgba(0, 255, 208, 0.25)", shadow: "rgba(0, 255, 208, 0.15)" },
-    violet: { accent: "var(--accent-violet)", border: "rgba(123, 97, 255, 0.25)", shadow: "rgba(123, 97, 255, 0.15)" },
-    pink: { accent: "var(--accent-pink)", border: "rgba(255, 110, 199, 0.25)", shadow: "rgba(255, 110, 199, 0.15)" },
-    blue: { accent: "var(--accent-blue)", border: "rgba(56, 189, 248, 0.25)", shadow: "rgba(56, 189, 248, 0.15)" },
+    cyan: { accent: "var(--accent-mint)", border: "rgba(98, 245, 160, 0.25)", shadow: "rgba(98, 245, 160, 0.15)" },
+    violet: { accent: "var(--accent-mint-soft)", border: "rgba(150, 255, 195, 0.22)", shadow: "rgba(150, 255, 195, 0.12)" },
+    pink: { accent: "#FF6E8A", border: "rgba(255, 110, 138, 0.25)", shadow: "rgba(255, 110, 138, 0.12)" },
+    blue: { accent: "#25E27B", border: "rgba(37, 226, 123, 0.25)", shadow: "rgba(37, 226, 123, 0.12)" },
   };
 
   const currentTheme = colorStyles[color] || colorStyles.cyan;

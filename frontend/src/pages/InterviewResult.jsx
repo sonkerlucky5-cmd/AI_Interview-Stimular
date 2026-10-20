@@ -31,9 +31,9 @@ function InterviewResult() {
   }, [id]);
 
   const getScoreColor = (score) => {
-    if (score >= 80) return "var(--teal)";
-    if (score >= 60) return "var(--blue)";
-    return "var(--danger)";
+    if (score >= 80) return "var(--accent-mint)";
+    if (score >= 60) return "var(--accent-mint-soft)";
+    return "#FF6E8A";
   };
 
   if (isLoading) {

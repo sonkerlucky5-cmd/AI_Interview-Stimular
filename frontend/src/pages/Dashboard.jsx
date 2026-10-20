@@ -82,9 +82,9 @@ export default function Dashboard() {
         <Sidebar />
 
         <section className="dashboard-main">
-          <div className="dashboard-hero" style={{ border: "1px solid rgba(0, 255, 208, 0.25)" }}>
+          <div className="dashboard-hero" style={{ border: "1px solid rgba(150, 255, 195, 0.16)" }}>
             <div>
-              <span className="eyebrow" style={{ color: "var(--accent-cyan)" }}>
+              <span className="eyebrow" style={{ color: "var(--accent-mint)" }}>
                 Practice workspace
               </span>
               <h1 style={{ fontSize: "clamp(1.8rem, 3vw, 2.4rem)", fontWeight: 800, margin: "0.2rem 0 0.5rem" }}>
@@ -97,22 +97,18 @@ export default function Dashboard() {
             </div>
 
             <div className="dashboard-hero__status">
-              <span className="status-pill" style={{ color: "var(--accent-cyan)", border: "1px solid rgba(0, 255, 208, 0.3)" }}>
+              <span className="status-pill" style={{ color: "var(--accent-mint)", border: "1px solid rgba(150, 255, 195, 0.22)" }}>
                 {inProgressCount > 0 ? `${inProgressCount} in progress` : "Ready to practise"}
               </span>
               <Link
                 to="/interviews/new"
+                className="pill-btn-primary"
                 style={{
                   padding: "0.55rem 1.25rem",
-                  borderRadius: "999px",
-                  background: "linear-gradient(90deg, #00ffd0, #7b61ff)",
-                  color: "#05060f",
-                  fontWeight: 800,
                   fontSize: "0.85rem",
-                  textDecoration: "none",
                 }}
               >
-                + New Mock Session
+                + New Mock Session ↗
               </Link>
             </div>
           </div>
@@ -168,14 +164,14 @@ export default function Dashboard() {
                 marginTop: "1.2rem",
                 padding: "1.5rem 1.75rem",
                 borderRadius: "20px",
-                border: "1px solid rgba(0, 255, 208, 0.2)",
+                border: "1px solid rgba(150, 255, 195, 0.16)",
               }}
             >
               <h2 style={{ fontSize: "1.15rem", margin: "0 0 0.4rem" }}>Start your first session</h2>
               <p style={{ color: "var(--text-muted)", margin: "0 0 1rem" }}>
                 You do not have saved interviews or resumes yet. Set up a mock interview to generate questions and keep answers in your account.
               </p>
-              <Link to="/interviews/new" style={{ color: "var(--accent-cyan)", fontWeight: 700 }}>
+              <Link to="/interviews/new" style={{ color: "var(--accent-mint)", fontWeight: 700 }}>
                 Create interview setup →
               </Link>
             </article>

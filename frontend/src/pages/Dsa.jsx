@@ -59,9 +59,9 @@ export default function Dsa() {
 
   const getDifficultyBadge = (diff) => {
     const styles = {
-      Easy: { color: "var(--accent-cyan)", bg: "rgba(0, 255, 208, 0.12)", border: "rgba(0, 255, 208, 0.3)" },
-      Medium: { color: "var(--accent-violet)", bg: "rgba(123, 97, 255, 0.12)", border: "rgba(123, 97, 255, 0.3)" },
-      Hard: { color: "var(--accent-pink)", bg: "rgba(255, 110, 199, 0.12)", border: "rgba(255, 110, 199, 0.3)" },
+      Easy: { color: "var(--accent-mint)", bg: "rgba(98, 245, 160, 0.12)", border: "rgba(98, 245, 160, 0.3)" },
+      Medium: { color: "#F5D062", bg: "rgba(245, 208, 98, 0.12)", border: "rgba(245, 208, 98, 0.3)" },
+      Hard: { color: "#FF6E8A", bg: "rgba(255, 110, 138, 0.12)", border: "rgba(255, 110, 138, 0.3)" },
     };
     const s = styles[diff] || styles.Easy;
     return (
@@ -274,8 +274,8 @@ export default function Dsa() {
               overflowY: "auto",
               padding: "2rem",
               borderRadius: "24px",
-              border: "1px solid rgba(0, 255, 208, 0.25)",
-              boxShadow: "0 20px 50px rgba(0, 0, 0, 0.6)",
+              border: "1px solid rgba(150, 255, 195, 0.22)",
+              boxShadow: "0 20px 50px rgba(0, 0, 0, 0.75)",
             }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -413,7 +413,7 @@ export default function Dsa() {
                     padding: "1rem",
                     fontSize: "0.85rem",
                     fontFamily: "monospace",
-                    color: "#00ffd0",
+                    color: "var(--accent-mint)",
                     overflowX: "auto",
                     margin: 0,
                   }}

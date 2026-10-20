@@ -16,7 +16,7 @@ export default function Home() {
 
   return (
     <div style={{ background: "var(--bg-primary)", color: "var(--text-main)", overflow: "hidden" }}>
-      {/* 3D Holo Cards Hero Section */}
+      {/* 3D Emerald Torus & Hero Section */}
       <HoloHero />
 
       {/* Quick Jump Bar */}
@@ -26,10 +26,10 @@ export default function Home() {
           justifyContent: "center",
           gap: "1.5rem",
           padding: "1rem",
-          borderTop: "1px solid rgba(255, 255, 255, 0.05)",
-          borderBottom: "1px solid rgba(255, 255, 255, 0.05)",
-          background: "rgba(11, 13, 26, 0.8)",
-          backdropFilter: "blur(12px)",
+          borderTop: "1px solid rgba(150, 255, 195, 0.1)",
+          borderBottom: "1px solid rgba(150, 255, 195, 0.1)",
+          background: "rgba(5, 9, 7, 0.85)",
+          backdropFilter: "blur(14px)",
           position: "sticky",
           top: 0,
           zIndex: 80,
@@ -39,59 +39,206 @@ export default function Home() {
       >
         <button
           type="button"
+          onClick={() => handleScrollTo("#overview")}
+          style={{ background: "none", border: "none", color: "var(--text-muted)", cursor: "pointer", fontWeight: 600 }}
+        >
+          Overview
+        </button>
+        <button
+          type="button"
           onClick={() => handleScrollTo("#features")}
           style={{ background: "none", border: "none", color: "var(--text-muted)", cursor: "pointer", fontWeight: 600 }}
         >
-          ⚡ Features
+          Capabilities
         </button>
         <button
           type="button"
           onClick={() => handleScrollTo("#how-it-works")}
           style={{ background: "none", border: "none", color: "var(--text-muted)", cursor: "pointer", fontWeight: 600 }}
         >
-          🎯 How It Works
+          Process
         </button>
         <button
           type="button"
           onClick={() => handleScrollTo("#pricing")}
           style={{ background: "none", border: "none", color: "var(--text-muted)", cursor: "pointer", fontWeight: 600 }}
         >
-          💎 Pricing
+          Pricing
         </button>
-        <Link to="/dsa" style={{ color: "var(--accent-cyan)", fontWeight: 700, textDecoration: "none" }}>
+        <Link to="/dsa" style={{ color: "var(--accent-mint)", fontWeight: 700, textDecoration: "none" }}>
           DSA Arena →
         </Link>
-        <Link to="/interview" style={{ color: "var(--accent-pink)", fontWeight: 700, textDecoration: "none" }}>
-          Live Mock →
+        <Link to="/interview" style={{ color: "var(--accent-mint-soft)", fontWeight: 700, textDecoration: "none" }}>
+          Live Mock 🎙️
         </Link>
       </nav>
 
-      {/* ── FEATURES SECTION ── */}
-      <section id="features" style={{ padding: "6rem 6% 4rem", maxWidth: "1280px", margin: "0 auto" }}>
+      {/* ── BENTO OVERVIEW SECTION (Matching Reference Section 1) ── */}
+      <section id="overview" style={{ padding: "6rem 4% 4rem", maxWidth: "1320px", margin: "0 auto" }}>
         <Reveal>
-          <div style={{ textAlign: "center", marginBottom: "4rem" }}>
-            <span
+          <div style={{ marginBottom: "3.5rem" }}>
+            <h2
               style={{
-                fontSize: "0.78rem",
-                textTransform: "uppercase",
-                letterSpacing: "0.15em",
-                color: "var(--accent-cyan)",
-                fontWeight: 700,
-                padding: "0.3rem 0.85rem",
-                borderRadius: "999px",
-                background: "rgba(0, 255, 208, 0.1)",
-                border: "1px solid rgba(0, 255, 208, 0.25)",
-                display: "inline-block",
-                marginBottom: "1rem",
+                fontSize: "clamp(2.2rem, 4vw, 3.4rem)",
+                fontWeight: 800,
+                lineHeight: 1.2,
+                color: "#FFFFFF",
+                maxWidth: "880px",
+                margin: 0,
               }}
             >
-              Core Capabilities
-            </span>
-            <h2 style={{ fontSize: "clamp(2rem, 4.5vw, 3.2rem)", fontWeight: 800, margin: 0, color: "#fff" }}>
-              Engineered for High-Stakes Tech Rounds
+              From <span style={{ color: "var(--accent-mint)" }}>preparation</span> to{" "}
+              <span style={{ color: "var(--accent-mint)" }}>offer</span>, our tools are{" "}
+              <span className="italic-accent">designed to unlock what&apos;s next</span>
             </h2>
-            <p style={{ maxWidth: "600px", margin: "1rem auto 0", color: "var(--text-muted)", fontSize: "1.05rem" }}>
-              Practice realistic questions across data structures, system design, and behavioral frameworks.
+          </div>
+        </Reveal>
+
+        {/* 2-Column Bento Grid Layout */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+            gap: "2.5rem",
+            alignItems: "stretch",
+          }}
+        >
+          {/* Left Column: Big Highlight Metric Card (Reference Style) */}
+          <Reveal>
+            <div
+              className="glass-panel"
+              style={{
+                padding: "3rem 2.5rem",
+                borderRadius: "28px",
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                position: "relative",
+                background: "linear-gradient(145deg, rgba(16, 24, 22, 0.9) 0%, rgba(8, 14, 11, 0.95) 100%)",
+                border: "1px solid rgba(150, 255, 195, 0.18)",
+              }}
+            >
+              <div>
+                <span
+                  style={{
+                    fontSize: "0.78rem",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.14em",
+                    color: "var(--accent-mint)",
+                    fontWeight: 700,
+                    display: "block",
+                    marginBottom: "1rem",
+                  }}
+                >
+                  ENGINEERED PERFORMANCE
+                </span>
+
+                <div
+                  style={{
+                    fontFamily: "var(--font-heading)",
+                    fontSize: "clamp(3.8rem, 6vw, 5.5rem)",
+                    fontWeight: 900,
+                    lineHeight: 1,
+                    color: "#FFFFFF",
+                    marginBottom: "0.5rem",
+                  }}
+                >
+                  20k+
+                </div>
+                <div style={{ color: "var(--accent-mint)", fontSize: "1.2rem", fontWeight: 700, marginBottom: "1.5rem" }}>
+                  Practice Questions Completed
+                </div>
+
+                <p style={{ color: "var(--text-muted)", fontSize: "1rem", lineHeight: 1.7, margin: "0 0 2rem" }}>
+                  We engineer realistic interview simulations that help software engineers think faster, answer with architectural precision, and speak with unwavering confidence.
+                </p>
+
+                {/* Sub-Metrics Row */}
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginBottom: "2rem" }}>
+                  <div style={{ padding: "1.2rem", borderRadius: "16px", background: "rgba(255, 255, 255, 0.03)", border: "1px solid rgba(150, 255, 195, 0.1)" }}>
+                    <div style={{ fontSize: "1.8rem", fontWeight: 800, color: "#FFFFFF" }}>130k+</div>
+                    <div style={{ fontSize: "0.82rem", color: "var(--text-muted)", textTransform: "uppercase", marginTop: "0.2rem" }}>Evaluations Run</div>
+                  </div>
+                  <div style={{ padding: "1.2rem", borderRadius: "16px", background: "rgba(255, 255, 255, 0.03)", border: "1px solid rgba(150, 255, 195, 0.1)" }}>
+                    <div style={{ fontSize: "1.8rem", fontWeight: 800, color: "#FFFFFF" }}>24+</div>
+                    <div style={{ fontSize: "0.82rem", color: "var(--text-muted)", textTransform: "uppercase", marginTop: "0.2rem" }}>Roles Covered</div>
+                  </div>
+                </div>
+              </div>
+
+              <Link to="/interview" className="pill-btn-primary" style={{ width: "fit-content" }}>
+                <span>Start Practice</span>
+                <span className="arrow-circle">↗</span>
+              </Link>
+            </div>
+          </Reveal>
+
+          {/* Right Column: 2x2 Feature Cards Grid */}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "1.5rem" }}>
+            {features.map((f, i) => (
+              <Reveal key={f.title} delay={i * 100}>
+                <div
+                  className="glass-panel"
+                  style={{
+                    padding: "1.8rem",
+                    borderRadius: "22px",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.25rem" }}>
+                      <span style={{ fontSize: "2rem" }}>{f.icon}</span>
+                      <span className="pill-tag" style={{ fontSize: "0.75rem", padding: "0.25rem 0.65rem" }}>
+                        {f.tag}
+                      </span>
+                    </div>
+                    <h3 style={{ fontSize: "1.2rem", color: "#FFFFFF", marginBottom: "0.6rem", fontWeight: 700 }}>
+                      {f.title}
+                    </h3>
+                    <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", lineHeight: 1.6, margin: 0 }}>
+                      {f.description}
+                    </p>
+                  </div>
+                  <div
+                    style={{
+                      height: "2px",
+                      width: "35px",
+                      background: "var(--accent-mint)",
+                      borderRadius: "2px",
+                      marginTop: "1.5rem",
+                    }}
+                  />
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── HOW IT WORKS SECTION (Matching Reference Section 2) ── */}
+      <section id="how-it-works" style={{ padding: "6rem 4%", maxWidth: "1320px", margin: "0 auto" }}>
+        <Reveal>
+          <div style={{ marginBottom: "3.5rem" }}>
+            <span className="pill-tag" style={{ marginBottom: "1rem" }}>
+              HOW IT WORKS
+            </span>
+            <h2
+              style={{
+                fontSize: "clamp(2.2rem, 4vw, 3.2rem)",
+                fontWeight: 800,
+                color: "#FFFFFF",
+                margin: 0,
+              }}
+            >
+              From <span style={{ color: "var(--accent-mint)" }}>setup</span> to{" "}
+              <span className="italic-accent">dream offer</span>
+            </h2>
+            <p style={{ maxWidth: "580px", margin: "0.8rem 0 0", color: "var(--text-muted)", fontSize: "1rem" }}>
+              Our methodology is transparent, repeatable, and tailored to give you an unfair advantage in technical interviews.
             </p>
           </div>
         </Reveal>
@@ -103,171 +250,64 @@ export default function Home() {
             gap: "1.75rem",
           }}
         >
-          {features.map((f, i) => (
-            <Reveal key={f.title} delay={i * 120}>
+          {howItWorksSteps.map((s, i) => (
+            <Reveal key={s.step} delay={i * 120}>
               <div
                 className="glass-panel"
                 style={{
-                  padding: "2rem",
-                  borderRadius: "20px",
+                  padding: "2.2rem 2rem",
+                  borderRadius: "24px",
+                  position: "relative",
                   height: "100%",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
-                  position: "relative",
                 }}
               >
                 <div>
-                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.25rem" }}>
-                    <span style={{ fontSize: "2.2rem" }}>{f.icon}</span>
-                    <span
-                      style={{
-                        fontSize: "0.75rem",
-                        padding: "0.25rem 0.65rem",
-                        borderRadius: "999px",
-                        background: "rgba(123, 97, 255, 0.15)",
-                        color: "var(--accent-violet)",
-                        fontWeight: 700,
-                        border: "1px solid rgba(123, 97, 255, 0.3)",
-                      }}
-                    >
-                      {f.tag}
-                    </span>
+                  <div
+                    style={{
+                      fontSize: "2.8rem",
+                      fontWeight: 900,
+                      color: "transparent",
+                      WebkitTextStroke: "1px rgba(98, 245, 160, 0.45)",
+                      lineHeight: 1,
+                      marginBottom: "1.2rem",
+                    }}
+                  >
+                    {s.step}
                   </div>
-                  <h3 style={{ fontSize: "1.25rem", color: "#fff", marginBottom: "0.75rem", fontWeight: 700 }}>
-                    {f.title}
+                  <h3 style={{ fontSize: "1.25rem", color: "#FFFFFF", marginBottom: "0.6rem", fontWeight: 700 }}>
+                    {s.title}
                   </h3>
-                  <p style={{ color: "var(--text-muted)", fontSize: "0.92rem", lineHeight: 1.6, margin: 0 }}>
-                    {f.description}
+                  <p style={{ color: "var(--text-muted)", fontSize: "0.92rem", lineHeight: 1.65, margin: 0 }}>
+                    {s.desc}
                   </p>
                 </div>
-                <div
-                  style={{
-                    height: "3px",
-                    width: "40px",
-                    background: "linear-gradient(90deg, #00ffd0, #7b61ff)",
-                    borderRadius: "2px",
-                    marginTop: "1.5rem",
-                  }}
-                />
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      {/* ── HOW IT WORKS ── */}
-      <section id="how-it-works" style={{ padding: "5rem 6%", maxWidth: "1280px", margin: "0 auto" }}>
-        <Reveal>
-          <div style={{ textAlign: "center", marginBottom: "4rem" }}>
-            <span
-              style={{
-                fontSize: "0.78rem",
-                textTransform: "uppercase",
-                letterSpacing: "0.15em",
-                color: "var(--accent-violet)",
-                fontWeight: 700,
-                padding: "0.3rem 0.85rem",
-                borderRadius: "999px",
-                background: "rgba(123, 97, 255, 0.1)",
-                border: "1px solid rgba(123, 97, 255, 0.25)",
-                display: "inline-block",
-                marginBottom: "1rem",
-              }}
-            >
-              Process Flow
-            </span>
-            <h2 style={{ fontSize: "clamp(2rem, 4.5vw, 3.2rem)", fontWeight: 800, margin: 0, color: "#fff" }}>
-              How InterviewAI Works
-            </h2>
-            <p style={{ maxWidth: "540px", margin: "1rem auto 0", color: "var(--text-muted)", fontSize: "1.05rem" }}>
-              Go from zero to interview-ready in 3 seamless steps.
-            </p>
-          </div>
-        </Reveal>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "2rem",
-          }}
-        >
-          {howItWorksSteps.map((s, i) => (
-            <Reveal key={s.step} delay={i * 150}>
-              <div
-                className="glass-panel"
-                style={{
-                  padding: "2.25rem",
-                  borderRadius: "24px",
-                  position: "relative",
-                  height: "100%",
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: "2.5rem",
-                    fontWeight: 900,
-                    color: "transparent",
-                    WebkitTextStroke: "1px rgba(0, 255, 208, 0.5)",
-                    lineHeight: 1,
-                    marginBottom: "1rem",
-                  }}
-                >
-                  {s.step}
+                <div>
+                  <span className="pill-tag" style={{ marginTop: "1.5rem", fontSize: "0.75rem" }}>
+                    {s.badge}
+                  </span>
                 </div>
-                <h3 style={{ fontSize: "1.3rem", color: "#fff", marginBottom: "0.75rem", fontWeight: 700 }}>
-                  {s.title}
-                </h3>
-                <p style={{ color: "var(--text-muted)", fontSize: "0.92rem", lineHeight: 1.65, margin: 0 }}>
-                  {s.desc}
-                </p>
-                <span
-                  style={{
-                    display: "inline-block",
-                    marginTop: "1.5rem",
-                    fontSize: "0.75rem",
-                    padding: "0.2rem 0.6rem",
-                    borderRadius: "6px",
-                    background: "rgba(255, 255, 255, 0.05)",
-                    color: "var(--accent-cyan)",
-                    border: "1px solid rgba(255, 255, 255, 0.08)",
-                  }}
-                >
-                  {s.badge}
-                </span>
               </div>
             </Reveal>
           ))}
         </div>
       </section>
 
-      {/* ── PRICING PLANS ── */}
-      <section id="pricing" style={{ padding: "5rem 6%", maxWidth: "1280px", margin: "0 auto" }}>
+      {/* ── PRICING PLANS (Matching Reference Section 3) ── */}
+      <section id="pricing" style={{ padding: "6rem 4%", maxWidth: "1320px", margin: "0 auto" }}>
         <Reveal>
           <div style={{ textAlign: "center", marginBottom: "4rem" }}>
-            <span
-              style={{
-                fontSize: "0.78rem",
-                textTransform: "uppercase",
-                letterSpacing: "0.15em",
-                color: "var(--accent-pink)",
-                fontWeight: 700,
-                padding: "0.3rem 0.85rem",
-                borderRadius: "999px",
-                background: "rgba(255, 110, 199, 0.1)",
-                border: "1px solid rgba(255, 110, 199, 0.25)",
-                display: "inline-block",
-                marginBottom: "1rem",
-              }}
-            >
-              Subscription
+            <span className="pill-tag" style={{ marginBottom: "1rem" }}>
+              TRANSPARENT PLANS
             </span>
-            <h2 style={{ fontSize: "clamp(2rem, 4.5vw, 3.2rem)", fontWeight: 800, margin: 0, color: "#fff" }}>
-              Simple, Transparent Pricing
+            <h2 style={{ fontSize: "clamp(2.2rem, 4vw, 3.2rem)", fontWeight: 800, margin: 0, color: "#FFFFFF" }}>
+              Pricing <span style={{ color: "var(--accent-mint)" }}>Plans</span> —{" "}
+              <span className="italic-accent">for every stage of your growth</span>
             </h2>
-            <p style={{ maxWidth: "500px", margin: "1rem auto 0", color: "var(--text-muted)", fontSize: "1.05rem" }}>
-              Get unlimited interviews and DSA practice. Cancel anytime.
+            <p style={{ maxWidth: "560px", margin: "0.8rem auto 0", color: "var(--text-muted)", fontSize: "1rem" }}>
+              Practice mock rounds, benchmark your algorithm skills, and follow personalized roadmaps.
             </p>
           </div>
         </Reveal>
@@ -275,7 +315,7 @@ export default function Home() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(290px, 1fr))",
             gap: "2rem",
             alignItems: "stretch",
           }}
@@ -285,16 +325,16 @@ export default function Home() {
               <div
                 className="glass-panel"
                 style={{
-                  padding: "2.5rem 2rem",
-                  borderRadius: "24px",
+                  padding: "2.8rem 2.2rem",
+                  borderRadius: "26px",
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
                   height: "100%",
                   position: "relative",
-                  border: plan.popular ? "2px solid rgba(0, 255, 208, 0.5)" : "var(--border-glass)",
+                  border: plan.popular ? "2px solid #62F5A0" : "1px solid rgba(150, 255, 195, 0.14)",
                   boxShadow: plan.popular
-                    ? "0 20px 60px rgba(0, 255, 208, 0.15), var(--shadow-glass)"
+                    ? "0 20px 60px rgba(98, 245, 160, 0.18), var(--shadow-glass)"
                     : "var(--shadow-glass)",
                 }}
               >
@@ -302,40 +342,41 @@ export default function Home() {
                   <div
                     style={{
                       position: "absolute",
-                      top: "-13px",
+                      top: "-14px",
                       left: "50%",
                       transform: "translateX(-50%)",
-                      padding: "0.25rem 0.85rem",
-                      background: "linear-gradient(90deg, #00ffd0, #7b61ff)",
-                      color: "#05060f",
+                      padding: "0.3rem 1.1rem",
+                      background: "var(--accent-mint)",
+                      color: "#050907",
                       fontSize: "0.75rem",
                       fontWeight: 800,
                       borderRadius: "999px",
-                      letterSpacing: "0.05em",
+                      letterSpacing: "0.06em",
+                      textTransform: "uppercase",
                     }}
                   >
-                    MOST POPULAR
+                    Best Deal ⭐
                   </div>
                 )}
 
                 <div>
-                  <h3 style={{ fontSize: "1.4rem", color: "#fff", marginBottom: "0.5rem", fontWeight: 700 }}>
+                  <h3 style={{ fontSize: "1.45rem", color: "#FFFFFF", marginBottom: "0.5rem", fontWeight: 700 }}>
                     {plan.name}
                   </h3>
-                  <p style={{ color: "var(--text-muted)", fontSize: "0.88rem", marginBottom: "1.5rem" }}>
+                  <p style={{ color: "var(--text-muted)", fontSize: "0.88rem", marginBottom: "1.75rem", minHeight: "40px" }}>
                     {plan.description}
                   </p>
                   <div style={{ display: "flex", alignItems: "baseline", gap: "0.3rem", marginBottom: "2rem" }}>
-                    <span style={{ fontSize: "2.8rem", fontWeight: 900, color: "#fff", lineHeight: 1 }}>
+                    <span style={{ fontSize: "3rem", fontWeight: 900, color: "#FFFFFF", lineHeight: 1 }}>
                       {plan.price}
                     </span>
-                    <span style={{ color: "var(--text-muted)", fontSize: "0.88rem" }}>/{plan.period}</span>
+                    <span style={{ color: "var(--text-muted)", fontSize: "0.9rem" }}>/{plan.period}</span>
                   </div>
 
                   <ul style={{ listStyle: "none", padding: 0, margin: "0 0 2rem", display: "grid", gap: "0.85rem" }}>
                     {plan.features.map((feat) => (
-                      <li key={feat} style={{ display: "flex", alignItems: "center", gap: "0.6rem", fontSize: "0.9rem", color: "var(--text-main)" }}>
-                        <span style={{ color: "var(--accent-cyan)", fontWeight: 800 }}>✔</span>
+                      <li key={feat} style={{ display: "flex", alignItems: "center", gap: "0.65rem", fontSize: "0.92rem", color: "var(--text-main)" }}>
+                        <span style={{ color: "var(--accent-mint)", fontWeight: 800 }}>✔</span>
                         {feat}
                       </li>
                     ))}
@@ -344,21 +385,10 @@ export default function Home() {
 
                 <Link
                   to="/register"
-                  style={{
-                    display: "block",
-                    textAlign: "center",
-                    padding: "0.9rem",
-                    borderRadius: "999px",
-                    fontWeight: 700,
-                    fontSize: "0.95rem",
-                    textDecoration: "none",
-                    background: plan.popular ? "linear-gradient(90deg, #00ffd0, #7b61ff)" : "rgba(255, 255, 255, 0.08)",
-                    color: plan.popular ? "#05060f" : "#fff",
-                    border: plan.popular ? "none" : "1px solid rgba(255, 255, 255, 0.15)",
-                    transition: "transform 0.2s",
-                  }}
+                  className={plan.popular ? "pill-btn-primary" : "pill-btn-ghost"}
+                  style={{ width: "100%", textAlign: "center", justifyContent: "center" }}
                 >
-                  {plan.cta}
+                  {plan.cta} {plan.popular && "↗"}
                 </Link>
               </div>
             </Reveal>
@@ -366,67 +396,75 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── FINAL CTA ── */}
-      <section style={{ padding: "5rem 6% 6rem", maxWidth: "1000px", margin: "0 auto" }}>
+      {/* ── TESTIMONIALS (Matching Reference Section 4) ── */}
+      <section style={{ padding: "5rem 4% 6rem", maxWidth: "1320px", margin: "0 auto" }}>
         <Reveal>
           <div
             className="glass-panel"
             style={{
-              padding: "clamp(2rem, 5vw, 4rem)",
+              padding: "clamp(2.5rem, 5vw, 4.5rem)",
               borderRadius: "32px",
-              textAlign: "center",
-              background: "linear-gradient(135deg, rgba(123, 97, 255, 0.15) 0%, rgba(0, 255, 208, 0.1) 100%), #10142a",
-              border: "1px solid rgba(0, 255, 208, 0.3)",
-              boxShadow: "0 25px 80px rgba(0, 0, 0, 0.6), 0 0 40px rgba(123, 97, 255, 0.2)",
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+              gap: "3rem",
+              alignItems: "center",
+              background: "linear-gradient(145deg, rgba(16, 24, 22, 0.95) 0%, rgba(8, 14, 11, 0.98) 100%)",
+              border: "1px solid rgba(150, 255, 195, 0.2)",
+              boxShadow: "0 25px 80px rgba(0, 0, 0, 0.7), 0 0 40px rgba(98, 245, 160, 0.12)",
             }}
           >
-            <span
+            <div>
+              <span className="pill-tag" style={{ marginBottom: "1rem" }}>
+                COMMUNITY SUCCESS
+              </span>
+              <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.8rem)", fontWeight: 800, margin: "0 0 1rem", color: "#FFFFFF" }}>
+                What Our Candidates Say —{" "}
+                <span className="italic-accent">Real engineers. Real results.</span>
+              </h2>
+              <p style={{ color: "var(--text-muted)", fontSize: "1.05rem", lineHeight: 1.7, margin: "0 0 2rem" }}>
+                Join engineers practicing across Frontend, Backend, System Design, and Behavioral tracks.
+              </p>
+              <Link to="/interview" className="pill-btn-primary">
+                <span>Start Free Practice</span>
+                <span className="arrow-circle">↗</span>
+              </Link>
+            </div>
+
+            {/* Testimonial Quote Card */}
+            <div
               style={{
-                fontSize: "0.8rem",
-                color: "var(--accent-cyan)",
-                fontWeight: 700,
-                letterSpacing: "0.1em",
-                textTransform: "uppercase",
+                padding: "2.2rem",
+                borderRadius: "24px",
+                background: "rgba(5, 9, 7, 0.75)",
+                border: "1px solid rgba(150, 255, 195, 0.16)",
               }}
             >
-              Get Started In Seconds
-            </span>
-            <h2 style={{ fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 800, margin: "0.75rem 0 1.25rem", color: "#fff" }}>
-              Ready to Land Your Dream Offer?
-            </h2>
-            <p style={{ maxWidth: "500px", margin: "0 auto 2rem", color: "var(--text-muted)", fontSize: "1.05rem" }}>
-              Join thousands of engineers practicing with real-time AI feedback and curated DSA challenges.
-            </p>
-            <div style={{ display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
-              <Link
-                to="/interview"
-                style={{
-                  padding: "0.95rem 2rem",
-                  borderRadius: "999px",
-                  background: "linear-gradient(90deg, #00ffd0, #7b61ff)",
-                  color: "#05060f",
-                  fontWeight: 800,
-                  fontSize: "1rem",
-                  textDecoration: "none",
-                }}
-              >
-                Start Practice Interview →
-              </Link>
-              <Link
-                to="/dsa"
-                style={{
-                  padding: "0.95rem 2rem",
-                  borderRadius: "999px",
-                  background: "rgba(255, 255, 255, 0.08)",
-                  color: "#fff",
-                  fontWeight: 700,
-                  fontSize: "1rem",
-                  textDecoration: "none",
-                  border: "1px solid rgba(255, 255, 255, 0.15)",
-                }}
-              >
-                Solve DSA Problems
-              </Link>
+              <div style={{ color: "var(--accent-mint)", fontSize: "1.2rem", marginBottom: "1rem" }}>
+                ★★★★★
+              </div>
+              <p style={{ color: "#E2E8F0", fontSize: "1.05rem", lineHeight: 1.65, fontStyle: "italic", margin: "0 0 1.5rem" }}>
+                &ldquo;The real-time speech dictation and rubric score breakdowns helped me identify my weak spots in system design before my Google round. Landed the L5 offer!&rdquo;
+              </p>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
+                <div
+                  style={{
+                    width: "42px",
+                    height: "42px",
+                    borderRadius: "50%",
+                    background: "var(--accent-mint)",
+                    color: "#050907",
+                    fontWeight: 800,
+                    display: "grid",
+                    placeItems: "center",
+                  }}
+                >
+                  SK
+                </div>
+                <div>
+                  <strong style={{ color: "#FFFFFF", display: "block", fontSize: "0.95rem" }}>Sarah K.</strong>
+                  <span style={{ color: "var(--accent-mint)", fontSize: "0.82rem" }}>Senior Full Stack Engineer</span>
+                </div>
+              </div>
             </div>
           </div>
         </Reveal>

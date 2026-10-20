@@ -74,9 +74,9 @@ export default function Register() {
           width: "100%",
           maxWidth: "460px",
           padding: "2.5rem 2rem",
-          borderRadius: "24px",
-          border: "1px solid rgba(0, 255, 208, 0.25)",
-          boxShadow: "0 20px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 255, 208, 0.1)",
+          borderRadius: "26px",
+          border: "1px solid rgba(150, 255, 195, 0.16)",
+          boxShadow: "0 20px 60px rgba(0, 0, 0, 0.75), 0 0 30px rgba(98, 245, 160, 0.1)",
         }}
       >
         <div style={{ textAlign: "center", marginBottom: "2rem" }}>
@@ -84,7 +84,7 @@ export default function Register() {
             style={{
               fontSize: "0.75rem",
               fontWeight: 700,
-              color: "var(--accent-cyan)",
+              color: "var(--accent-mint)",
               textTransform: "uppercase",
               letterSpacing: "0.1em",
             }}
@@ -92,7 +92,7 @@ export default function Register() {
             Create Your Account
           </span>
           <h1 style={{ fontSize: "1.85rem", fontWeight: 800, color: "#fff", margin: "0.4rem 0" }}>
-            Join Interview<span style={{ color: "var(--accent-cyan)" }}>AI</span>
+            Join Interview<span style={{ color: "var(--accent-mint)" }}>AI</span>
           </h1>
           <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", margin: 0 }}>
             Start practicing AI mock interviews and track your progress.
@@ -213,15 +213,13 @@ export default function Register() {
           <button
             type="submit"
             disabled={isSubmitting}
+            className="pill-btn-primary"
             style={{
               marginTop: "0.5rem",
-              padding: "0.95rem",
-              borderRadius: "999px",
-              background: "linear-gradient(90deg, #00ffd0, #7b61ff)",
-              border: "none",
-              color: "#05060f",
-              fontWeight: 800,
+              width: "100%",
+              justifyContent: "center",
               fontSize: "1rem",
+              padding: "0.95rem",
               cursor: isSubmitting ? "wait" : "pointer",
               opacity: isSubmitting ? 0.75 : 1,
             }}
@@ -232,7 +230,7 @@ export default function Register() {
 
         <div style={{ textAlign: "center", marginTop: "1.5rem", fontSize: "0.85rem", color: "var(--text-muted)" }}>
           Already have an account?{" "}
-          <Link to="/login" style={{ color: "var(--accent-cyan)", fontWeight: 700 }}>
+          <Link to="/login" style={{ color: "var(--accent-mint)", fontWeight: 700 }}>
             Sign In here
           </Link>
         </div>
