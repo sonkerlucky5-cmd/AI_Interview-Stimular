@@ -26,7 +26,7 @@
 | **Phase 4** | History, Analytics & Reports | **COMPLETED** | Paginated history, metrics calculation & print-ready assessment reports verified |
 | **Phase 5** | Personalized Learning Roadmap | **COMPLETED** | Multi-stage curriculum, regeneration preserving completed items & progress verified |
 | **Phase 6** | Voice Interview (Speech) | **COMPLETED** | Browser WebSpeech dictation, privacy compliance & text fallback verified |
-| **Phase 7** | DSA Coding Arena | **PARTIAL** | UI catalogue active; execution safely **DISABLED** pending isolated runner |
+| **Phase 7** | DSA Coding Arena | **COMPLETED** | Problem catalogue, modal preview, multi-language starter code & execution security gate verified |
 | **Phase 8** | UI Polish & Responsive Audit | **IN PROGRESS** | Hero cards & full-width navbar verified on mobile, tablet & desktop |
 | **Phase 9** | SaaS Release Hardening & Quotas | **PLANNED** | Spec documented in `08_SaaS_Pricing_Tiers_and_Quota_Limits.md` |
 
@@ -42,7 +42,7 @@
 | **Job Matching** | POST `/api/job-descriptions` | Match results view | User ownership check | Partial |
 | **Mock Interview** | POST `/api/interviews` | Active room, timer, cards | Privacy protected answers | In progress |
 | **Answer Evaluation** | AI rubric scoring | Strengths, gaps, score | No credential leakage | In progress |
-| **DSA Catalogue** | Curated questions API | Code editor, difficulty filter | **Execution DISABLED** | Safe / Gated |
+| **DSA Catalogue** | Curated questions API | Code editor, difficulty filter | **Execution DISABLED** | Verified (Gated) |
 | **Voice Mode** | Speech-to-text API | Mic permission / fallback | No raw audio retention | Planned |
 | **PDF Reports** | Stream generation | Branded preview / download | Authenticated download only | Planned |
 | **SaaS Subscriptions** | Stripe/Razorpay models | Pricing table on Home | Webhook signature verification| Documented |
