@@ -52,7 +52,7 @@ const createOrGetReportHandler = async (req, res, next) => {
     const sessionData = await Interview.getFullSessionDetails(interviewId, req.user.id);
 
     if (!sessionData) {
-      throw new ApiError(404, "Interview session not found.");
+      throw new ApiError(404, "Interview session not found.", "INTERVIEW_NOT_FOUND");
     }
 
     const { interview, items } = sessionData;
@@ -79,7 +79,7 @@ const getPrintableHtmlHandler = async (req, res, next) => {
     const sessionData = await Interview.getFullSessionDetails(interviewId, req.user.id);
 
     if (!sessionData) {
-      throw new ApiError(404, "Interview session not found.");
+      throw new ApiError(404, "Interview session not found.", "INTERVIEW_NOT_FOUND");
     }
 
     const { interview, items } = sessionData;

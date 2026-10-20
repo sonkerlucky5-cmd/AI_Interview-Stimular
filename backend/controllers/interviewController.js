@@ -20,7 +20,7 @@ const createInterviewHandler = async (req, res, next) => {
     } = req.body;
 
     if (!targetRole || !targetRole.trim()) {
-      throw new ApiError(400, "Target role is required.");
+      throw new ApiError(400, "Target role is required.", "MISSING_TARGET_ROLE");
     }
 
     const boundedLimit = Math.min(10, Math.max(3, Number(questionLimit) || 5));
@@ -28,13 +28,13 @@ const createInterviewHandler = async (req, res, next) => {
     // Optional ownership check for resume
     if (resumeId) {
       const resume = await Resume.findByIdAndUser(resumeId, req.user.id);
-      if (!resume) throw new ApiError(404, "Selected resume not found or unauthorized.");
+      if (!resume) throw new ApiError(404, "Selected resume not found or unauthorized.", "RESUME_NOT_FOUND");
     }
 
     // Optional ownership check for job description
     if (jobDescriptionId) {
       const job = await JobDescription.findByIdAndUser(jobDescriptionId, req.user.id);
-      if (!job) throw new ApiError(404, "Selected job description not found or unauthorized.");
+      if (!job) throw new ApiError(404, "Selected job description not found or unauthorized.", "JOB_NOT_FOUND");
     }
 
     const interview = await Interview.create({
@@ -107,7 +107,7 @@ const startInterviewHandler = async (req, res, next) => {
   try {
     const interview = await Interview.findByIdAndUser(req.params.id, req.user.id);
     if (!interview) {
-      throw new ApiError(404, "Interview session not found.");
+      throw new ApiError(404, "Interview session not found.", "INTERVIEW_NOT_FOUND");
     }
 
     // Transition state
@@ -155,11 +155,15 @@ const submitAnswerHandler = async (req, res, next) => {
     const { questionId, answerText, transcript, idempotencyKey } = req.body;
     const interviewId = req.params.id;
 
-    if (!questionId) throw new ApiError(400, "questionId is required.");
-    if (!answerText || !answerText.trim()) throw new ApiError(400, "Answer text cannot be empty.");
+    if (!questionId) throw new ApiError(400, "questionId is required.", "MISSING_QUESTION_ID");
+    if (!answerText || !answerText.trim()) throw new ApiError(400, "Answer text cannot be empty.", "EMPTY_ANSWER_ERROR");
 
     const interview = await Interview.findByIdAndUser(interviewId, req.user.id);
-    if (!interview) throw new ApiError(404, "Interview not found.");
+    if (!interview) throw new ApiError(404, "Interview not found.", "INTERVIEW_NOT_FOUND");
+
+    if (interview.status === "completed" || interview.status === "abandoned") {
+      throw new ApiError(400, `Cannot submit answers to a ${interview.status} interview.`, "INTERVIEW_ALREADY_FINISHED");
+    }
 
     // Verify question belongs to interview
     const question = await InterviewQuestion.findByInterviewAndPosition(interviewId, req.body.position || 1);
@@ -211,7 +215,11 @@ const nextQuestionHandler = async (req, res, next) => {
   try {
     const interviewId = req.params.id;
     const interview = await Interview.findByIdAndUser(interviewId, req.user.id);
-    if (!interview) throw new ApiError(404, "Interview not found.");
+    if (!interview) throw new ApiError(404, "Interview not found.", "INTERVIEW_NOT_FOUND");
+
+    if (interview.status === "completed" || interview.status === "abandoned") {
+      throw new ApiError(400, `Cannot navigate questions in a ${interview.status} interview.`, "INTERVIEW_ALREADY_FINISHED");
+    }
 
     const existingQuestions = await InterviewQuestion.listByInterview(interviewId);
     const nextPosition = existingQuestions.length + 1;
@@ -297,7 +305,7 @@ const abandonInterviewHandler = async (req, res, next) => {
 const getInterviewEvaluationsHandler = async (req, res, next) => {
   try {
     const interview = await Interview.findByIdAndUser(req.params.id, req.user.id);
-    if (!interview) throw new ApiError(404, "Interview not found.");
+    if (!interview) throw new ApiError(404, "Interview not found.", "INTERVIEW_NOT_FOUND");
 
     const evaluations = await AnswerEvaluation.listByInterviewId(req.params.id, req.user.id);
 

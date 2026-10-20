@@ -71,3 +71,57 @@ All changes must record:
 - **Unit & Logic Tests:** `backend/tests/phase2-matching.test.js` verified for skill extraction, scoring [0-100], and error handling.
 - **GitHub Push:** **NOT PERFORMED.**
 
+---
+
+## [Phase 3] — 2026-10-20 (Mock Interview Lifecycle & Rubric Evaluation Hardening)
+
+### Approved Scope
+- Add session state transition guardrails in `backend/controllers/interviewController.js` to block answering or navigating completed/abandoned interviews.
+- Standardize machine-readable error codes (`MISSING_TARGET_ROLE`, `RESUME_NOT_FOUND`, `JOB_NOT_FOUND`, `INTERVIEW_NOT_FOUND`, `MISSING_QUESTION_ID`, `EMPTY_ANSWER_ERROR`, `INTERVIEW_ALREADY_FINISHED`).
+- Add unit and integration verification script `backend/tests/phase3-interview.test.js`.
+- Update `docs/PROJECT-STATUS.md` and `docs/10-CHANGE-LOG.md`.
+
+### Added
+- `backend/tests/phase3-interview.test.js`: Automated test suite for question limit clamping [3, 10], deterministic catalogue fallback across technical & behavioral tracks, rubric score bounds [0, 100], and session guardrail checks.
+
+### Modified
+- `backend/controllers/interviewController.js`: Added session state validation preventing mutations on finished interviews, standardized error codes.
+- `docs/PROJECT-STATUS.md`: Marked Phase 3 as COMPLETED.
+
+### Preserved (Untouched)
+- All PostgreSQL database tables, columns, and records.
+- All frontend UI components (`InterviewSetup.jsx`, `InterviewRoom.jsx`, `InterviewResult.jsx`).
+- DSA code execution remains disabled per `RULES.md`.
+
+### Verification
+- **Unit & Logic Tests:** `backend/tests/phase3-interview.test.js` verified for limit boundaries, multi-dimensional rubric score bounds, and session state machine rules.
+- **GitHub Push:** **NOT PERFORMED.**
+
+---
+
+## [Phase 4] — 2026-10-20 (History, Analytics & Assessment Reports Hardening)
+
+### Approved Scope
+- Standardize machine-readable error codes in `backend/controllers/reportController.js` (`INTERVIEW_NOT_FOUND`).
+- Verify zero-division safety and fallback structure hardening in `backend/controllers/analyticsController.js`.
+- Add unit and integration verification script `backend/tests/phase4-analytics.test.js`.
+- Update `docs/PROJECT-STATUS.md` and `docs/10-CHANGE-LOG.md`.
+
+### Added
+- `backend/tests/phase4-analytics.test.js`: Automated test suite for report summary generation, average score computation, zero-session handling, multi-session dimension averages, and mandatory legal disclaimer verification.
+
+### Modified
+- `backend/controllers/reportController.js`: Added standardized error codes on report retrieval and HTML generation.
+- `docs/PROJECT-STATUS.md`: Marked Phase 4 as COMPLETED.
+
+### Preserved (Untouched)
+- All PostgreSQL database tables, columns, and records.
+- All frontend UI components (`Analytics.jsx`, `InterviewHistory.jsx`, `InterviewResult.jsx`).
+- DSA code execution remains disabled per `RULES.md`.
+
+### Verification
+- **Unit & Logic Tests:** `backend/tests/phase4-analytics.test.js` verified for summary aggregation, metric arithmetic, and zero-state handling.
+- **GitHub Push:** **NOT PERFORMED.**
+
+
+
