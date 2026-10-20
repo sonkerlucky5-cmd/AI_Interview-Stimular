@@ -108,10 +108,10 @@ function Analytics() {
               {metrics.isSmallSample && (
                 <div
                   style={{
-                    background: "rgba(79, 140, 255, 0.08)",
-                    borderLeft: "3px solid var(--blue)",
+                    background: "rgba(98, 245, 160, 0.08)",
+                    borderLeft: "3px solid var(--accent-mint)",
                     padding: "1rem 1.25rem",
-                    borderRadius: "6px",
+                    borderRadius: "8px",
                     marginBottom: "2rem",
                     fontSize: "0.9rem",
                     color: "var(--text)",
@@ -185,10 +185,10 @@ function Analytics() {
                   className="glass-card"
                   style={{
                     padding: "1.5rem",
-                    border: "1px solid rgba(57, 208, 199, 0.2)",
+                    border: "1px solid rgba(98, 245, 160, 0.25)",
                   }}
                 >
-                  <h3 style={{ margin: "0 0 1rem", color: "var(--teal)", fontSize: "1.1rem" }}>
+                  <h3 style={{ margin: "0 0 1rem", color: "var(--accent-mint)", fontSize: "1.1rem" }}>
                     ⭐ Top Competency Strengths
                   </h3>
 
@@ -205,15 +205,15 @@ function Analytics() {
                             display: "flex",
                             justifyContent: "space-between",
                             alignItems: "center",
-                            background: "rgba(57, 208, 199, 0.08)",
+                            background: "rgba(98, 245, 160, 0.08)",
                             padding: "0.6rem 0.85rem",
-                            borderRadius: "6px",
+                            borderRadius: "8px",
                           }}
                         >
                           <span style={{ color: "var(--title)", fontSize: "0.9rem", fontWeight: 500 }}>
                             {item.category}
                           </span>
-                          <span style={{ color: "var(--teal)", fontWeight: 700, fontSize: "0.95rem" }}>
+                          <span style={{ color: "var(--accent-mint)", fontWeight: 700, fontSize: "0.95rem" }}>
                             {item.averageScore}%
                           </span>
                         </div>

@@ -50,11 +50,11 @@ function InterviewHistory() {
   const getStatusBadge = (status) => {
     switch (status) {
       case "completed":
-        return <span className="status-pill" style={{ background: "rgba(57, 208, 199, 0.15)", color: "var(--teal)" }}>✔ Completed</span>;
+        return <span className="status-pill" style={{ background: "rgba(98, 245, 160, 0.15)", color: "var(--accent-mint)", border: "1px solid rgba(98, 245, 160, 0.3)" }}>✔ Completed</span>;
       case "in_progress":
-        return <span className="status-pill" style={{ background: "rgba(79, 140, 255, 0.15)", color: "var(--blue)" }}>⏳ In Progress</span>;
+        return <span className="status-pill" style={{ background: "rgba(245, 208, 98, 0.15)", color: "var(--warning)", border: "1px solid rgba(245, 208, 98, 0.3)" }}>⏳ In Progress</span>;
       case "abandoned":
-        return <span className="status-pill" style={{ background: "rgba(255, 107, 138, 0.15)", color: "var(--danger)" }}>✕ Abandoned</span>;
+        return <span className="status-pill" style={{ background: "rgba(255, 110, 138, 0.15)", color: "var(--danger)", border: "1px solid rgba(255, 110, 138, 0.3)" }}>✕ Abandoned</span>;
       default:
         return <span className="status-pill">Pending</span>;
     }
@@ -107,14 +107,15 @@ function InterviewHistory() {
                   key={tab.id}
                   type="button"
                   style={{
-                    background: statusFilter === tab.id ? "var(--blue)" : "rgba(79, 140, 255, 0.08)",
-                    color: statusFilter === tab.id ? "#fff" : "var(--text)",
-                    border: "none",
-                    padding: "0.4rem 0.85rem",
-                    borderRadius: "6px",
+                    background: statusFilter === tab.id ? "var(--accent-mint)" : "rgba(98, 245, 160, 0.08)",
+                    color: statusFilter === tab.id ? "#050907" : "var(--text)",
+                    border: statusFilter === tab.id ? "none" : "1px solid rgba(98, 245, 160, 0.18)",
+                    padding: "0.4rem 0.95rem",
+                    borderRadius: "9999px",
                     fontSize: "0.85rem",
                     cursor: "pointer",
-                    fontWeight: 500,
+                    fontWeight: statusFilter === tab.id ? 700 : 500,
+                    transition: "all 0.2s ease",
                   }}
                   onClick={() => setStatusFilter(tab.id)}
                 >

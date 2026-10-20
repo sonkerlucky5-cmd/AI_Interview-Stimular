@@ -447,12 +447,13 @@ function LearningRoadmap() {
                           <span
                             key={gIdx}
                             style={{
-                              background: "rgba(79, 140, 255, 0.12)",
-                              color: "var(--blue)",
-                              padding: "0.2rem 0.55rem",
-                              borderRadius: "6px",
+                              background: "rgba(98, 245, 160, 0.12)",
+                              color: "var(--accent-mint)",
+                              padding: "0.25rem 0.65rem",
+                              borderRadius: "9999px",
                               fontSize: "0.78rem",
-                              fontWeight: 500,
+                              fontWeight: 600,
+                              border: "1px solid rgba(98, 245, 160, 0.22)",
                             }}
                           >
                             {gap}
@@ -473,14 +474,15 @@ function LearningRoadmap() {
                         key={tab.id}
                         type="button"
                         style={{
-                          background: statusFilter === tab.id ? "var(--blue)" : "rgba(79, 140, 255, 0.08)",
-                          color: statusFilter === tab.id ? "#fff" : "var(--text)",
-                          border: "none",
-                          padding: "0.35rem 0.8rem",
-                          borderRadius: "6px",
+                          background: statusFilter === tab.id ? "var(--accent-mint)" : "rgba(98, 245, 160, 0.08)",
+                          color: statusFilter === tab.id ? "#050907" : "var(--text)",
+                          border: statusFilter === tab.id ? "none" : "1px solid rgba(98, 245, 160, 0.18)",
+                          padding: "0.38rem 0.9rem",
+                          borderRadius: "9999px",
                           fontSize: "0.85rem",
                           cursor: "pointer",
-                          fontWeight: 500,
+                          fontWeight: statusFilter === tab.id ? 700 : 500,
+                          transition: "all 0.2s ease",
                         }}
                         onClick={() => setStatusFilter(tab.id)}
                       >
@@ -519,9 +521,9 @@ function LearningRoadmap() {
                                     display: "flex",
                                     alignItems: "flex-start",
                                     gap: "1rem",
-                                    border: isDone ? "1px solid rgba(57, 208, 199, 0.3)" : "1px solid var(--panel-border)",
+                                    border: isDone ? "1px solid rgba(98, 245, 160, 0.35)" : "1px solid var(--panel-border)",
                                     opacity: isDone ? 0.85 : 1,
-                                    background: isDone ? "rgba(57, 208, 199, 0.03)" : "var(--panel)",
+                                    background: isDone ? "rgba(98, 245, 160, 0.04)" : "var(--panel)",
                                     transition: "all 0.2s ease",
                                   }}
                                 >
@@ -534,7 +536,7 @@ function LearningRoadmap() {
                                       marginTop: "0.3rem",
                                       width: "18px",
                                       height: "18px",
-                                      accentColor: "var(--teal)",
+                                      accentColor: "var(--accent-mint)",
                                       cursor: "pointer",
                                     }}
                                     id={`task-${taskItem.id}`}

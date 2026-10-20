@@ -154,11 +154,14 @@ function ResumeManager() {
             onClick={() => fileInputRef.current?.click()}
             style={{
               cursor: "pointer",
-              border: "2px dashed var(--blue)",
+              border: dragActive ? "2px dashed var(--accent-mint)" : "2px dashed rgba(98, 245, 160, 0.4)",
+              borderRadius: "16px",
               padding: "2.5rem 1.5rem",
               textAlign: "center",
               marginBottom: "2rem",
-              background: dragActive ? "rgba(79, 140, 255, 0.08)" : "var(--panel)",
+              background: dragActive ? "rgba(98, 245, 160, 0.12)" : "var(--panel)",
+              boxShadow: dragActive ? "0 0 30px rgba(98, 245, 160, 0.2)" : "none",
+              transition: "all 0.25s ease",
             }}
           >
             <input

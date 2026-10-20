@@ -292,11 +292,13 @@ function JobDescriptions() {
                               <span
                                 key={req}
                                 style={{
-                                  background: "rgba(57, 208, 199, 0.12)",
-                                  color: "var(--teal)",
-                                  padding: "0.2rem 0.6rem",
-                                  borderRadius: "6px",
+                                  background: "rgba(98, 245, 160, 0.12)",
+                                  color: "var(--accent-mint)",
+                                  border: "1px solid rgba(98, 245, 160, 0.22)",
+                                  padding: "0.25rem 0.65rem",
+                                  borderRadius: "9999px",
                                   fontSize: "0.8rem",
+                                  fontWeight: 500,
                                 }}
                               >
                                 {req}
