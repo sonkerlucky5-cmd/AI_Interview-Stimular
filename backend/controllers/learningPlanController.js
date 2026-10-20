@@ -16,12 +16,12 @@ const createPlanHandler = catchAsync(async (req, res) => {
   } = req.body;
 
   if (!targetRole || !targetRole.trim()) {
-    throw new ApiError(400, "targetRole is required to generate a learning plan.");
+    throw new ApiError(400, "targetRole is required to generate a learning plan.", "MISSING_TARGET_ROLE");
   }
 
   const minutesPerDay = parseInt(availableMinutesPerDay, 10) || 45;
   if (minutesPerDay < 15 || minutesPerDay > 480) {
-    throw new ApiError(400, "availableMinutesPerDay must be between 15 and 480 minutes.");
+    throw new ApiError(400, "availableMinutesPerDay must be between 15 and 480 minutes.", "INVALID_MINUTES_PER_DAY");
   }
 
   let resolvedGaps = Array.isArray(skillGaps) ? skillGaps.filter(Boolean) : [];
@@ -106,7 +106,7 @@ const getPlanHandler = catchAsync(async (req, res) => {
   const plan = await LearningPlan.findById(req.params.id, req.user.id);
 
   if (!plan) {
-    throw new ApiError(404, "Learning plan not found or access denied.");
+    throw new ApiError(404, "Learning plan not found or access denied.", "PLAN_NOT_FOUND");
   }
 
   return res.status(200).json({
@@ -131,7 +131,7 @@ const updatePlanHandler = catchAsync(async (req, res) => {
   });
 
   if (!updated) {
-    throw new ApiError(404, "Learning plan not found or access denied.");
+    throw new ApiError(404, "Learning plan not found or access denied.", "PLAN_NOT_FOUND");
   }
 
   const fullPlan = await LearningPlan.findById(req.params.id, req.user.id);
@@ -147,7 +147,7 @@ const deletePlanHandler = catchAsync(async (req, res) => {
   const deleted = await LearningPlan.delete(req.params.id, req.user.id);
 
   if (!deleted) {
-    throw new ApiError(404, "Learning plan not found or access denied.");
+    throw new ApiError(404, "Learning plan not found or access denied.", "PLAN_NOT_FOUND");
   }
 
   return res.status(200).json({
@@ -174,7 +174,7 @@ const updatePlanItemHandler = catchAsync(async (req, res) => {
   });
 
   if (!updated) {
-    throw new ApiError(404, "Plan item not found or unauthorized.");
+    throw new ApiError(404, "Plan item not found or unauthorized.", "ITEM_NOT_FOUND");
   }
 
   const fullPlan = await LearningPlan.findById(planId, req.user.id);
@@ -198,7 +198,7 @@ const addPlanItemHandler = catchAsync(async (req, res) => {
   const { topic, task, estimatedMinutes = 30, stage = "Custom Tasks", practiceOutcome = "", resourceUrl = null, notes = null } = req.body;
 
   if (!topic || !task) {
-    throw new ApiError(400, "Both topic and task are required to add a custom task.");
+    throw new ApiError(400, "Both topic and task are required to add a custom task.", "MISSING_TASK_DATA");
   }
 
   const item = await LearningPlan.addItem(planId, req.user.id, {
@@ -212,7 +212,7 @@ const addPlanItemHandler = catchAsync(async (req, res) => {
   });
 
   if (!item) {
-    throw new ApiError(404, "Learning plan not found or unauthorized.");
+    throw new ApiError(404, "Learning plan not found or unauthorized.", "PLAN_NOT_FOUND");
   }
 
   return res.status(201).json({
@@ -227,7 +227,7 @@ const deletePlanItemHandler = catchAsync(async (req, res) => {
 
   const deleted = await LearningPlan.deleteItem(itemId, planId, req.user.id);
   if (!deleted) {
-    throw new ApiError(404, "Plan item not found or unauthorized.");
+    throw new ApiError(404, "Plan item not found or unauthorized.", "ITEM_NOT_FOUND");
   }
 
   return res.status(200).json({
@@ -241,7 +241,7 @@ const regeneratePlanHandler = catchAsync(async (req, res) => {
 
   const existingPlan = await LearningPlan.findById(planId, req.user.id);
   if (!existingPlan) {
-    throw new ApiError(404, "Learning plan not found or unauthorized.");
+    throw new ApiError(404, "Learning plan not found or unauthorized.", "PLAN_NOT_FOUND");
   }
 
   // Generate new items based on existing plan parameters

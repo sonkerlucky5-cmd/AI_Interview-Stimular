@@ -123,5 +123,32 @@ All changes must record:
 - **Unit & Logic Tests:** `backend/tests/phase4-analytics.test.js` verified for summary aggregation, metric arithmetic, and zero-state handling.
 - **GitHub Push:** **NOT PERFORMED.**
 
+---
+
+## [Phase 5] — 2026-10-20 (Personalized Learning Roadmap Hardening)
+
+### Approved Scope
+- Standardize machine-readable error codes in `backend/controllers/learningPlanController.js` (`MISSING_TARGET_ROLE`, `INVALID_MINUTES_PER_DAY`, `PLAN_NOT_FOUND`, `ITEM_NOT_FOUND`, `MISSING_TASK_DATA`).
+- Verify multi-stage curriculum synthesis, completion preservation during regeneration, and progress percentage arithmetic.
+- Add unit and integration verification script `backend/tests/phase5-roadmap.test.js`.
+- Update `docs/PROJECT-STATUS.md` and `docs/10-CHANGE-LOG.md`.
+
+### Added
+- `backend/tests/phase5-roadmap.test.js`: Automated test suite for multi-stage curriculum generation, completed task preservation on regeneration, progress percentage calculation, and daily minute bounds [15, 480].
+
+### Modified
+- `backend/controllers/learningPlanController.js`: Added standardized error codes on roadmap creation, item updates, custom task additions, and regeneration.
+- `docs/PROJECT-STATUS.md`: Marked Phase 5 as COMPLETED.
+
+### Preserved (Untouched)
+- All PostgreSQL database tables, columns, and records.
+- All frontend UI components (`LearningRoadmap.jsx`, modal forms, progress circles).
+- DSA code execution remains disabled per `RULES.md`.
+
+### Verification
+- **Unit & Logic Tests:** `backend/tests/phase5-roadmap.test.js` verified for stage-by-stage progression, task preservation, and minute constraints.
+- **GitHub Push:** **NOT PERFORMED.**
+
+
 
 

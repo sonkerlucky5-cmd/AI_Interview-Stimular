@@ -24,7 +24,7 @@
 | **Phase 2** | Resume & Job Matching | **COMPLETED** | PDFParse v2 adapter repaired; heuristic matching & ownership checks verified |
 | **Phase 3** | Mock Interview & AI Evaluation | **COMPLETED** | Session lifecycle state guardrails, bounded limits & rubric evaluation verified |
 | **Phase 4** | History, Analytics & Reports | **COMPLETED** | Paginated history, metrics calculation & print-ready assessment reports verified |
-| **Phase 5** | Personalized Learning Roadmap | **PARTIAL** | LearningRoadmap.jsx UI rendered; server generation in progress |
+| **Phase 5** | Personalized Learning Roadmap | **COMPLETED** | Multi-stage curriculum, regeneration preserving completed items & progress verified |
 | **Phase 6** | Voice Interview (Speech) | **NOT STARTED** | WebSpeech integration planned with text-only fallback |
 | **Phase 7** | DSA Coding Arena | **PARTIAL** | UI catalogue active; execution safely **DISABLED** pending isolated runner |
 | **Phase 8** | UI Polish & Responsive Audit | **IN PROGRESS** | Hero cards & full-width navbar verified on mobile, tablet & desktop |
