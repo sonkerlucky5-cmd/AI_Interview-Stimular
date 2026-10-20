@@ -1,5 +1,5 @@
 /* ═══════════════════════════
-   APP SHELL & LAYOUT
+   APP SHELL & LAYOUT (Emerald / Mint Theme)
 ═══════════════════════════ */
 .app-shell {
   min-height: 100vh;
@@ -21,22 +21,21 @@
   z-index: 100;
   backdrop-filter: blur(22px) saturate(1.4);
   -webkit-backdrop-filter: blur(22px) saturate(1.4);
-  background: rgba(5, 7, 13, 0.75);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.055);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.035);
+  background: rgba(5, 9, 7, 0.82);
+  border-bottom: 1px solid rgba(150, 255, 195, 0.12);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.02);
 }
 
 .navbar__inner {
   width: 100%;
-  max-width: 100%;
+  max-width: 1320px;
   margin: 0 auto;
-  padding: 0.85rem 6%;
+  padding: 0.9rem 4%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1.25rem;
 }
-
 
 /* ── Brand ── */
 .brand {
@@ -48,24 +47,24 @@
 }
 
 .brand__mark {
-  width: 42px;
-  height: 42px;
-  border-radius: 14px;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
   display: grid;
   place-items: center;
-  background: linear-gradient(135deg, rgba(79, 140, 255, 0.18), rgba(138, 92, 255, 0.28));
-  border: 1px solid rgba(138, 92, 255, 0.25);
+  background: rgba(98, 245, 160, 0.1);
+  border: 1px solid rgba(98, 245, 160, 0.28);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.12),
-    0 4px 16px rgba(138, 92, 255, 0.2);
+    0 4px 16px rgba(98, 245, 160, 0.18);
   transition: box-shadow 200ms ease, transform 200ms ease;
 }
 
 .brand:hover .brand__mark {
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    0 6px 24px rgba(138, 92, 255, 0.35);
-  transform: scale(1.06);
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 6px 24px rgba(98, 245, 160, 0.35);
+  transform: scale(1.05);
 }
 
 .brand__text {
@@ -77,14 +76,14 @@
 
 .brand__name {
   font-family: var(--font-heading);
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--title);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
 }
 
 .brand__accent {
-  background: linear-gradient(135deg, #4f8cff, #8a5cff);
+  background: linear-gradient(135deg, #62F5A0, #9FFFC0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -114,19 +113,21 @@
 }
 
 .navbar__link {
-  padding: 0.55rem 0.95rem;
+  padding: 0.5rem 0.95rem;
   border-radius: 999px;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 500;
   color: var(--text-muted);
   text-decoration: none;
-  transition: color 180ms ease, background 180ms ease;
+  border: 1px solid transparent;
+  transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
 }
 
 .navbar__link:hover,
 .navbar__link.active {
-  color: var(--title);
-  background: rgba(255, 255, 255, 0.06);
+  color: #FFFFFF;
+  background: rgba(98, 245, 160, 0.1);
+  border-color: rgba(98, 245, 160, 0.25);
 }
 
 /* ── Actions ── */
@@ -141,10 +142,10 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.6rem 1.2rem;
+  padding: 0.65rem 1.35rem;
   border-radius: 999px;
   font-size: 0.88rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   text-decoration: none;
   border: none;
@@ -153,24 +154,26 @@
 
 .navbar__btn--ghost {
   color: var(--title);
-  background: rgba(255, 255, 255, 0.055);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(150, 255, 195, 0.16);
 }
 
 .navbar__btn--ghost:hover {
   transform: translateY(-1px);
-  background: rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(98, 245, 160, 0.3);
 }
 
 .navbar__btn--primary {
-  color: #fff;
-  background: linear-gradient(135deg, #4f8cff, #8a5cff);
-  box-shadow: 0 6px 20px rgba(90, 110, 255, 0.35);
+  color: #050907;
+  background: var(--accent-mint);
+  box-shadow: 0 6px 22px rgba(98, 245, 160, 0.35);
 }
 
 .navbar__btn--primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(90, 110, 255, 0.48);
+  background: #73f7ab;
+  box-shadow: 0 10px 28px rgba(98, 245, 160, 0.5);
 }
 
 .navbar__btn:disabled {
@@ -186,8 +189,9 @@
   gap: 0.6rem;
   padding: 0.45rem 0.85rem 0.45rem 0.45rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.045);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(16, 24, 22, 0.8);
+  border: 1px solid rgba(150, 255, 195, 0.16);
+  text-decoration: none;
 }
 
 .navbar__user-avatar {
@@ -199,8 +203,8 @@
   font-size: 0.8rem;
   font-weight: 700;
   font-family: var(--font-heading);
-  color: #fff;
-  background: linear-gradient(135deg, #4f8cff, #8a5cff);
+  color: #050907;
+  background: var(--accent-mint);
   flex-shrink: 0;
 }
 
@@ -220,7 +224,7 @@
 .navbar__user-info small {
   font-size: 0.72rem;
   text-transform: capitalize;
-  color: var(--text-muted);
+  color: var(--accent-mint);
 }
 
 /* ── Mobile Toggle ── */
@@ -232,9 +236,9 @@
   gap: 5px;
   width: 42px;
   height: 42px;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  background: rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  border: 1px solid rgba(150, 255, 195, 0.16);
+  background: rgba(16, 24, 22, 0.6);
   cursor: pointer;
   padding: 0;
   transition: background 180ms ease;
@@ -242,7 +246,7 @@
 }
 
 .navbar__toggle:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(98, 245, 160, 0.1);
 }
 
 .navbar__toggle span {
@@ -310,13 +314,13 @@
     display: none;
     flex-direction: column;
     align-items: stretch;
-    padding: 1.1rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.25rem;
+    border: 1px solid rgba(150, 255, 195, 0.18);
     border-radius: 20px;
-    background: rgba(7, 11, 20, 0.97);
+    background: rgba(8, 14, 11, 0.98);
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
-    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.65), 0 0 40px rgba(79, 140, 255, 0.12);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.85), 0 0 40px rgba(98, 245, 160, 0.12);
     max-height: calc(100vh - 85px);
     overflow-y: auto;
     overscroll-behavior: contain;
@@ -333,7 +337,7 @@
     flex-direction: column;
     align-items: stretch;
     gap: 0.35rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(150, 255, 195, 0.12);
     padding-bottom: 0.85rem;
     margin-bottom: 0.85rem;
   }
@@ -390,7 +394,7 @@
   .brand__mark {
     width: 36px;
     height: 36px;
-    border-radius: 11px;
+    border-radius: 10px;
   }
 
   .app-main {
