@@ -149,6 +149,35 @@ All changes must record:
 - **Unit & Logic Tests:** `backend/tests/phase5-roadmap.test.js` verified for stage-by-stage progression, task preservation, and minute constraints.
 - **GitHub Push:** **NOT PERFORMED.**
 
+---
+
+## [Phase 6] — 2026-10-20 (Voice Interview Speech Mode & Privacy Compliance)
+
+### Approved Scope
+- Integrate privacy-preserving browser WebSpeech recognition in `frontend/src/pages/InterviewRoom.jsx`.
+- Implement live speech-to-text dictation into answer textarea with toggle recording controls and permission denial handling.
+- Verify text mode remains 100% functional and unblocked.
+- Verify privacy guarantee: zero raw audio files are uploaded or stored on backend servers.
+- Add unit and integration verification script `backend/tests/phase6-voice.test.js`.
+- Update `docs/PROJECT-STATUS.md` and `docs/10-CHANGE-LOG.md`.
+
+### Added
+- `backend/tests/phase6-voice.test.js`: Automated test suite for answer submission transcript payloads, text-only fallback, and zero-audio disk persistence privacy verification.
+
+### Modified
+- `frontend/src/pages/InterviewRoom.jsx`: Added WebSpeech recognition hook, listening state, toggle microphone button, real-time transcription appending, and permission error banners.
+- `docs/PROJECT-STATUS.md`: Marked Phase 6 as COMPLETED.
+
+### Preserved (Untouched)
+- All PostgreSQL database tables, columns, and records.
+- Text mode keyboard submission (Ctrl + Enter) remains fully functional.
+- DSA code execution remains disabled per `RULES.md`.
+
+### Verification
+- **Unit & Logic Tests:** `backend/tests/phase6-voice.test.js` verified for transcript payloads, text fallback, and audio privacy rules.
+- **GitHub Push:** **NOT PERFORMED.**
+
+
 
 
 

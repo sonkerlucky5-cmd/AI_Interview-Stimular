@@ -22,7 +22,91 @@ function InterviewRoom() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [secondsElapsed, setSecondsElapsed] = useState(0);
 
+  // Voice speech mode state
+  const [isRecording, setIsRecording] = useState(false);
+  const [hasVoiceSupport, setHasVoiceSupport] = useState(true);
+  const [voiceNotice, setVoiceNotice] = useState("");
+  const recognitionRef = useRef(null);
+
   const timerRef = useRef(null);
+
+  // Initialize browser WebSpeech if supported
+  useEffect(() => {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRecognition) {
+      setHasVoiceSupport(false);
+      return;
+    }
+
+    try {
+      const recognition = new SpeechRecognition();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.lang = "en-US";
+
+      recognition.onresult = (event) => {
+        let finalTranscript = "";
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          if (event.results[i].isFinal) {
+            finalTranscript += event.results[i][0].transcript + " ";
+          }
+        }
+        if (finalTranscript) {
+          setAnswerText((prev) => (prev ? `${prev.trim()} ${finalTranscript.trim()}` : finalTranscript.trim()));
+        }
+      };
+
+      recognition.onerror = (event) => {
+        if (event.error === "not-allowed" || event.error === "service-not-allowed") {
+          setVoiceNotice("Microphone access was denied. Text mode is fully available.");
+          toast.error("Microphone permission was denied.");
+        } else if (event.error !== "no-speech") {
+          setVoiceNotice(`Speech recognition notice: ${event.error}.`);
+        }
+        setIsRecording(false);
+      };
+
+      recognition.onend = () => {
+        setIsRecording(false);
+      };
+
+      recognitionRef.current = recognition;
+    } catch {
+      setHasVoiceSupport(false);
+    }
+
+    return () => {
+      if (recognitionRef.current) {
+        try {
+          recognitionRef.current.stop();
+        } catch {}
+      }
+    };
+  }, []);
+
+  const toggleRecording = () => {
+    if (!hasVoiceSupport) {
+      toast("Speech recognition is not supported in this browser. Please type your response.");
+      return;
+    }
+
+    if (isRecording) {
+      try {
+        recognitionRef.current?.stop();
+      } catch {}
+      setIsRecording(false);
+    } else {
+      setVoiceNotice("");
+      try {
+        recognitionRef.current?.start();
+        setIsRecording(true);
+        toast.success("Listening... Speak your answer now.");
+      } catch {
+        setIsRecording(false);
+        toast.error("Unable to start speech recognition.");
+      }
+    }
+  };
 
   // Timer Effect
   useEffect(() => {
@@ -98,6 +182,13 @@ function InterviewRoom() {
       return;
     }
 
+    if (isRecording) {
+      try {
+        recognitionRef.current?.stop();
+      } catch {}
+      setIsRecording(false);
+    }
+
     try {
       setIsSubmitting(true);
       // 1. Submit answer and trigger evaluation
@@ -105,6 +196,7 @@ function InterviewRoom() {
         questionId: currentQuestion.id,
         position: currentQuestion.position,
         answerText: answerText.trim(),
+        transcript: answerText.trim(),
         idempotencyKey: `ans_${id}_q${currentQuestion.position}_${Date.now()}`,
       });
 
@@ -279,14 +371,47 @@ function InterviewRoom() {
       {/* Answer Form */}
       <div className="glass-card" style={{ padding: "1.75rem" }}>
         <form onSubmit={handleSubmitAnswer}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem", flexWrap: "wrap", gap: "0.5rem" }}>
             <label style={{ fontWeight: 600, color: "var(--title)", fontSize: "0.95rem" }}>
               Your Response
             </label>
-            <span style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>
-              {wordCount} words
-            </span>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+              {hasVoiceSupport ? (
+                <button
+                  type="button"
+                  onClick={toggleRecording}
+                  disabled={isSubmitting}
+                  className={`btn ${isRecording ? "btn--danger" : "btn--secondary"}`}
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.4rem",
+                    fontSize: "0.85rem",
+                    padding: "0.35rem 0.85rem",
+                    borderRadius: "20px",
+                    cursor: "pointer",
+                    boxShadow: isRecording ? "0 0 15px rgba(255, 107, 138, 0.5)" : "none",
+                    transition: "all 0.3s ease",
+                  }}
+                >
+                  {isRecording ? "⏹ Stop Listening" : "🎙 Speak Answer"}
+                </button>
+              ) : (
+                <span style={{ fontSize: "0.75rem", color: "var(--text-muted)" }}>
+                  🎙 Text Mode Active
+                </span>
+              )}
+              <span style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>
+                {wordCount} words
+              </span>
+            </div>
           </div>
+
+          {voiceNotice && (
+            <div style={{ fontSize: "0.8rem", color: "var(--warning)", marginBottom: "0.6rem" }}>
+              ⚠️ {voiceNotice}
+            </div>
+          )}
 
           <textarea
             className="form-input"
