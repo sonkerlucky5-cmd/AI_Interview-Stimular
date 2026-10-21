@@ -400,7 +400,7 @@ export default function Home() {
       </section>
 
       {/* ── TESTIMONIALS (Matching Reference Section 4) ── */}
-      <section style={{ padding: "5rem 4% 6rem", maxWidth: "1320px", margin: "0 auto" }}>
+      <section id="testimonials" style={{ padding: "5rem 4% 6rem", maxWidth: "1320px", margin: "0 auto" }}>
         <Reveal>
           <div
             className="glass-panel"
@@ -411,9 +411,9 @@ export default function Home() {
               gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
               gap: "3rem",
               alignItems: "center",
-              background: "linear-gradient(145deg, rgba(16, 24, 22, 0.95) 0%, rgba(8, 14, 11, 0.98) 100%)",
-              border: "1px solid rgba(150, 255, 195, 0.2)",
-              boxShadow: "0 25px 80px rgba(0, 0, 0, 0.7), 0 0 40px rgba(98, 245, 160, 0.12)",
+              background: "linear-gradient(145deg, rgba(10, 30, 26, 0.95) 0%, rgba(6, 18, 15, 0.98) 100%)",
+              border: "1px solid rgba(0, 245, 184, 0.25)",
+              boxShadow: "0 25px 80px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 245, 184, 0.12)",
             }}
           >
             <div>
@@ -429,7 +429,7 @@ export default function Home() {
               </p>
               <Link to="/interview" className="pill-btn-primary">
                 <span>Start Free Practice</span>
-                <span className="arrow-circle">↗</span>
+                <span className="arrow-circle">→</span>
               </Link>
             </div>
 
@@ -438,8 +438,8 @@ export default function Home() {
               style={{
                 padding: "2.2rem",
                 borderRadius: "24px",
-                background: "rgba(5, 9, 7, 0.75)",
-                border: "1px solid rgba(150, 255, 195, 0.16)",
+                background: "rgba(3, 9, 7, 0.75)",
+                border: "1px solid rgba(0, 245, 184, 0.2)",
               }}
             >
               <div style={{ color: "var(--accent-mint)", fontSize: "1.2rem", marginBottom: "1rem" }}>
@@ -455,7 +455,7 @@ export default function Home() {
                     height: "42px",
                     borderRadius: "50%",
                     background: "var(--accent-mint)",
-                    color: "#050907",
+                    color: "#030907",
                     fontWeight: 800,
                     display: "grid",
                     placeItems: "center",
@@ -469,6 +469,122 @@ export default function Home() {
                 </div>
               </div>
             </div>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── FAQ SECTION (Matching Navbar Link #faq) ── */}
+      <section id="faq" style={{ padding: "5rem 4% 6rem", maxWidth: "980px", margin: "0 auto" }}>
+        <Reveal>
+          <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+            <span className="pill-tag" style={{ marginBottom: "1rem" }}>
+              FREQUENTLY ASKED QUESTIONS
+            </span>
+            <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.8rem)", fontWeight: 800, margin: 0, color: "#FFFFFF" }}>
+              Everything You Need to <span style={{ color: "var(--accent-mint)" }}>Know</span>
+            </h2>
+            <p style={{ maxWidth: "520px", margin: "0.8rem auto 0", color: "var(--text-muted)", fontSize: "1rem" }}>
+              Answers to common questions about mock interview scoring, speech recognition, and preparation tracks.
+            </p>
+          </div>
+        </Reveal>
+
+        <div style={{ display: "grid", gap: "1rem" }}>
+          {faqItems.map((item, idx) => {
+            const isOpen = openFaqIndex === idx;
+            return (
+              <Reveal key={idx} delay={idx * 60}>
+                <div
+                  className="glass-panel"
+                  style={{
+                    borderRadius: "18px",
+                    border: isOpen ? "1px solid var(--accent-mint)" : "1px solid rgba(0, 245, 184, 0.2)",
+                    background: isOpen ? "rgba(10, 30, 26, 0.85)" : "rgba(10, 30, 26, 0.55)",
+                    transition: "all 0.25s ease",
+                    overflow: "hidden",
+                  }}
+                >
+                  <button
+                    type="button"
+                    onClick={() => setOpenFaqIndex(isOpen ? -1 : idx)}
+                    style={{
+                      width: "100%",
+                      padding: "1.35rem 1.75rem",
+                      background: "none",
+                      border: "none",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      gap: "1rem",
+                      cursor: "pointer",
+                      textAlign: "left",
+                      color: isOpen ? "#FFFFFF" : "var(--text-main)",
+                      fontSize: "1.05rem",
+                      fontWeight: 700,
+                    }}
+                  >
+                    <span>{item.q}</span>
+                    <span
+                      style={{
+                        color: "var(--accent-mint)",
+                        fontSize: "1.4rem",
+                        lineHeight: 1,
+                        transform: isOpen ? "rotate(45deg)" : "rotate(0deg)",
+                        transition: "transform 0.2s ease",
+                      }}
+                    >
+                      +
+                    </span>
+                  </button>
+                  {isOpen && (
+                    <div style={{ padding: "0 1.75rem 1.5rem", color: "var(--text-muted)", fontSize: "0.95rem", lineHeight: 1.65 }}>
+                      {item.a}
+                    </div>
+                  )}
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* ── FINAL CALL TO ACTION BANNER ── */}
+      <section style={{ padding: "0 4% 6rem", maxWidth: "1320px", margin: "0 auto" }}>
+        <Reveal>
+          <div
+            className="glass-panel"
+            style={{
+              padding: "4rem 2rem",
+              borderRadius: "32px",
+              textAlign: "center",
+              background: "radial-gradient(ellipse at 50% 0%, rgba(0, 245, 184, 0.18), transparent 70%), rgba(10, 30, 26, 0.72)",
+              border: "1px solid rgba(0, 245, 184, 0.3)",
+              boxShadow: "0 20px 60px rgba(0, 0, 0, 0.6), 0 0 35px rgba(0, 245, 184, 0.15)",
+            }}
+          >
+            <h2 style={{ fontSize: "clamp(2.2rem, 4vw, 3.2rem)", fontWeight: 800, margin: "0 0 1rem", color: "#FFFFFF" }}>
+              Ready to Ace Your Next <span style={{ color: "var(--accent-mint)" }}>Tech Interview</span>?
+            </h2>
+            <p style={{ maxWidth: "560px", margin: "0 auto 2rem", color: "var(--text-muted)", fontSize: "1.05rem" }}>
+              Join thousands of developers using realistic AI mock rounds, algorithm testing, and rubric coaching.
+            </p>
+            <Link
+              to="/register"
+              className="pill-btn-primary"
+              style={{
+                display: "inline-flex",
+                padding: "0.95rem 2.5rem",
+                fontSize: "1.05rem",
+                borderRadius: "9999px",
+                background: "var(--accent-mint)",
+                color: "#030907",
+                fontWeight: 800,
+                textDecoration: "none",
+                boxShadow: "0 10px 30px rgba(0, 245, 184, 0.4)",
+              }}
+            >
+              Get Started Free →
+            </Link>
           </div>
         </Reveal>
       </section>
