@@ -2,6 +2,29 @@
 // MOCK DATA FOR INTERVIEW AI APPLICATION
 // ═════════════════════════════════════════════════════
 
+export const faqItems = [
+  {
+    q: "How does the AI evaluate my interview responses?",
+    a: "Our evaluator uses industry-calibrated engineering rubrics across 5 dimensions: Technical Accuracy, System Depth, Reasoning Structure, Trade-off Analysis, and Communication Clarity. You receive instant constructive score breakdowns and benchmark model responses.",
+  },
+  {
+    q: "Is speech recognition supported in the interview room?",
+    a: "Yes! You can speak your answers directly using browser WebSpeech dictation. Your audio is transcribed in real-time, and zero raw audio files are stored on our servers, ensuring total privacy.",
+  },
+  {
+    q: "Can I attach my resume or target job description?",
+    a: "Absolutely. You can upload PDF or DOCX resumes and target job listings. Our parser analyzes skill overlap, identifies experience gaps, and tailors the interview questions to match your exact target role.",
+  },
+  {
+    q: "What difficulty levels and engineering tracks are covered?",
+    a: "We support Junior, Mid-Level, Senior, and Staff/Lead tracks across Full Stack, Frontend (React), Backend (Node.js/Go), System Architecture, Cloud/DevOps, and Behavioral rounds.",
+  },
+  {
+    q: "How does the personalized learning roadmap work?",
+    a: "After each interview session or resume analysis, the platform detects skill gaps and synthesizes a staged study roadmap with daily time budgets and vetted documentation links.",
+  },
+];
+
 export const features = [
   {
     icon: "⚡",

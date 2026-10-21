@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import HoloHero from "../components/HoloHero";
 import Reveal from "../components/Reveal";
 import Footer from "../components/Footer";
-import { features, howItWorksSteps, pricingPlans } from "../data/mockData";
+import { features, howItWorksSteps, pricingPlans, faqItems } from "../data/mockData";
 
 export default function Home() {
+  const [openFaqIndex, setOpenFaqIndex] = useState(0);
+
   const handleScrollTo = (selector) => {
     if (window.__lenis) {
       window.__lenis.scrollTo(selector, { offset: -80 });
@@ -74,7 +77,7 @@ export default function Home() {
       </nav>
 
       {/* ── BENTO OVERVIEW SECTION (Matching Reference Section 1) ── */}
-      <section id="overview" style={{ padding: "6rem 4% 4rem", maxWidth: "1320px", margin: "0 auto" }}>
+      <section id="features" style={{ padding: "6rem 4% 4rem", maxWidth: "1320px", margin: "0 auto" }}>
         <Reveal>
           <div style={{ marginBottom: "3.5rem" }}>
             <h2
