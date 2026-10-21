@@ -13,6 +13,7 @@ export default function Register() {
     password: "",
     targetRole: "Frontend",
   });
+  const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -46,7 +47,7 @@ export default function Register() {
     setIsSubmitting(true);
     try {
       await signup(formData);
-      toast.success("Account created successfully!");
+      toast.success("Account created successfully! Welcome aboard 🚀");
       navigate("/dashboard", { replace: true });
     } catch (error) {
       const msg = getApiErrorMessage(error, "Unable to create your account right now.");
@@ -58,52 +59,90 @@ export default function Register() {
   };
 
   return (
-    <div
-      style={{
-        minHeight: "90vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "2rem 1.5rem",
-        background: "var(--bg-primary)",
-      }}
-    >
-      <div
-        className="glass-panel"
-        style={{
-          width: "100%",
-          maxWidth: "460px",
-          padding: "2.5rem 2rem",
-          borderRadius: "26px",
-          border: "1px solid rgba(150, 255, 195, 0.16)",
-          boxShadow: "0 20px 60px rgba(0, 0, 0, 0.75), 0 0 30px rgba(98, 245, 160, 0.1)",
-        }}
-      >
-        <div style={{ textAlign: "center", marginBottom: "2rem" }}>
-          <span
-            style={{
-              fontSize: "0.75rem",
-              fontWeight: 700,
-              color: "var(--accent-mint)",
-              textTransform: "uppercase",
-              letterSpacing: "0.1em",
-            }}
-          >
-            Create Your Account
-          </span>
-          <h1 style={{ fontSize: "1.85rem", fontWeight: 800, color: "#fff", margin: "0.4rem 0" }}>
-            Join Interview<span style={{ color: "var(--accent-mint)" }}>AI</span>
+    <div className="page page--auth">
+      <section className="auth-shell">
+
+        {/* Left info panel */}
+        <div className="auth-shell__info">
+          <div className="auth-brand-badge">
+            <span className="auth-brand-badge__dot" aria-hidden="true" />
+            <span>Join 50,000+ Engineers</span>
+          </div>
+
+          <h1>
+            Launch your career with <span className="text-highlight">AI mock interviews</span>.
           </h1>
-          <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", margin: 0 }}>
-            Start practicing AI mock interviews and track your progress.
+
+          <p>
+            Create your free account today and start mastering technical, architectural,
+            and behavioral interviews with real-time AI feedback.
           </p>
+
+          <div className="info-list">
+            <div className="info-list__item">
+              Role-tailored interview tracks & real-world scenario questions
+            </div>
+            <div className="info-list__item">
+              Comprehensive evaluation rubric: Code, Communication & Architecture
+            </div>
+            <div className="info-list__item">
+              Personalized learning roadmaps with targeted drill exercises
+            </div>
+          </div>
+
+          {/* Decorative role tracks card */}
+          <div className="auth-deco-card">
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <strong>Available Tracks</strong>
+              <span
+                style={{
+                  fontSize: "0.72rem",
+                  padding: "0.2rem 0.55rem",
+                  borderRadius: "999px",
+                  background: "rgba(0, 245, 184, 0.12)",
+                  color: "var(--accent-mint)",
+                  fontWeight: 700,
+                  border: "1px solid rgba(0, 245, 184, 0.3)",
+                }}
+              >
+                Instant Setup
+              </span>
+            </div>
+            <div className="auth-deco-pills">
+              {["Frontend", "Backend", "Full Stack", "System Design"].map((role) => (
+                <span
+                  key={role}
+                  className="auth-deco-pill"
+                  style={{
+                    borderColor: formData.targetRole.toLowerCase().includes(role.toLowerCase().replace(" ", ""))
+                      ? "var(--accent-mint)"
+                      : undefined,
+                    background: formData.targetRole.toLowerCase().includes(role.toLowerCase().replace(" ", ""))
+                      ? "rgba(0, 245, 184, 0.18)"
+                      : undefined,
+                  }}
+                >
+                  {role}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
 
-        <form onSubmit={handleSubmit} style={{ display: "grid", gap: "1.2rem" }}>
-          <div>
-            <label htmlFor="register-name" style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>
-              Full Name
-            </label>
+        {/* Right form card */}
+        <form className="auth-card" onSubmit={handleSubmit} id="register-form">
+          <div className="auth-card__header">
+            <span className="eyebrow" style={{ color: "var(--accent-mint)", letterSpacing: "0.08em" }}>
+              Get Started Free
+            </span>
+            <h2>Create Your Account</h2>
+            <p style={{ color: "var(--text-muted)", fontSize: "0.88rem", marginTop: "0.2rem" }}>
+              Start practicing AI mock interviews in seconds.
+            </p>
+          </div>
+
+          <label className="field" htmlFor="register-name">
+            <span>Full Name</span>
             <input
               id="register-name"
               type="text"
@@ -111,25 +150,21 @@ export default function Register() {
               autoComplete="name"
               placeholder="e.g. Alex Chen"
               value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              style={{
-                width: "100%",
-                padding: "0.85rem 1rem",
-                borderRadius: "12px",
-                background: "rgba(255, 255, 255, 0.05)",
-                border: errors.name ? "1px solid #ff6ec7" : "1px solid rgba(255, 255, 255, 0.12)",
-                color: "#fff",
-                fontSize: "0.95rem",
-                outline: "none",
+              onChange={(e) => {
+                setFormData({ ...formData, name: e.target.value });
+                if (errors.name) setErrors((prev) => ({ ...prev, name: null }));
               }}
+              required
             />
-            {errors.name && <small style={{ color: "#ff6ec7", fontSize: "0.78rem" }}>{errors.name}</small>}
-          </div>
+            {errors.name && (
+              <small style={{ color: "#ff6ec7", fontSize: "0.8rem", marginTop: "-0.2rem" }}>
+                {errors.name}
+              </small>
+            )}
+          </label>
 
-          <div>
-            <label htmlFor="register-email" style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>
-              Email Address
-            </label>
+          <label className="field" htmlFor="register-email">
+            <span>Email Address</span>
             <input
               id="register-email"
               type="email"
@@ -137,104 +172,122 @@ export default function Register() {
               autoComplete="email"
               placeholder="alex@company.com"
               value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              style={{
-                width: "100%",
-                padding: "0.85rem 1rem",
-                borderRadius: "12px",
-                background: "rgba(255, 255, 255, 0.05)",
-                border: errors.email ? "1px solid #ff6ec7" : "1px solid rgba(255, 255, 255, 0.12)",
-                color: "#fff",
-                fontSize: "0.95rem",
-                outline: "none",
+              onChange={(e) => {
+                setFormData({ ...formData, email: e.target.value });
+                if (errors.email) setErrors((prev) => ({ ...prev, email: null }));
               }}
+              required
             />
-            {errors.email && <small style={{ color: "#ff6ec7", fontSize: "0.78rem" }}>{errors.email}</small>}
-          </div>
+            {errors.email && (
+              <small style={{ color: "#ff6ec7", fontSize: "0.8rem", marginTop: "-0.2rem" }}>
+                {errors.email}
+              </small>
+            )}
+          </label>
 
-          <div>
-            <label htmlFor="register-role" style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>
-              Target Role
-            </label>
+          <label className="field" htmlFor="register-role">
+            <span>Target Role</span>
             <select
               id="register-role"
               value={formData.targetRole}
               onChange={(e) => setFormData({ ...formData, targetRole: e.target.value })}
-              style={{
-                width: "100%",
-                padding: "0.85rem 1rem",
-                borderRadius: "12px",
-                background: "#0c0f22",
-                border: "1px solid rgba(255, 255, 255, 0.12)",
-                color: "#fff",
-                fontSize: "0.95rem",
-                outline: "none",
-              }}
             >
-              <option value="Frontend">Frontend Engineer (React / Next)</option>
-              <option value="Backend">Backend Engineer (Node / Go)</option>
+              <option value="Frontend">Frontend Engineer (React / Next.js)</option>
+              <option value="Backend">Backend Engineer (Node / Go / Python)</option>
               <option value="FullStack">Full Stack Engineer</option>
-              <option value="SystemDesign">System Architect</option>
+              <option value="SystemDesign">System Architect / Tech Lead</option>
             </select>
-          </div>
+          </label>
 
-          <div>
-            <label htmlFor="register-password" style={{ display: "block", fontSize: "0.85rem", fontWeight: 600, color: "#fff", marginBottom: "0.4rem" }}>
-              Password (min. 8 characters)
-            </label>
-            <input
-              id="register-password"
-              type="password"
-              name="password"
-              autoComplete="new-password"
-              placeholder="••••••••"
-              value={formData.password}
-              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-              style={{
-                width: "100%",
-                padding: "0.85rem 1rem",
-                borderRadius: "12px",
-                background: "rgba(255, 255, 255, 0.05)",
-                border: errors.password ? "1px solid #ff6ec7" : "1px solid rgba(255, 255, 255, 0.12)",
-                color: "#fff",
-                fontSize: "0.95rem",
-                outline: "none",
-              }}
-            />
-            {errors.password && <small style={{ color: "#ff6ec7", fontSize: "0.78rem" }}>{errors.password}</small>}
-          </div>
+          <label className="field" htmlFor="register-password">
+            <span>Password (min. 8 characters)</span>
+            <div className="auth-password-wrap">
+              <input
+                id="register-password"
+                type={showPassword ? "text" : "password"}
+                name="password"
+                autoComplete="new-password"
+                placeholder="••••••••"
+                value={formData.password}
+                onChange={(e) => {
+                  setFormData({ ...formData, password: e.target.value });
+                  if (errors.password) setErrors((prev) => ({ ...prev, password: null }));
+                }}
+                required
+              />
+              <button
+                type="button"
+                className="auth-password-toggle"
+                onClick={() => setShowPassword((prev) => !prev)}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+                title={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                    <line x1="1" y1="1" x2="23" y2="23" />
+                  </svg>
+                ) : (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                    <circle cx="12" cy="12" r="3" />
+                  </svg>
+                )}
+              </button>
+            </div>
+            {errors.password && (
+              <small style={{ color: "#ff6ec7", fontSize: "0.8rem", marginTop: "-0.2rem" }}>
+                {errors.password}
+              </small>
+            )}
+          </label>
 
           {errorMessage && (
-            <p role="alert" style={{ color: "#ff6ec7", fontSize: "0.85rem", margin: 0 }}>
+            <p className="form-message form-message--error" role="alert">
               {errorMessage}
             </p>
           )}
 
+          <p style={{ fontSize: "0.8rem", color: "var(--text-muted)", margin: "0.1rem 0" }}>
+            By creating an account, you agree to our Terms of Service & Privacy Policy.
+          </p>
+
           <button
             type="submit"
+            className="button button--primary button--block"
             disabled={isSubmitting}
-            className="pill-btn-primary"
+            id="register-submit"
             style={{
-              marginTop: "0.5rem",
-              width: "100%",
-              justifyContent: "center",
-              fontSize: "1rem",
               padding: "0.95rem",
+              fontSize: "1rem",
+              borderRadius: "999px",
+              background: "linear-gradient(135deg, #00F5B8 0%, #00DDA5 100%)",
+              color: "#030907",
+              fontWeight: 700,
+              boxShadow: "0 4px 20px rgba(0, 245, 184, 0.35)",
+              border: "none",
               cursor: isSubmitting ? "wait" : "pointer",
-              opacity: isSubmitting ? 0.75 : 1,
             }}
           >
-            {isSubmitting ? "Creating account…" : "Create Account & Launch Dashboard →"}
+            {isSubmitting ? (
+              <>
+                <span className="btn-spinner" aria-hidden="true" />
+                Creating account…
+              </>
+            ) : (
+              "Create Account & Launch Dashboard →"
+            )}
           </button>
+
+          <p className="auth-card__footer">
+            Already have an account?{" "}
+            <Link to="/login" style={{ color: "var(--accent-mint)", fontWeight: 700 }}>
+              Sign In here →
+            </Link>
+          </p>
         </form>
 
-        <div style={{ textAlign: "center", marginTop: "1.5rem", fontSize: "0.85rem", color: "var(--text-muted)" }}>
-          Already have an account?{" "}
-          <Link to="/login" style={{ color: "var(--accent-mint)", fontWeight: 700 }}>
-            Sign In here
-          </Link>
-        </div>
-      </div>
+      </section>
     </div>
   );
 }
