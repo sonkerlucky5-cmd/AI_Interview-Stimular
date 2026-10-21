@@ -1,45 +1,45 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
 @import "./layout.css";
 @import "./components.css";
 @import "./pages.css";
 @import "./home.css";
 
 /* ═══════════════════════════════════
-   DESIGN TOKENS — EMERALD / MINT THEME
+   DESIGN TOKENS — EMERALD / NEON THEME
    ═══════════════════════════════════ */
 :root {
   color-scheme: dark;
 
   /* Backgrounds */
-  --bg:           #050907;
-  --bg-soft:      #0B110F;
-  --bg-card:      rgba(16, 24, 22, 0.82);
+  --bg:           #030907;
+  --bg-soft:      #06120F;
+  --bg-card:      rgba(10, 30, 26, 0.72);
 
   /* Panels */
-  --panel:        rgba(11, 17, 15, 0.85);
-  --panel-strong: rgba(16, 24, 22, 0.97);
-  --panel-border: rgba(150, 255, 195, 0.14);
+  --panel:        rgba(10, 30, 26, 0.72);
+  --panel-strong: rgba(14, 40, 35, 0.95);
+  --panel-border: rgba(0, 245, 184, 0.25);
 
   /* Typography */
-  --text:         #F5F7F6;
-  --text-muted:   #A7B2AD;
-  --title:        #FFFFFF;
+  --text:         #F5FFFC;
+  --text-muted:   #9CB5AD;
+  --title:        #F5FFFC;
 
-  /* Accent palette (Emerald & Mint) */
-  --blue:         #62F5A0;
-  --blue-dim:     rgba(98, 245, 160, 0.15);
-  --purple:       #9FFFC0;
-  --purple-dim:   rgba(159, 255, 192, 0.15);
-  --teal:         #25E27B;
-  --teal-dim:     rgba(37, 226, 123, 0.15);
-  --danger:       #FF6E8A;
+  /* Accent palette (Emerald & Neon) */
+  --blue:         #00F5B8;
+  --blue-dim:     rgba(0, 245, 184, 0.15);
+  --purple:       #00DDA5;
+  --purple-dim:   rgba(0, 221, 165, 0.15);
+  --teal:         #00F5B8;
+  --teal-dim:     rgba(0, 245, 184, 0.15);
+  --danger:       #FF4D6D;
 
   /* Shadows */
   --shadow-sm:    0 4px 16px rgba(0, 0, 0, 0.35);
-  --shadow:       0 20px 60px rgba(0, 0, 0, 0.55);
-  --shadow-xl:    0 40px 100px rgba(0, 0, 0, 0.7);
-  --glow-blue:    0 0 35px rgba(98, 245, 160, 0.22);
-  --glow-purple:  0 0 35px rgba(159, 255, 192, 0.22);
+  --shadow:       0 20px 60px rgba(0, 0, 0, 0.65);
+  --shadow-xl:    0 40px 100px rgba(0, 0, 0, 0.75);
+  --glow-blue:    0 0 35px rgba(0, 245, 184, 0.28);
+  --glow-purple:  0 0 35px rgba(0, 221, 165, 0.25);
 
   /* Radii */
   --radius-xs:    8px;
@@ -52,8 +52,8 @@
   --max-width:    1280px;
 
   /* Fonts */
-  --font-body:    "Outfit", "Segoe UI", system-ui, sans-serif;
-  --font-heading: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-body:    "Inter", "Outfit", system-ui, sans-serif;
+  --font-heading: "Inter", "Space Grotesk", system-ui, sans-serif;
 
   /* Transitions */
   --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
@@ -85,9 +85,9 @@ body {
   color: var(--text);
   background-color: var(--bg);
   background-image:
-    radial-gradient(ellipse 70% 35% at 50% -5%, rgba(98, 245, 160, 0.12), transparent 70%),
-    radial-gradient(ellipse 50% 30% at 90% 20%, rgba(37, 226, 123, 0.06), transparent 60%),
-    linear-gradient(180deg, #050907 0%, #080D0B 100%);
+    radial-gradient(ellipse 70% 35% at 50% -5%, rgba(0, 245, 184, 0.14), transparent 70%),
+    radial-gradient(ellipse 50% 30% at 90% 20%, rgba(0, 221, 165, 0.08), transparent 60%),
+    linear-gradient(180deg, #030907 0%, #06120F 100%);
   background-attachment: fixed;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

@@ -94,27 +94,22 @@ function Navbar() {
         <Link className="brand" to="/" onClick={closeMenu} id="nav-brand">
           <span className="brand__mark" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M12 2.5L3 21.5H8.5L12 14L15.5 21.5H21L12 2.5Z"
-                fill="url(#emerald-logo-grad)"
-              />
-              <path
-                d="M8.2 16.5H15.8L12 8.5L8.2 16.5Z"
-                fill="#050907"
-              />
+              <circle cx="12" cy="12" r="10" stroke="url(#emerald-logo-grad)" strokeWidth="2" fill="rgba(0, 245, 184, 0.12)" />
+              <path d="M8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12C16 14.2091 14.2091 16 12 16" stroke="#00F5B8" strokeWidth="2" strokeLinecap="round" />
+              <circle cx="12" cy="12" r="2.5" fill="#00F5B8" />
               <defs>
                 <linearGradient id="emerald-logo-grad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#62F5A0" />
-                  <stop offset="100%" stopColor="#25E27B" />
+                  <stop offset="0%" stopColor="#00F5B8" />
+                  <stop offset="100%" stopColor="#00DDA5" />
                 </linearGradient>
               </defs>
             </svg>
           </span>
           <span className="brand__text">
             <strong className="brand__name">
-              Interview<span className="brand__accent">AI</span>
+              AI Interview
             </strong>
-            <small className="brand__sub">Simulator</small>
+            <small className="brand__sub" style={{ color: "var(--accent-mint)", letterSpacing: "0.08em" }}>Simulator</small>
           </span>
         </Link>
 
@@ -145,24 +140,6 @@ function Navbar() {
               Home
             </NavLink>
 
-            <NavLink
-              className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
-              to="/interview"
-              onClick={closeMenu}
-              id="nav-mock-interview"
-            >
-              🎙️ Mock Interview
-            </NavLink>
-
-            <NavLink
-              className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
-              to="/dsa"
-              onClick={closeMenu}
-              id="nav-dsa"
-            >
-              ⚡ DSA Arena
-            </NavLink>
-
             <a
               href="#features"
               className="navbar__link"
@@ -190,7 +167,25 @@ function Navbar() {
               Pricing
             </a>
 
-            {isAuthenticated ? (
+            <a
+              href="#testimonials"
+              className="navbar__link"
+              onClick={(e) => handleAnchorClick(e, "#testimonials")}
+              id="nav-testimonials"
+            >
+              Testimonials
+            </a>
+
+            <a
+              href="#faq"
+              className="navbar__link"
+              onClick={(e) => handleAnchorClick(e, "#faq")}
+              id="nav-faq"
+            >
+              FAQ
+            </a>
+
+            {isAuthenticated && (
               <>
                 <NavLink
                   className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
@@ -202,38 +197,13 @@ function Navbar() {
                 </NavLink>
                 <NavLink
                   className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
-                  to="/results"
+                  to="/interview"
                   onClick={closeMenu}
-                  id="nav-results"
+                  id="nav-mock-interview"
                 >
-                  Results
-                </NavLink>
-                <NavLink
-                  className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
-                  to="/profile"
-                  onClick={closeMenu}
-                  id="nav-profile"
-                >
-                  Profile
-                </NavLink>
-                <NavLink
-                  className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
-                  to="/admin"
-                  onClick={closeMenu}
-                  id="nav-admin"
-                >
-                  Admin
+                  Practice Room
                 </NavLink>
               </>
-            ) : (
-              <NavLink
-                className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
-                to="/dashboard"
-                onClick={closeMenu}
-                id="nav-dashboard-guest"
-              >
-                Dashboard
-              </NavLink>
             )}
           </nav>
 
@@ -279,7 +249,7 @@ function Navbar() {
                   onClick={closeMenu}
                   id="nav-signup"
                 >
-                  Free Trial ↗
+                  Get Started →
                 </NavLink>
               </>
             )}
