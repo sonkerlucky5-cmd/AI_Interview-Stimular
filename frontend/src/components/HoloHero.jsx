@@ -1,115 +1,179 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import useTypewriter from "../hooks/useTypewriter";
+import ThreeSphereCanvas from "./ThreeSphereCanvas";
+import HeroDemoModal from "./HeroDemoModal";
 import "./HoloHero.css";
 
-const FEATURE_TAGS = [
-  { label: "AI Mock Interview", highlight: true },
-  { label: "Resume Skill Matcher", highlight: false },
-  { label: "Real-Time Dictation", highlight: true },
-  { label: "Rubric Evaluation", highlight: false },
-  { label: "System Design", highlight: false },
-  { label: "DSA Arena", highlight: true },
-  { label: "Competency Radar", highlight: false },
-  { label: "Personalized Roadmap", highlight: true },
-  { label: "Zero Audio Stored", highlight: false },
-  { label: "Instant Scoring", highlight: false },
+const HERO_STATS = [
+  { value: "50K+", label: "Students Practicing", icon: "👥" },
+  { value: "200K+", label: "Interviews Conducted", icon: "🎙️" },
+  { value: "95%", label: "Positive Reviews", icon: "🛡️" },
+  { value: "10+", label: "Interview Categories", icon: "📂" },
+];
+
+const PARTNER_LOGOS = [
+  { name: "Google", svg: "Google" },
+  { name: "Microsoft", svg: "Microsoft" },
+  { name: "amazon", svg: "Amazon" },
+  { name: "Meta", svg: "Meta" },
+  { name: "NETFLIX", svg: "Netflix" },
+  { name: "Spotify", svg: "Spotify" },
+  { name: "Adobe", svg: "Adobe" },
 ];
 
 export default function HoloHero() {
+  const [showDemoModal, setShowDemoModal] = useState(false);
+
+  const typedText = useTypewriter({
+    words: [
+      "Practice Smarter.",
+      "Interview Stronger.",
+      "Build Career Confidence.",
+      "Get Interview Ready.",
+    ],
+    typingSpeed: 85,
+    deletingSpeed: 45,
+    pauseDelay: 1700,
+  });
+
   return (
-    <section className="hero-saas">
+    <section className="hero-saas" id="hero-landing">
       {/* Background ambient lighting */}
       <div className="hero-ambient-glow" aria-hidden="true" />
+      <div className="hero-grid-overlay" aria-hidden="true" />
 
       <div className="hero-saas__inner">
-        {/* Left Column: Headline, CTAs, and 3D Emerald Visual */}
+        {/* Left Column: Badge, Headline with typing animation, subtext, and CTAs */}
         <div className="hero-saas__left">
           <div className="hero-badge">
-            <span className="hero-badge__dot" />
-            <span>AI Interview Coach</span>
+            <span className="hero-badge__sparkle">✨</span>
+            <span>#1 AI Interview Preparation Platform</span>
           </div>
 
           <h1 className="hero-headline">
-            Welcome to <span className="hero-headline__accent">AI Interview</span>
+            Practice Smarter.
             <br />
-            — <span className="hero-headline__italic">Where AI Meets Preparation</span>
+            Interview <span className="hero-headline__accent">Stronger.</span>
           </h1>
 
+          {/* Typing Text Bar */}
+          <div className="hero-typing-bar" aria-live="polite">
+            <span className="hero-typing-indicator" />
+            <span className="hero-typing-label">AI Focus:</span>
+            <span className="hero-typing-text">
+              {typedText}
+              <span className="hero-typing-cursor">|</span>
+            </span>
+          </div>
+
           <p className="hero-description">
-            Prepare for high-stakes technical rounds with realistic mock interviews,
-            real-time speech transcription, personalized rubric feedback, and an
-            adaptive learning roadmap.
+            Get real-world interview experience with AI-powered mock interviews,
+            personalized feedback, coding practice, and a learning roadmap to help
+            you land your dream job.
           </p>
 
           <div className="hero-actions">
-            <Link to="/interview" className="hero-pill-btn hero-pill-btn--primary">
+            <Link to="/interview" className="hero-pill-btn hero-pill-btn--primary" id="hero-cta-practice">
               <span>Start Free Practice</span>
-              <span className="hero-pill-btn__arrow">↗</span>
+              <span className="hero-pill-btn__arrow">→</span>
             </Link>
 
-            <a
-              href="#features"
-              onClick={(e) => {
-                e.preventDefault();
-                window.__lenis?.scrollTo("#features", { offset: -80 });
-              }}
+            <button
+              type="button"
+              onClick={() => setShowDemoModal(true)}
               className="hero-pill-btn hero-pill-btn--ghost"
+              id="hero-cta-demo"
             >
-              Explore Features
-            </a>
-          </div>
-
-          {/* 3D Emerald Torus / Orb Composition */}
-          <div className="hero-orb-wrapper">
-            <div className="hero-orb">
-              <div className="hero-orb__inner-ring" />
-              <div className="hero-orb__highlight" />
-              <div className="hero-orb__core">
-                <span className="hero-orb__metric">94%</span>
-                <span className="hero-orb__sub">Readiness Score</span>
-              </div>
-            </div>
-            <div className="hero-orb__shadow" />
+              <span className="hero-pill-btn__play">▶</span>
+              <span>Watch Demo</span>
+            </button>
           </div>
         </div>
 
-        {/* Right Column: Floating Pill Tags & Feature System Card */}
+        {/* Right Column: 3D Central Emerald Glass Sphere & Floating Cards */}
         <div className="hero-saas__right">
-          <div className="hero-system-card glass-panel">
-            <div className="hero-system-card__header">
-              <span className="hero-system-card__eyebrow">INTELLIGENT WORKSPACE</span>
-              <h3 className="hero-system-card__title">
-                Preparation isn&apos;t luck. <span className="italic-accent">It&apos;s the system.</span>
-              </h3>
-            </div>
+          <div className="hero-3d-stage">
+            {/* Real Three.js Canvas for glowing emerald sphere & pedestal */}
+            <ThreeSphereCanvas />
 
-            {/* Interactive Pill Tag Grid */}
-            <div className="hero-pill-cloud">
-              {FEATURE_TAGS.map((tag) => (
-                <span
-                  key={tag.label}
-                  className={`hero-cloud-tag ${tag.highlight ? "hero-cloud-tag--highlight" : ""}`}
-                >
-                  {tag.highlight && <span className="tag-dot" />}
-                  {tag.label}
-                </span>
-              ))}
-            </div>
-
-            {/* Live Simulation Card Strip */}
-            <div className="hero-simulation-strip">
-              <div className="hero-sim-status">
-                <span className="hero-pulse-dot" />
-                <span className="hero-sim-text">Live Rubric Active</span>
+            {/* Floating Glass Card 1: Top-Left (AI Mock Interview) */}
+            <div className="hero-floating-card hero-floating-card--tl">
+              <div className="hero-card-icon-badge hero-card-icon-badge--mic">
+                <span>🎙️</span>
               </div>
-              <div className="hero-sim-chips">
-                <span className="hero-chip">Frontend</span>
-                <span className="hero-chip">Backend</span>
-                <span className="hero-chip">System Design</span>
+              <div className="hero-card-text">
+                <strong>AI Mock Interview</strong>
+                <small>Realistic questions</small>
+              </div>
+            </div>
+
+            {/* Floating Glass Card 2: Top-Right (AI Feedback) */}
+            <div className="hero-floating-card hero-floating-card--tr">
+              <div className="hero-card-icon-badge hero-card-icon-badge--chart">
+                <span>📊</span>
+              </div>
+              <div className="hero-card-text">
+                <strong>AI Feedback</strong>
+                <small>Detailed analysis</small>
+              </div>
+            </div>
+
+            {/* Floating Glass Card 3: Bottom-Left (DSA Practice) */}
+            <div className="hero-floating-card hero-floating-card--bl">
+              <div className="hero-card-icon-badge hero-card-icon-badge--code">
+                <span>&lt;/&gt;</span>
+              </div>
+              <div className="hero-card-text">
+                <strong>DSA Practice</strong>
+                <small>Improve coding skills</small>
+              </div>
+            </div>
+
+            {/* Floating Glass Card 4: Bottom-Right (Learning Roadmap) */}
+            <div className="hero-floating-card hero-floating-card--br">
+              <div className="hero-card-icon-badge hero-card-icon-badge--target">
+                <span>🎯</span>
+              </div>
+              <div className="hero-card-text">
+                <strong>Learning Roadmap</strong>
+                <small>Personalized plan</small>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* ── 4 Glass Statistics Cards Row (Matching Reference Image Section 4) ── */}
+      <div className="hero-stats-wrapper">
+        <div className="hero-stats-grid">
+          {HERO_STATS.map((stat) => (
+            <div key={stat.label} className="hero-stat-card glass-panel">
+              <div className="hero-stat-card__icon">{stat.icon}</div>
+              <div className="hero-stat-card__content">
+                <span className="hero-stat-card__value">{stat.value}</span>
+                <span className="hero-stat-card__label">{stat.label}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Monochrome Partner Strip (Panel 01 Reference) ── */}
+      <div className="hero-partners-strip" aria-label="Partner and target hiring companies">
+        <div className="hero-partners-list">
+          {PARTNER_LOGOS.map((p) => (
+            <span key={p.name} className="hero-partner-item">
+              {p.name}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Interactive Hero Demo Modal */}
+      {showDemoModal && (
+        <HeroDemoModal isOpen={showDemoModal} onClose={() => setShowDemoModal(false)} />
+      )}
     </section>
   );
 }
