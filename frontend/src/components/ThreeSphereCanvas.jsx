@@ -169,11 +169,11 @@ export default function ThreeSphereCanvas() {
 
     // Animation Loop
     let animId;
-    const clock = new THREE.Clock();
+    const startTime = performance.now();
 
     const animate = () => {
       animId = requestAnimationFrame(animate);
-      const elapsed = clock.getElapsedTime();
+      const elapsed = (performance.now() - startTime) * 0.001;
 
       // Gentle floating & rotation
       glassSphere.position.y = 0.25 + Math.sin(elapsed * 1.4) * 0.08;
