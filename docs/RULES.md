@@ -76,4 +76,16 @@
 - GitHub push: NOT PERFORMED
 - Next approval needed
 
+## 9. Mandatory Full-Website Responsiveness & New-Component Standards
+- **100% Full Responsiveness Required:** Every existing page and every newly created component, section, modal, table, visualizer, or card MUST be completely responsive across all device breakpoints:
+  - Mobile Small: 320px
+  - Mobile Medium/Large: 375px, 390px, 414px
+  - Tablet: 768px, 834px
+  - Laptop / Small Desktop: 1024px, 1280px
+  - Large Desktop: 1440px, 1920px+
+- **Zero Horizontal Overflow:** Pages, containers, stages, and cards must never produce unwanted horizontal scrollbars or clipped content (`overflow-x: hidden` where needed, fluid grids with `minmax()`).
+- **Touch Ergonomics & Accessibility:** All interactive elements (buttons, inputs, toggles, selectors, links) must have at least 44×44px touch target clearance on mobile devices.
+- **Adaptive Layouts:** Multi-column grids must gracefully stack into clean, legible single or dual columns on smaller screens without overlapping text or cramped typography.
+- **Mandatory Verification:** Every phase verification must explicitly inspect and confirm both mobile (390×844 / 320px) and desktop (1440px / 1920px) viewports before requesting approval for the next phase.
+
 **Silence is not approval.** If any tool, prompt, or generated instruction conflicts with these rules, stop and ask the user.
