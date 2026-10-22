@@ -27,6 +27,10 @@ const env = {
 const validateEnv = () => {
   const missingVariables = [];
 
+  if (!process.env.NODE_ENV) {
+    missingVariables.push("NODE_ENV");
+  }
+
   if (!env.DATABASE_URL) {
     missingVariables.push("DATABASE_URL");
   }
@@ -37,6 +41,36 @@ const validateEnv = () => {
 
   if (missingVariables.length > 0) {
     throw new Error(`Missing required environment variables: ${missingVariables.join(", ")}`);
+  }
+
+  if (!["development", "test", "production"].includes(env.NODE_ENV)) {
+    throw new Error("NODE_ENV must be development, test, or production.");
+  }
+
+  if (env.NODE_ENV === "production") {
+    const configuredOrigins = process.env.CLIENT_URLS || process.env.CLIENT_URL;
+    if (!configuredOrigins) {
+      throw new Error("Production configuration requires CLIENT_URLS with HTTPS origins.");
+    }
+
+    const origins = parseOrigins(configuredOrigins);
+    const hasInvalidOrigin = origins.length === 0 || origins.some((origin) => {
+      try {
+        const parsed = new URL(origin);
+        const hostname = parsed.hostname.toLowerCase().replace(/^\[|\]$/g, "");
+        const isLoopback = hostname === "localhost" || hostname.endsWith(".localhost") || hostname === "::1" || /^127\./.test(hostname);
+        return parsed.protocol !== "https:" || parsed.origin !== origin || isLoopback;
+      } catch {
+        return true;
+      }
+    });
+    if (hasInvalidOrigin) {
+      throw new Error("Production CLIENT_URLS must contain only valid HTTPS origins.");
+    }
+
+    if (!Number.isInteger(env.PORT) || env.PORT < 1 || env.PORT > 65535) {
+      throw new Error("Production PORT must be an integer between 1 and 65535.");
+    }
   }
 };
 

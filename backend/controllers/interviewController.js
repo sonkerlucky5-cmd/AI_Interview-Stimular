@@ -163,10 +163,9 @@ const startInterviewHandler = async (req, res, next) => {
 
 const submitAnswerHandler = async (req, res, next) => {
   try {
-    const { questionId, answerText, transcript, idempotencyKey } = req.body;
+    const { answerText, transcript, idempotencyKey, position } = req.body;
     const interviewId = req.params.id;
 
-    if (!questionId) throw new ApiError(400, "questionId is required.", "MISSING_QUESTION_ID");
     if (!answerText || !answerText.trim()) throw new ApiError(400, "Answer text cannot be empty.", "EMPTY_ANSWER_ERROR");
 
     const interview = await Interview.findByIdAndUser(interviewId, req.user.id);
@@ -176,13 +175,16 @@ const submitAnswerHandler = async (req, res, next) => {
       throw new ApiError(400, `Cannot submit answers to a ${interview.status} interview.`, "INTERVIEW_ALREADY_FINISHED");
     }
 
-    // Verify question belongs to interview
-    const question = await InterviewQuestion.findByInterviewAndPosition(interviewId, req.body.position || 1);
-    const targetQId = question?.id || questionId;
+    const questionPosition = position === undefined ? 1 : Number(position);
+    if (!Number.isInteger(questionPosition) || questionPosition < 1) {
+      throw new ApiError(404, "Interview question not found.", "QUESTION_NOT_FOUND");
+    }
+    const question = await InterviewQuestion.findByInterviewAndPosition(interviewId, questionPosition);
+    if (!question) throw new ApiError(404, "Interview question not found.", "QUESTION_NOT_FOUND");
 
     // 1. Save Answer
     const answer = await InterviewAnswer.createOrUpdate({
-      questionId: targetQId,
+      questionId: question.id,
       answerText: answerText.trim(),
       transcript: transcript || null,
       idempotencyKey: idempotencyKey || null,

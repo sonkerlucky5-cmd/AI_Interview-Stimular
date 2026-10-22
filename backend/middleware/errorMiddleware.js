@@ -37,18 +37,35 @@ const normalizeError = (error) => {
   return new ApiError(500, error.message || "Something went wrong on the server.");
 };
 
+const redactLogDetails = (value) => String(value || "")
+  .replace(/(password|token|secret|api[_-]?key|authorization)(\s*[:=]\s*)[^\s&]+/gi, "$1$2[REDACTED]")
+  .replace(/(Bearer\s+)[A-Za-z0-9._~-]+/gi, "$1[REDACTED]")
+  .replace(/(postgres(?:ql)?:\/\/[^:/@]+:)[^@]+@/gi, "$1[REDACTED]@");
+
 const errorHandler = (error, req, res, _next) => {
   const normalizedError = normalizeError(error);
+  const statusCode = normalizedError.statusCode || 500;
+  const isInternalError = statusCode >= 500;
+  const publicMessage = isInternalError && env.NODE_ENV === "production"
+    ? "Internal server error."
+    : normalizedError.message;
 
-  return res.status(normalizedError.statusCode || 500).json({
+  if (isInternalError) {
+    const details = error?.stack || error?.message || "Unknown server error";
+    console.error(`[${req?.id || "no-request-id"}] ${redactLogDetails(details)}`);
+  }
+
+  return res.status(statusCode).json({
     success: false,
-    message: normalizedError.message,
+    message: publicMessage,
     error: {
-      code: normalizedError.code || `ERR_${normalizedError.statusCode || 500}`,
-      message: normalizedError.message,
+      code: isInternalError && env.NODE_ENV === "production"
+        ? "INTERNAL_SERVER_ERROR"
+        : normalizedError.code || `ERR_${normalizedError.statusCode || 500}`,
+      message: publicMessage,
       requestId: req?.id || null,
     },
-    ...(env.NODE_ENV === "development" && { stack: normalizedError.stack }),
+    ...(env.NODE_ENV === "development" && !isInternalError && { stack: normalizedError.stack }),
   });
 };
 

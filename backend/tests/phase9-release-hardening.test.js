@@ -98,6 +98,7 @@ test("Release Sanity: All phase test suites exist", () => {
     "phase7-dsa.test.js",
     "phase8-ui-audit.test.js",
     "phase9-release-hardening.test.js",
+    "security-critical.test.js",
   ];
 
   expectedTestSuites.forEach((suiteFile) => {

@@ -2,6 +2,14 @@ const Interview = require("../models/Interview");
 const Report = require("../models/Report");
 const ApiError = require("../utils/ApiError");
 
+const escapeHtml = (value) => String(value ?? "").replace(/[&<>\"']/g, (character) => ({
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '\"': "&quot;",
+  "'": "&#39;",
+}[character]));
+
 const generateReportSummary = (interview, items, user) => {
   let totalScore = 0;
   let count = 0;
@@ -90,7 +98,7 @@ const getPrintableHtmlHandler = async (req, res, next) => {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>${summary.reportTitle} - ${summary.candidateName}</title>
+  <title>${escapeHtml(summary.reportTitle)} - ${escapeHtml(summary.candidateName)}</title>
   <style>
     @media print {
       body { margin: 0; padding: 20px; font-size: 11pt; color: #000; background: #fff; }
@@ -164,10 +172,10 @@ const getPrintableHtmlHandler = async (req, res, next) => {
   <div class="header">
     <div>
       <h1 class="brand-title">AI Interview Assessment Report</h1>
-      <div class="brand-sub">Candidate: <strong>${summary.candidateName}</strong> (${summary.candidateEmail})</div>
+      <div class="brand-sub">Candidate: <strong>${escapeHtml(summary.candidateName)}</strong> (${escapeHtml(summary.candidateEmail)})</div>
     </div>
     <div class="score-circle">
-      <div class="score-number">${summary.overallScore}%</div>
+      <div class="score-number">${escapeHtml(summary.overallScore)}%</div>
       <small style="color: #64748b;">Overall Rubric Score</small>
     </div>
   </div>
@@ -175,19 +183,19 @@ const getPrintableHtmlHandler = async (req, res, next) => {
   <div class="meta-grid">
     <div class="meta-item">
       <span>Target Role</span>
-      <strong>${summary.targetRole}</strong>
+      <strong>${escapeHtml(summary.targetRole)}</strong>
     </div>
     <div class="meta-item">
       <span>Seniority</span>
-      <strong>${summary.difficulty}</strong>
+      <strong>${escapeHtml(summary.difficulty)}</strong>
     </div>
     <div class="meta-item">
       <span>Questions Answered</span>
-      <strong>${summary.completedQuestions} of ${summary.totalQuestions}</strong>
+      <strong>${escapeHtml(summary.completedQuestions)} of ${escapeHtml(summary.totalQuestions)}</strong>
     </div>
     <div class="meta-item">
       <span>Date Generated</span>
-      <strong>${new Date(summary.generatedAt).toLocaleDateString()}</strong>
+      <strong>${escapeHtml(new Date(summary.generatedAt).toLocaleDateString())}</strong>
     </div>
   </div>
 
@@ -198,27 +206,27 @@ const getPrintableHtmlHandler = async (req, res, next) => {
       (q) => `
     <div class="question-block">
       <div style="display: flex; justify-content: space-between;">
-        <span class="tag">Question ${q.position} • ${q.category}</span>
-        <strong style="color: #2563eb; font-size: 14px;">Score: ${q.scores.overall || 0}/100</strong>
+        <span class="tag">Question ${escapeHtml(q.position)} • ${escapeHtml(q.category)}</span>
+        <strong style="color: #2563eb; font-size: 14px;">Score: ${escapeHtml(q.scores.overall || 0)}/100</strong>
       </div>
-      <h3 class="question-title">${q.questionText}</h3>
+      <h3 class="question-title">${escapeHtml(q.questionText)}</h3>
       
       <div class="answer-box">
         <strong>Candidate Answer:</strong><br>
-        ${q.answerText}
+        ${escapeHtml(q.answerText)}
       </div>
 
       <div class="feedback-grid">
         <div class="strengths-box">
           <strong>Key Strengths:</strong>
           <ul style="margin: 5px 0 0; padding-left: 18px;">
-            ${(q.strengths || []).map((s) => `<li>${s}</li>`).join("")}
+            ${(q.strengths || []).map((s) => `<li>${escapeHtml(s)}</li>`).join("")}
           </ul>
         </div>
         <div class="improvements-box">
           <strong>Areas for Growth:</strong>
           <ul style="margin: 5px 0 0; padding-left: 18px;">
-            ${(q.improvements || []).map((imp) => `<li>${imp}</li>`).join("")}
+            ${(q.improvements || []).map((imp) => `<li>${escapeHtml(imp)}</li>`).join("")}
           </ul>
         </div>
       </div>
@@ -228,7 +236,7 @@ const getPrintableHtmlHandler = async (req, res, next) => {
           ? `
         <div class="ideal-box">
           <strong>Exemplary Model Response:</strong><br>
-          ${q.idealAnswer}
+          ${escapeHtml(q.idealAnswer)}
         </div>
       `
           : ""
@@ -239,7 +247,7 @@ const getPrintableHtmlHandler = async (req, res, next) => {
     .join("")}
 
   <div class="disclaimer-footer">
-    ${summary.disclaimer}
+    ${escapeHtml(summary.disclaimer)}
   </div>
 </body>
 </html>
@@ -253,6 +261,7 @@ const getPrintableHtmlHandler = async (req, res, next) => {
 };
 
 module.exports = {
+  escapeHtml,
   createOrGetReportHandler,
   getPrintableHtmlHandler,
 };
