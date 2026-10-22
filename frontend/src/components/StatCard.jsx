@@ -75,8 +75,36 @@ export default function StatCard({ label, value, icon, change, badge, color = "c
       </div>
 
       {change && (
-        <div style={{ marginTop: "0.85rem", fontSize: "0.8rem", color: currentTheme.accent, fontWeight: 600 }}>
-          {change}
+        <div
+          style={{
+            marginTop: "0.85rem",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.45rem",
+            fontSize: "0.76rem",
+            color: currentTheme.accent,
+            fontWeight: 600,
+            background: "rgba(0, 245, 184, 0.08)",
+            padding: "0.22rem 0.65rem",
+            borderRadius: "999px",
+            border: `1px solid ${currentTheme.border}`,
+            maxWidth: "100%",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+          }}
+        >
+          <span
+            style={{
+              width: "5px",
+              height: "5px",
+              borderRadius: "999px",
+              background: currentTheme.accent,
+              boxShadow: `0 0 6px ${currentTheme.accent}`,
+              flexShrink: 0,
+            }}
+          />
+          <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>{change}</span>
         </div>
       )}
     </div>
