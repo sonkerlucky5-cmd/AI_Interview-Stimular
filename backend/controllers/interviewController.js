@@ -7,6 +7,17 @@ const JobDescription = require("../models/JobDescription");
 const { generateInterviewQuestion, evaluateAnswer } = require("../services/aiService");
 const ApiError = require("../utils/ApiError");
 
+const normalizeQuestionLimit = (value) => {
+  if (value === null || value === undefined) return 5;
+  if (typeof value === "string" && value.trim() === "") return 5;
+  if (typeof value !== "number" && typeof value !== "string") return 5;
+
+  const parsed = Number(value);
+  if (Number.isNaN(parsed)) return 5;
+
+  return Math.min(10, Math.max(3, Math.floor(parsed)));
+};
+
 const createInterviewHandler = async (req, res, next) => {
   try {
     const {
@@ -23,7 +34,7 @@ const createInterviewHandler = async (req, res, next) => {
       throw new ApiError(400, "Target role is required.", "MISSING_TARGET_ROLE");
     }
 
-    const boundedLimit = Math.min(10, Math.max(3, Number(questionLimit) || 5));
+    const boundedLimit = normalizeQuestionLimit(questionLimit);
 
     // Optional ownership check for resume
     if (resumeId) {
@@ -359,6 +370,7 @@ const getInterviewEvaluationsHandler = async (req, res, next) => {
 };
 
 module.exports = {
+  normalizeQuestionLimit,
   createInterviewHandler,
   getInterviewsHandler,
   getInterviewByIdHandler,

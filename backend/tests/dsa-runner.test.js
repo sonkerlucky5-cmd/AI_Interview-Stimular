@@ -3,6 +3,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 const express = require("express");
 const Dsa = require("../models/Dsa");
+const { pool } = require("../config/db");
 const dsaRoutes = require("../routes/dsaRoutes");
 const ApiError = require("../utils/ApiError");
 const { createDsaService, validateSubmission } = require("../services/dsaService");
@@ -29,6 +30,33 @@ const fakeModel = (overrides = {}) => ({
 
 const tests = [];
 const test = (name, fn) => tests.push({ name, fn });
+
+test("Submission insert binds finished_at as its own nullable timestamp parameter", async () => {
+  const originalQuery = pool.query;
+  const calls = [];
+  pool.query = async (sql, values) => {
+    calls.push({ sql, values });
+    return { rows: [{ id: `submission-${calls.length}`, created_at: new Date("2026-10-22T00:00:00Z") }] };
+  };
+
+  try {
+    await Dsa.createSubmission({ userId: "user-1", problemId, language: "javascript", code: "console.log(1)", status: "running" });
+    await Dsa.createSubmission({ userId: "user-1", problemId, language: "javascript", code: "console.log(1)", status: "execution_disabled" });
+
+    for (const { sql } of calls) {
+      assert.match(sql, /VALUES\s*\(\$1,\s*\$2,\s*\$3,\s*\$4,\s*\$5,\s*\$6\)/);
+      assert.doesNotMatch(sql, /CASE\s+WHEN\s+\$5\s*=/i);
+    }
+
+    assert.equal(calls[0].values[4], "running");
+    assert.equal(calls[0].values[5], null);
+    assert.equal(calls[1].values[4], "execution_disabled");
+    assert.ok(calls[1].values[5] instanceof Date);
+    assert.equal(Number.isNaN(calls[1].values[5].getTime()), false);
+  } finally {
+    pool.query = originalQuery;
+  }
+});
 
 test("DSA input validation rejects invalid UUID, language, empty and oversized code", () => {
   assert.throws(() => validateSubmission({ problemId: "bad", language: "javascript", code: "x" }), { code: "INVALID_PROBLEM_ID" });

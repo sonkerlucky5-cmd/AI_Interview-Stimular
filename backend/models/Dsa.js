@@ -18,11 +18,12 @@ class Dsa {
   }
 
   static async createSubmission({ userId, problemId, language, code, status }) {
+    const finishedAt = status === "running" ? null : new Date();
     const { rows } = await pool.query(
       `INSERT INTO coding_submissions (question_id, user_id, language, source_code, status, finished_at)
-       VALUES ($1, $2, $3, $4, $5, CASE WHEN $5 = 'running' THEN NULL ELSE CURRENT_TIMESTAMP END)
+       VALUES ($1, $2, $3, $4, $5, $6)
        RETURNING id, created_at`,
-      [problemId, userId, language, code, status]
+      [problemId, userId, language, code, status, finishedAt]
     );
     return rows[0];
   }

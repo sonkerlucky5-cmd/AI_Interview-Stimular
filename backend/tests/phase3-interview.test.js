@@ -1,5 +1,6 @@
 const assert = require("assert");
 const { generateInterviewQuestion, evaluateAnswer } = require("../services/aiService");
+const { normalizeQuestionLimit } = require("../controllers/interviewController");
 const ApiError = require("../utils/ApiError");
 
 console.log("--------------------------------------------------");
@@ -34,15 +35,26 @@ async function testAsync(name, fn) {
 async function runAll() {
   // 1. Question limit clamping verification
   test("Question limit is strictly bounded between 3 and 10", () => {
-    const clampLimit = (raw) => Math.min(10, Math.max(3, Number(raw) || 5));
-    assert.strictEqual(clampLimit(1), 3, "Min boundary should be 3");
-    assert.strictEqual(clampLimit(0), 3, "Zero should clamp to 3");
-    assert.strictEqual(clampLimit(-5), 3, "Negative should clamp to 3");
-    assert.strictEqual(clampLimit(5), 5, "Normal value should be preserved");
-    assert.strictEqual(clampLimit(7), 7, "Normal value should be preserved");
-    assert.strictEqual(clampLimit(10), 10, "Max boundary should be 10");
-    assert.strictEqual(clampLimit(25), 10, "Oversized value should clamp to 10");
-    assert.strictEqual(clampLimit("abc"), 5, "Invalid string should fallback to 5");
+    const cases = [
+      [undefined, 5],
+      [null, 5],
+      ["", 5],
+      ["abc", 5],
+      [Number.NaN, 5],
+      [0, 3],
+      [-5, 3],
+      [2, 3],
+      [3, 3],
+      [7, 7],
+      [10, 10],
+      [15, 10],
+      ["7", 7],
+      [4.8, 4],
+    ];
+
+    for (const [input, expected] of cases) {
+      assert.strictEqual(normalizeQuestionLimit(input), expected, `Unexpected limit for ${String(input)}`);
+    }
   });
 
   // 2. Deterministic question generation fallback (Frontend role)
