@@ -26,7 +26,7 @@
 | **Phase 4** | History, Analytics & Reports | **COMPLETED** | Paginated history, metrics calculation & print-ready assessment reports verified |
 | **Phase 5** | Personalized Learning Roadmap | **COMPLETED** | Multi-stage curriculum, regeneration preserving completed items & progress verified |
 | **Phase 6** | Voice Interview (Speech) | **COMPLETED** | Browser WebSpeech dictation, privacy compliance & text fallback verified |
-| **Phase 7** | DSA Coding Arena | **COMPLETED** | Problem catalogue, modal preview, multi-language starter code & execution security gate verified |
+| **Phase 7** | DSA Coding Arena | **IMPLEMENTED; ACTIVATION BLOCKED** | DB-backed catalogue and Judge0 integration implemented behind execution and separate security-review flags; migration and live runner not activated |
 | **Phase 8** | UI Polish & Responsive Audit | **COMPLETED** | Design tokens, focus-visible rings, motion reduction & mobile breakpoints verified |
 | **Phase 9** | SaaS Release Hardening & Quotas | **COMPLETED** | Free vs Pro tier quota rules, question clamping, test suite inventory & security gate verified |
 | **Redesign** | Full Website Redesign (Aiby Theme) | **COMPLETED** | 20+ pages & components overhauled to Obsidian/Mint palette, pill CTAs, 3D hero & glass cards |
@@ -43,7 +43,7 @@
 | **Job Matching** | POST `/api/job-descriptions` | Match results view | User ownership check | Verified working |
 | **Mock Interview** | POST `/api/interviews` | Active room, timer, cards | Privacy protected answers | Verified working |
 | **Answer Evaluation** | AI rubric scoring | Strengths, gaps, score | No credential leakage | Verified working |
-| **DSA Catalogue** | Curated questions API | Code editor, difficulty filter | **Execution DISABLED** | Verified (Gated) |
+| **DSA Catalogue** | DB-backed API (manual migration pending) | Filters, editable code, submit and verdict states | Execution disabled; security review unapproved | Unit tests use stub runner only; DB migration not run |
 | **Voice Mode** | Speech-to-text API | Mic permission / fallback | No raw audio retention | Verified (Browser STT) |
 | **PDF Reports** | Stream generation | Branded preview / download | Authenticated download only | Verified (HTML/Print) |
 | **SaaS Subscriptions** | Stripe/Razorpay models | Pricing table on Home | Webhook signature verification| Architecture & Quotas Active |
@@ -52,6 +52,6 @@
 
 ## 4. Known Constraints and Guardrails
 
-1. **Strictly No Candidate Code Execution in API Process**: DSA execution remains disabled until a sandboxed Docker/Firecracker runner passes independent security review.
+1. **Strictly No Candidate Code Execution in API Process**: DSA execution defaults off and additionally requires explicit security-review approval. Judge0 was not contacted; migration is pending.
 2. **Read-Only Mode by Default**: No code edits, migrations, or package installs without Lucky's explicit advance approval.
 3. **No Automatic Git Pushes**: All changes remain local for review until a specific push is requested and approved.

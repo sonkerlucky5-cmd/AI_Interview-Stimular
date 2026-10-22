@@ -1,5 +1,21 @@
 # 10 — Change Log
 
+## [DSA Runner Integration — gated] — 2026-10-22
+
+### Approved Scope
+- Replace the DSA UI mock catalogue with PostgreSQL-backed problems and add an authenticated Judge0 submission flow, strictly disabled by default.
+- Keep the separate security-review gate unapproved; do not make public Judge0 calls, install packages, run migrations, or push.
+
+### Added / Modified
+- Added backend DSA list/submit API, persistence model, validation and Judge0 adapter; execution requires both `DSA_EXECUTION_ENABLED=true` and `DSA_SECURITY_REVIEW_APPROVED=true`.
+- Added additive SQL migration with test-case columns and a small curated DB catalogue. Migration was not run.
+- Replaced DSA page mock data with API loading, code editing, submission status and per-case verdict display.
+- Added stubbed unit coverage and DSA environment placeholders.
+
+### Verification
+- Test and build outcomes are recorded in the implementation response. Judge0 network access and database-backed curl verification were not performed.
+- **GitHub Push:** **NOT PERFORMED.**
+
 > Versioned record of approved modifications, audit findings, and project milestones. Maintained per `RULES.md` Section 6.9.
 
 All changes must record:

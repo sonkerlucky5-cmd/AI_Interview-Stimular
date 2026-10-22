@@ -18,6 +18,10 @@ const env = {
   COOKIE_MAX_AGE_MS: Number(process.env.COOKIE_MAX_AGE_MS) || 1000 * 60 * 60 * 24 * 7,
   CLIENT_URLS: parseOrigins(process.env.CLIENT_URLS || process.env.CLIENT_URL || "http://localhost:5173"),
   GEMINI_API_KEY: process.env.GEMINI_API_KEY || "",
+  DSA_EXECUTION_ENABLED: process.env.DSA_EXECUTION_ENABLED === "true",
+  DSA_SECURITY_REVIEW_APPROVED: process.env.DSA_SECURITY_REVIEW_APPROVED === "true",
+  JUDGE0_API_URL: process.env.JUDGE0_API_URL || "",
+  JUDGE0_API_KEY: process.env.JUDGE0_API_KEY || "",
 };
 
 const validateEnv = () => {

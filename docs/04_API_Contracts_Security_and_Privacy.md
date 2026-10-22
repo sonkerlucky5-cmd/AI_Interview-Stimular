@@ -59,6 +59,15 @@ These are proposals, not instructions to duplicate existing routes. Audit and ad
 - `POST /api/learning-plans`
 - `GET /api/learning-plans`
 - `GET /api/learning-plans/:id`
+
+### DSA API
+- `GET /api/dsa/problems` — public active problem catalogue (problem data is read from PostgreSQL).
+- `POST /api/dsa/submit` — authenticated code submission; stores the submission. Execution returns a clear 503 while disabled or until the separate security review gate is approved.
+- Supported languages: JavaScript (Judge0 language ID 63), Python (ID 71).
+- Request limits: 50 KB source, at most 20 stored test cases, 16 KB per test input/output, 60-second total request timeout; runner limits are clamped to 100–10,000 ms per case and 16–256 MB.
+- A submission sent while disabled is persisted with `execution_disabled`; it receives no fabricated verdict. Once both execution and security-review flags are approved, Judge0 results are stored per test case.
+- Required activation configuration: `DSA_EXECUTION_ENABLED=true`, `DSA_SECURITY_REVIEW_APPROVED=true`, `JUDGE0_API_URL`, and `JUDGE0_API_KEY`. All flags default off/empty. This release leaves both approval flags off.
+- Apply `backend/migrations/001_dsa_runner.sql` manually before using the DSA catalogue or submission endpoints. The migration has not been run as part of this change.
 - `PATCH /api/learning-plans/:id/items/:itemId`
 - `POST /api/learning-plans/:id/regenerate`
 
