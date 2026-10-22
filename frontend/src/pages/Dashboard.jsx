@@ -124,7 +124,7 @@ export default function Dashboard() {
   const maxWeekly = Math.max(1, ...weeklyActivity.map((day) => day.count || 0));
   const hasAnyActivity = interviewCount > 0 || resumeCount > 0 || jobCount > 0 || (dsaProblemsCount || 0) > 0;
   const targetLabel = user?.targetRole || "Full Stack Engineer";
-  const readinessPercent = averageScore !== null ? averageScore : (completedCount > 0 ? 50 : 0);
+  const readinessPercent = averageScore !== null ? averageScore : null;
 
   // Client-side search filter for recent interviews
   const filteredRecentInterviews = recentInterviews.filter((item) => {
@@ -142,39 +142,15 @@ export default function Dashboard() {
         <Sidebar />
 
         <section className="dashboard-main">
-          {/* Top Header Bar matching Panel 04 reference */}
-          <header className="dashboard-topbar">
-            <div className="dashboard-search-wrap">
-              <span aria-hidden="true" style={{ opacity: 0.7 }}>🔍</span>
-              <input
-                type="search"
-                placeholder="Search anything (interviews, role, difficulty)..."
-                className="dashboard-search-input"
-                aria-label="Search interviews and topics"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </div>
-
-            <div className="dashboard-topbar__actions">
-              <button
-                type="button"
-                className="dashboard-icon-btn"
-                aria-label="Notifications"
-                title="Notifications"
-                onClick={() => {}}
-              >
-                🔔
-              </button>
-
-              <div className="dashboard-user-chip">
-                <div className="dashboard-user-avatar" aria-hidden="true">
-                  {user?.name ? user.name.slice(0, 1).toUpperCase() : "C"}
-                </div>
-                <div className="dashboard-user-meta">
-                  <strong>{user?.name || "Candidate"}</strong>
-                  <span>{targetLabel}</span>
-                </div>
+          {/* Top Header Bar */}
+          <header className="dashboard-topbar" style={{ justifyContent: "flex-end" }}>
+            <div className="dashboard-user-chip">
+              <div className="dashboard-user-avatar" aria-hidden="true">
+                {user?.name ? user.name.slice(0, 1).toUpperCase() : "C"}
+              </div>
+              <div className="dashboard-user-meta">
+                <strong>{user?.name || "Candidate"}</strong>
+                <span>{targetLabel}</span>
               </div>
             </div>
           </header>
@@ -346,7 +322,7 @@ export default function Dashboard() {
           <div className="dashboard-columns">
             {/* Left Column: Recent Mock Interviews */}
             <article className="recent-sessions-card">
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.2rem", flexWrap: "wrap", gap: "0.5rem" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.2rem", flexWrap: "wrap", gap: "0.75rem" }}>
                 <div>
                   <span className="eyebrow" style={{ color: "var(--accent-mint)", marginBottom: "0.2rem" }}>
                     Recent Activity
@@ -355,15 +331,34 @@ export default function Dashboard() {
                     Recent Interviews
                   </h2>
                 </div>
-                <Link to="/interviews" style={{ fontSize: "0.82rem", color: "var(--accent-mint)", fontWeight: 600 }}>
-                  View All ({interviewCount}) →
-                </Link>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap" }}>
+                  <input
+                    type="search"
+                    placeholder="Filter interviews"
+                    aria-label="Filter interviews"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    style={{
+                      padding: "0.4rem 0.85rem",
+                      fontSize: "0.82rem",
+                      borderRadius: "999px",
+                      background: "rgba(255, 255, 255, 0.04)",
+                      border: "1px solid rgba(0, 245, 184, 0.22)",
+                      color: "#fff",
+                      outline: "none",
+                      width: "160px",
+                    }}
+                  />
+                  <Link to="/interviews" style={{ fontSize: "0.82rem", color: "var(--accent-mint)", fontWeight: 600 }}>
+                    View All ({interviewCount}) →
+                  </Link>
+                </div>
               </div>
 
               {filteredRecentInterviews.length === 0 ? (
                 <div style={{ textAlign: "center", padding: "2.2rem 1rem", color: "var(--text-muted)" }}>
                   <p style={{ margin: "0 0 0.8rem", fontSize: "0.92rem" }}>
-                    {searchQuery ? "No interviews match your search." : "No recent interview sessions recorded."}
+                    {searchQuery ? "No interviews match your filter." : "No recent interview sessions recorded."}
                   </p>
                   <Link to="/interviews/new" style={{ color: "var(--accent-mint)", fontWeight: 700, fontSize: "0.88rem" }}>
                     Start your first mock interview →
