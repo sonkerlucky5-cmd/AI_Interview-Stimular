@@ -82,19 +82,24 @@
 ### Breakpoints to Support & Test:
 - **Breakpoints:** `320px`, `375px`, `414px`, `768px`, `834px`, `1024px`, `1280px`, `1440px`, `1920px`.
 - **Mobile-first CSS:** Prefer `min-width` media queries where architecturally appropriate.
+- **Viewport meta tag:** Always ensure `<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">` is present to support edge-to-edge rendering on modern notched and island displays.
 
 ### Layout:
+- **Fluid first, breakpoints second:** Layouts must adapt organically by available container space rather than rigid device names.
 - **No horizontal page scroll at any width.** Only intentional containers (tables, code blocks, tab bars) may scroll horizontally, inside their own dedicated `overflow-x: auto` wrapper.
-- **Fluid units:** Use `%`, `rem`, `clamp()`, `minmax()`, auto-fit grids, and `flex-wrap`. No fixed pixel widths on containers. Use `max-width` instead of fixed `width`.
-- **Media elements:** Images, video, canvas, and SVG must have `max-width: 100%`, `height: auto`, with explicit `width`/`height` attributes or CSS `aspect-ratio` to prevent layout shifts (CLS).
-- **Sidebar:** Fixed column on desktop, collapses to a drawer or horizontal pill bar below `1080px`. Must provide the exact same routes and links at every viewport size.
-- **Tables and data lists:** Stack gracefully as cards or scroll cleanly inside a dedicated overflow wrapper on mobile viewports.
+- **Fluid units & grids:** Use `%`, `rem`, `clamp()`, `minmax()`, and auto-fit grids (`repeat(auto-fit, minmax(min(100%, 260px), 1fr))`). No fixed pixel widths on layout containers. Use `max-width` instead of fixed `width`.
+- **Container queries (@container):** Prefer CSS container queries for cards, widgets, and stat panels that reside in variable-width dashboard grids or sidebar-adjacent columns.
+- **Media elements & canvas:** Images, video, canvas (Three.js), and SVG must have `max-width: 100%`, `height: auto`, with explicit `width`/`height` attributes or CSS `aspect-ratio` to prevent layout shifts (CLS).
+- **Sidebar & Navbar:** Fixed column on desktop, collapses automatically below `1080px` to a drawer or horizontal pill scroll bar. Must provide the exact same routes and links at every viewport size.
+- **Tables and data lists:** Stack gracefully as cards or scroll cleanly inside a dedicated `overflow-x: auto` wrapper on mobile viewports.
 - **Viewport height:** Use `100dvh` (not `100vh`) for full-screen sections on mobile browsers to avoid mobile browser navigation bar clipping.
 - **Safe-area insets:** Respect notch and home indicator insets on modern mobile devices using `env(safe-area-inset-top)`, `env(safe-area-inset-right)`, `env(safe-area-inset-bottom)`, `env(safe-area-inset-left)`.
+- **Live orientation & resizing:** Adapt seamlessly to portrait/landscape rotation and window resizing live in CSS without requiring a window reload.
 
 ### Touch and Input:
 - **Touch targets:** Minimum `44×44px` touch clearance with deliberate spacing between interactive targets.
-- **Form inputs:** Minimum `16px` font size on inputs/selects/textareas to prevent unwanted auto-zooming on iOS Safari focus.
+- **Touch & Pointer media queries:** Use `@media (hover: hover) and (pointer: fine)` for desktop-only hover enhancements (tilt, zoom), and `@media (pointer: coarse)` to ensure touch devices receive $\ge 44\text{px}$ targets with zero hover-only dependencies.
+- **Form inputs:** Minimum `16px` font size on all inputs/selects/textareas to prevent unwanted auto-zooming on iOS Safari focus.
 - **No hover-only traps:** Every hover-only interaction must have a tap, touch, or keyboard focus equivalent.
 - **Mobile keyboard optimization:** Specify correct input types (`type="email"`, `type="tel"`, `type="search"`, `type="number"`) and appropriate `autoComplete` attributes.
 
@@ -113,8 +118,9 @@
 - Visible keyboard focus indicators (`:focus-visible`), sufficient WCAG AA color contrast (minimum 4.5:1 for text), accessible labels (`aria-label`, `<label for="...">`) on all inputs, and no critical status conveyed by color alone.
 
 ### Definition of Done for Any UI Change:
-- [ ] Explicitly verified at `375px`, `768px`, and `1280px` in a real browser or screenshots.
+- [ ] Explicitly verified at `320px`, `375px`, `768px`, `1024px`, and `1280px` in a real browser or screenshots.
 - [ ] Zero horizontal page scroll, zero clipped text, zero overlapping elements.
+- [ ] Staged fix process: Shared layout (Navbar, Sidebar) -> Auth pages (Login, Register) -> Dashboard -> Feature pages.
 - [ ] Explicitly report which widths were actually tested and which were "not verified". *(A passing build alone does not prove responsiveness).*
 
 ## 10. Ponytail Mode & Core Implementation Guardrails (Project Rules)
