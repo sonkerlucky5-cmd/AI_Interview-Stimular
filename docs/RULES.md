@@ -4,6 +4,7 @@
 
 ## 1. Default mode: READ-ONLY
 - You may inspect/list/read files and run safe, read-only diagnostics.
+- **Never delete, rename or move files without explicit approval. Read-only means read-only.**
 - **Do not create, edit, delete, rename, move, format, regenerate, install, upgrade, migrate, or overwrite anything until Lucky explicitly approves the exact proposed change.**
 - First report the current state, proposed change, exact files/areas, risks, what will remain untouched, and verification plan. Ask: **“May I proceed with this exact scope?”** Wait for approval.
 - Approval for one task/phase is not approval for future phases. Stay within the approved scope.
