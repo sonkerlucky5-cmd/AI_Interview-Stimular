@@ -76,17 +76,46 @@
 - GitHub push: NOT PERFORMED
 - Next approval needed
 
-## 9. Mandatory Full-Website Responsiveness & New-Component Standards
-- **100% Full Responsiveness Required:** Every existing page and every newly created component, section, modal, table, visualizer, or card MUST be completely responsive across all device breakpoints:
-  - Mobile Small: 320px
-  - Mobile Medium/Large: 375px, 390px, 414px
-  - Tablet: 768px, 834px
-  - Laptop / Small Desktop: 1024px, 1280px
-  - Large Desktop: 1440px, 1920px+
-- **Zero Horizontal Overflow:** Pages, containers, stages, and cards must never produce unwanted horizontal scrollbars or clipped content (`overflow-x: hidden` where needed, fluid grids with `minmax()`).
-- **Touch Ergonomics & Accessibility:** All interactive elements (buttons, inputs, toggles, selectors, links) must have at least 44×44px touch target clearance on mobile devices.
-- **Adaptive Layouts:** Multi-column grids must gracefully stack into clean, legible single or dual columns on smaller screens without overlapping text or cramped typography.
-- **Mandatory Verification:** Every phase verification must explicitly inspect and confirm both mobile (390×844 / 320px) and desktop (1440px / 1920px) viewports before requesting approval for the next phase.
+## 9. Mandatory Full-Website Responsiveness & New-Component Standards (RESPONSIVE DESIGN)
+*(Applies to every page and component)*
+
+### Breakpoints to Support & Test:
+- **Breakpoints:** `320px`, `375px`, `414px`, `768px`, `834px`, `1024px`, `1280px`, `1440px`, `1920px`.
+- **Mobile-first CSS:** Prefer `min-width` media queries where architecturally appropriate.
+
+### Layout:
+- **No horizontal page scroll at any width.** Only intentional containers (tables, code blocks, tab bars) may scroll horizontally, inside their own dedicated `overflow-x: auto` wrapper.
+- **Fluid units:** Use `%`, `rem`, `clamp()`, `minmax()`, auto-fit grids, and `flex-wrap`. No fixed pixel widths on containers. Use `max-width` instead of fixed `width`.
+- **Media elements:** Images, video, canvas, and SVG must have `max-width: 100%`, `height: auto`, with explicit `width`/`height` attributes or CSS `aspect-ratio` to prevent layout shifts (CLS).
+- **Sidebar:** Fixed column on desktop, collapses to a drawer or horizontal pill bar below `1080px`. Must provide the exact same routes and links at every viewport size.
+- **Tables and data lists:** Stack gracefully as cards or scroll cleanly inside a dedicated overflow wrapper on mobile viewports.
+- **Viewport height:** Use `100dvh` (not `100vh`) for full-screen sections on mobile browsers to avoid mobile browser navigation bar clipping.
+- **Safe-area insets:** Respect notch and home indicator insets on modern mobile devices using `env(safe-area-inset-top)`, `env(safe-area-inset-right)`, `env(safe-area-inset-bottom)`, `env(safe-area-inset-left)`.
+
+### Touch and Input:
+- **Touch targets:** Minimum `44×44px` touch clearance with deliberate spacing between interactive targets.
+- **Form inputs:** Minimum `16px` font size on inputs/selects/textareas to prevent unwanted auto-zooming on iOS Safari focus.
+- **No hover-only traps:** Every hover-only interaction must have a tap, touch, or keyboard focus equivalent.
+- **Mobile keyboard optimization:** Specify correct input types (`type="email"`, `type="tel"`, `type="search"`, `type="number"`) and appropriate `autoComplete` attributes.
+
+### Typography and Spacing:
+- **Fluid typography:** Utilize fluid type with `clamp()`. Body text must be at least `16px`.
+- **No text clipping or overlap:** Text must never be clipped, truncated unintentionally, or overlap at any width, including long candidate names, email addresses, and detailed error messages.
+- **Zoom support:** Ensure the layout seamlessly supports browser zoom up to 200% and user-adjusted larger system font sizes without breaking or overlapping.
+
+### Performance on Mobile:
+- **Lazy loading:** Lazy-load non-critical routes and heavy components (Three.js 3D canvas, charts, large visual assets) via dynamic imports (`React.lazy` / `Suspense`).
+- **Asset compression:** Compress images and serve appropriately sized, modern formats (WebP/AVIF).
+- **Reduced motion:** Strictly respect `prefers-reduced-motion: reduce`: disable or drastically reduce heavy animations (3D sphere rotation, particle fields, floating mascot floats).
+- **WebGL fallback:** Provide an accessible 2D/static visual fallback when WebGL is unavailable, disabled, or underperforming.
+
+### Accessibility:
+- Visible keyboard focus indicators (`:focus-visible`), sufficient WCAG AA color contrast (minimum 4.5:1 for text), accessible labels (`aria-label`, `<label for="...">`) on all inputs, and no critical status conveyed by color alone.
+
+### Definition of Done for Any UI Change:
+- [ ] Explicitly verified at `375px`, `768px`, and `1280px` in a real browser or screenshots.
+- [ ] Zero horizontal page scroll, zero clipped text, zero overlapping elements.
+- [ ] Explicitly report which widths were actually tested and which were "not verified". *(A passing build alone does not prove responsiveness).*
 
 ## 10. Ponytail Mode & Core Implementation Guardrails (Project Rules)
 - **Ponytail mode on:** Minimal code likho, lekin ye kabhi skip mat karna:
