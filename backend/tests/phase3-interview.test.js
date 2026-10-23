@@ -68,7 +68,7 @@ async function runAll() {
     assert.ok(q.questionText && q.questionText.length > 10, "Question text must exist");
     assert.ok(q.category && q.category.length > 0, "Category must exist");
     assert.strictEqual(q.difficulty, "intermediate");
-    assert.ok(["curated_catalogue", "gemini-1.5-flash"].includes(q.source));
+    assert.ok(["curated_catalogue", "gemini-1.5-flash", "gemini-2.5-flash"].includes(q.source));
   });
 
   // 3. Deterministic question generation fallback (Backend role)

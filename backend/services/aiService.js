@@ -122,7 +122,7 @@ const generateInterviewQuestion = async ({
   // 1. Try Gemini if API key is provided
   if (genAI && env.GEMINI_API_KEY) {
     try {
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
       const prompt = `
 You are a senior technical interviewer conducting a realistic mock interview.
@@ -164,7 +164,7 @@ Follow these strict rules:
           questionText: parsed.questionText.trim(),
           category: parsed.category || "General Technical",
           difficulty: parsed.difficulty || difficulty,
-          source: "gemini-1.5-flash",
+          source: "gemini-2.5-flash",
         };
       }
     } catch (err) {
@@ -208,7 +208,7 @@ const evaluateAnswer = async ({
   // 1. Try Gemini if configured
   if (genAI && env.GEMINI_API_KEY) {
     try {
-      const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+      const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
 
       const prompt = `
 You are an expert technical hiring manager evaluating an interview answer.
@@ -266,7 +266,7 @@ Rules:
           idealAnswer: parsed.idealAnswer || "A complete model answer addresses the core mechanism and relevant trade-offs.",
           followUpSuggestion: parsed.followUpSuggestion || "Continue practicing deep architectural reasoning.",
           rubricVersion: "standard_rubric_v1",
-          modelVersion: "gemini-1.5-flash",
+          modelVersion: "gemini-2.5-flash",
         };
       }
     } catch (err) {
