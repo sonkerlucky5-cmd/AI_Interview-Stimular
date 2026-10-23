@@ -91,20 +91,12 @@ function Navbar() {
     <header className="navbar" ref={navRef}>
       <div className="navbar__inner">
         {/* Brand */}
-        <Link className="brand" to="/" onClick={closeMenu} id="nav-brand">
-          <span className="brand__mark" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <circle cx="12" cy="12" r="10" stroke="url(#emerald-logo-grad)" strokeWidth="2" fill="rgba(0, 245, 184, 0.12)" />
-              <path d="M8 12C8 9.79086 9.79086 8 12 8C14.2091 8 16 9.79086 16 12C16 14.2091 14.2091 16 12 16" stroke="#00F5B8" strokeWidth="2" strokeLinecap="round" />
-              <circle cx="12" cy="12" r="2.5" fill="#00F5B8" />
-              <defs>
-                <linearGradient id="emerald-logo-grad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#00F5B8" />
-                  <stop offset="100%" stopColor="#00DDA5" />
-                </linearGradient>
-              </defs>
-            </svg>
-          </span>
+        <Link className="brand" to="/" onClick={closeMenu} id="nav-brand" aria-label="AI Interview Simulator Home">
+          <img
+            src="/logo.png"
+            alt="AI Interview Simulator Logo"
+            className="brand__logo-img"
+          />
           <span className="brand__text">
             <strong className="brand__name">
               AI Interview

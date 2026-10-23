@@ -132,33 +132,18 @@ export default function Register() {
       >
         {/* Brand Mark Centered */}
         <div style={{ display: "flex", justifyContent: "center", marginBottom: "0.85rem" }}>
-          <div
-            style={{
-              width: "44px",
-              height: "44px",
-              borderRadius: "12px",
-              background: "rgba(0, 245, 184, 0.12)",
-              border: "1px solid rgba(0, 245, 184, 0.35)",
-              display: "grid",
-              placeItems: "center",
-              boxShadow: "0 0 20px rgba(0, 245, 184, 0.25)",
-            }}
-          >
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="var(--accent-mint)"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M12 2a10 10 0 1 0 10 10H12V2z" />
-              <path d="M12 2a10 10 0 0 1 10 10h-10V2z" />
-              <circle cx="12" cy="12" r="4" fill="var(--accent-mint)" fillOpacity="0.3" />
-            </svg>
-          </div>
+          <Link to="/" aria-label="AI Interview Simulator Home" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", textDecoration: "none" }}>
+            <img
+              src="/logo.png"
+              alt="AI Interview Simulator"
+              style={{
+                height: "52px",
+                width: "auto",
+                objectFit: "contain",
+                filter: "drop-shadow(0 4px 16px rgba(0, 245, 184, 0.35))",
+              }}
+            />
+          </Link>
         </div>
 
         {/* Title & Subtitle */}
@@ -306,6 +291,7 @@ export default function Register() {
               id="register-name"
               type="text"
               name="name"
+              className="auth-input"
               autoComplete="name"
               placeholder="Enter your full name"
               value={formData.name}
@@ -316,7 +302,6 @@ export default function Register() {
               required
               style={{
                 minHeight: "44px",
-                fontSize: "0.92rem",
                 borderRadius: "var(--radius-sm)",
                 background: "rgba(6, 18, 15, 0.8)",
                 border: errors.name ? "1px solid var(--accent-coral)" : "1px solid rgba(0, 245, 184, 0.2)",
@@ -339,6 +324,7 @@ export default function Register() {
               id="register-email"
               type="email"
               name="email"
+              className="auth-input"
               autoComplete="email"
               placeholder="you@example.com"
               value={formData.email}
@@ -349,7 +335,6 @@ export default function Register() {
               required
               style={{
                 minHeight: "44px",
-                fontSize: "0.92rem",
                 borderRadius: "var(--radius-sm)",
                 background: "rgba(6, 18, 15, 0.8)",
                 border: errors.email ? "1px solid var(--accent-coral)" : "1px solid rgba(0, 245, 184, 0.2)",
@@ -407,6 +392,7 @@ export default function Register() {
                 id="register-password"
                 type={showPassword ? "text" : "password"}
                 name="password"
+                className="auth-input"
                 autoComplete="new-password"
                 placeholder="Create a password"
                 value={formData.password}
@@ -417,7 +403,6 @@ export default function Register() {
                 required
                 style={{
                   minHeight: "44px",
-                  fontSize: "0.92rem",
                   borderRadius: "var(--radius-sm)",
                   background: "rgba(6, 18, 15, 0.8)",
                   border: errors.password ? "1px solid var(--accent-coral)" : "1px solid rgba(0, 245, 184, 0.2)",
@@ -477,6 +462,7 @@ export default function Register() {
                 id="register-confirm-password"
                 type={showConfirmPassword ? "text" : "password"}
                 name="confirmPassword"
+                className="auth-input"
                 autoComplete="new-password"
                 placeholder="Confirm your password"
                 value={confirmPassword}
@@ -487,7 +473,6 @@ export default function Register() {
                 required
                 style={{
                   minHeight: "44px",
-                  fontSize: "0.92rem",
                   borderRadius: "var(--radius-sm)",
                   background: "rgba(6, 18, 15, 0.8)",
                   border: errors.confirmPassword ? "1px solid var(--accent-coral)" : "1px solid rgba(0, 245, 184, 0.2)",

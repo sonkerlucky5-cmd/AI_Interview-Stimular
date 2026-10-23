@@ -93,33 +93,18 @@ function Login() {
       >
         {/* Brand Mark Centered */}
         <div style={{ display: "flex", justifyContent: "center", marginBottom: "0.85rem" }}>
-          <div
-            style={{
-              width: "44px",
-              height: "44px",
-              borderRadius: "12px",
-              background: "rgba(0, 245, 184, 0.12)",
-              border: "1px solid rgba(0, 245, 184, 0.35)",
-              display: "grid",
-              placeItems: "center",
-              boxShadow: "0 0 20px rgba(0, 245, 184, 0.25)",
-            }}
-          >
-            <svg
-              width="22"
-              height="22"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="var(--accent-mint)"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M12 2a10 10 0 1 0 10 10H12V2z" />
-              <path d="M12 2a10 10 0 0 1 10 10h-10V2z" />
-              <circle cx="12" cy="12" r="4" fill="var(--accent-mint)" fillOpacity="0.3" />
-            </svg>
-          </div>
+          <Link to="/" aria-label="AI Interview Simulator Home" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", textDecoration: "none" }}>
+            <img
+              src="/logo.png"
+              alt="AI Interview Simulator"
+              style={{
+                height: "52px",
+                width: "auto",
+                objectFit: "contain",
+                filter: "drop-shadow(0 4px 16px rgba(0, 245, 184, 0.35))",
+              }}
+            />
+          </Link>
         </div>
 
         {/* Title & Subtitle */}
@@ -267,6 +252,7 @@ function Login() {
               id="login-email"
               type="email"
               name="email"
+              className="auth-input"
               value={formData.email}
               onChange={handleChange}
               placeholder="you@example.com"
@@ -274,7 +260,6 @@ function Login() {
               autoComplete="email"
               style={{
                 minHeight: "44px",
-                fontSize: "0.92rem",
                 borderRadius: "var(--radius-sm)",
                 background: "rgba(6, 18, 15, 0.8)",
                 border: "1px solid rgba(0, 245, 184, 0.2)",
@@ -293,6 +278,7 @@ function Login() {
                 id="login-password"
                 type={showPassword ? "text" : "password"}
                 name="password"
+                className="auth-input"
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="Enter your password"
@@ -300,7 +286,6 @@ function Login() {
                 autoComplete="current-password"
                 style={{
                   minHeight: "44px",
-                  fontSize: "0.92rem",
                   borderRadius: "var(--radius-sm)",
                   background: "rgba(6, 18, 15, 0.8)",
                   border: "1px solid rgba(0, 245, 184, 0.2)",

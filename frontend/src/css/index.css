@@ -204,7 +204,8 @@ video {
   .form-input,
   .field input,
   .field select,
-  .field textarea {
+  .field textarea,
+  .auth-input {
     font-size: 16px !important;
   }
 }
