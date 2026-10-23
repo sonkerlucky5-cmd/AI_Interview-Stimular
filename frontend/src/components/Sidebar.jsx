@@ -18,7 +18,8 @@ function Sidebar() {
         </p>
       </div>
 
-      <nav className="sidebar__nav" style={{ display: "grid", gap: "0.4rem" }}>
+      <div className="sidebar__nav-wrapper">
+        <nav className="sidebar__nav">
         <NavLink
           className={({ isActive }) => `sidebar__link${isActive ? " active" : ""}`}
           to="/dashboard"
@@ -82,7 +83,8 @@ function Sidebar() {
           <span aria-hidden="true" style={{ fontSize: "1.05rem" }}>👤</span>
           <span>Profile</span>
         </NavLink>
-      </nav>
+        </nav>
+      </div>
 
       <div className="sidebar__card sidebar__card--accent" style={{ padding: "1.1rem 1.25rem", borderRadius: "18px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.45rem", marginBottom: "0.3rem" }}>
