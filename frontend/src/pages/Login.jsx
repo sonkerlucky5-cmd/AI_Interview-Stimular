@@ -45,6 +45,7 @@ function Login() {
       className="page page--auth"
       style={{
         minHeight: "calc(100vh - 80px)",
+        minHeight: "calc(100dvh - 80px)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -304,7 +305,7 @@ function Login() {
                   background: "rgba(6, 18, 15, 0.8)",
                   border: "1px solid rgba(0, 245, 184, 0.2)",
                   color: "#FFFFFF",
-                  paddingRight: "2.75rem",
+                  paddingRight: "3rem",
                   width: "100%",
                 }}
               />
@@ -316,11 +317,11 @@ function Login() {
                 title={showPassword ? "Hide password" : "Show password"}
                 style={{
                   position: "absolute",
-                  right: "0.75rem",
+                  right: "0.35rem",
                   top: "50%",
                   transform: "translateY(-50%)",
-                  minWidth: "36px",
-                  minHeight: "36px",
+                  minWidth: "44px",
+                  minHeight: "44px",
                   background: "transparent",
                   border: "none",
                   color: "var(--text-muted)",

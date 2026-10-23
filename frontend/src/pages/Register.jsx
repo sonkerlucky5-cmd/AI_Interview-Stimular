@@ -84,6 +84,7 @@ export default function Register() {
       className="page page--auth"
       style={{
         minHeight: "calc(100vh - 80px)",
+        minHeight: "calc(100dvh - 80px)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -376,7 +377,7 @@ export default function Register() {
                     type="button"
                     onClick={() => setFormData({ ...formData, targetRole: r.id })}
                     style={{
-                      minHeight: "40px",
+                      minHeight: "44px",
                       padding: "0.45rem 0.75rem",
                       borderRadius: "var(--radius-sm)",
                       border: isSelected ? "1px solid var(--accent-mint)" : "1px solid rgba(0, 245, 184, 0.15)",
@@ -421,7 +422,7 @@ export default function Register() {
                   background: "rgba(6, 18, 15, 0.8)",
                   border: errors.password ? "1px solid var(--accent-coral)" : "1px solid rgba(0, 245, 184, 0.2)",
                   color: "#FFFFFF",
-                  paddingRight: "2.75rem",
+                  paddingRight: "3rem",
                   width: "100%",
                 }}
               />
@@ -433,11 +434,11 @@ export default function Register() {
                 title={showPassword ? "Hide password" : "Show password"}
                 style={{
                   position: "absolute",
-                  right: "0.75rem",
+                  right: "0.35rem",
                   top: "50%",
                   transform: "translateY(-50%)",
-                  minWidth: "36px",
-                  minHeight: "36px",
+                  minWidth: "44px",
+                  minHeight: "44px",
                   background: "transparent",
                   border: "none",
                   color: "var(--text-muted)",
@@ -491,7 +492,7 @@ export default function Register() {
                   background: "rgba(6, 18, 15, 0.8)",
                   border: errors.confirmPassword ? "1px solid var(--accent-coral)" : "1px solid rgba(0, 245, 184, 0.2)",
                   color: "#FFFFFF",
-                  paddingRight: "2.75rem",
+                  paddingRight: "3rem",
                   width: "100%",
                 }}
               />
@@ -503,11 +504,11 @@ export default function Register() {
                 title={showConfirmPassword ? "Hide confirm password" : "Show confirm password"}
                 style={{
                   position: "absolute",
-                  right: "0.75rem",
+                  right: "0.35rem",
                   top: "50%",
                   transform: "translateY(-50%)",
-                  minWidth: "36px",
-                  minHeight: "36px",
+                  minWidth: "44px",
+                  minHeight: "44px",
                   background: "transparent",
                   border: "none",
                   color: "var(--text-muted)",
