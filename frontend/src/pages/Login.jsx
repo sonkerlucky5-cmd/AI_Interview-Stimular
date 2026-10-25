@@ -3,6 +3,7 @@ import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 import { getApiErrorMessage } from "../services/api";
+import NexaLogo from "../components/NexaLogo";
 
 function Login() {
   const navigate = useNavigate();
@@ -81,8 +82,8 @@ function Login() {
           maxWidth: "460px",
           margin: "0 auto",
           padding: "clamp(1.75rem, 4vw, 2.5rem) clamp(1.25rem, 3.5vw, 2.25rem)",
-          background: "rgba(10, 30, 26, 0.82)",
-          border: "1px solid rgba(0, 245, 184, 0.25)",
+          background: "var(--bg-card, rgba(10, 30, 26, 0.85))",
+          border: "1px solid var(--border-glass, rgba(0, 245, 184, 0.25))",
           borderRadius: "var(--radius-lg)",
           boxShadow: "var(--shadow-glass), 0 0 50px rgba(0, 245, 184, 0.12)",
           backdropFilter: "blur(20px)",
@@ -92,28 +93,19 @@ function Login() {
         }}
       >
         {/* Brand Mark Centered */}
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: "0.85rem" }}>
-          <Link to="/" aria-label="AI Interview Simulator Home" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", textDecoration: "none" }}>
-            <img
-              src="/logo.png"
-              alt="AI Interview Simulator"
-              style={{
-                height: "52px",
-                width: "auto",
-                objectFit: "contain",
-                filter: "drop-shadow(0 4px 16px rgba(0, 245, 184, 0.35))",
-              }}
-            />
+        <div style={{ display: "flex", justifyContent: "center", marginBottom: "1.25rem" }}>
+          <Link to="/" aria-label="NEXA AI Home" style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", textDecoration: "none" }}>
+            <NexaLogo variant="full" size={42} />
           </Link>
         </div>
 
         {/* Title & Subtitle */}
-        <div style={{ textAlign: "center", marginBottom: "1.5rem" }}>
+        <div style={{ textAlign: "center", marginBottom: "1.75rem" }}>
           <h1
             style={{
               fontSize: "clamp(1.6rem, 2.5vw, 1.95rem)",
               fontWeight: 800,
-              color: "#FFFFFF",
+              color: "var(--text-main, #FFFFFF)",
               margin: 0,
               letterSpacing: "-0.02em",
             }}
@@ -122,13 +114,13 @@ function Login() {
           </h1>
           <p
             style={{
-              color: "var(--text-muted)",
+              color: "var(--text-muted, #9CB5AD)",
               fontSize: "0.88rem",
-              margin: "0.35rem 0 0",
+              margin: "0.4rem 0 0",
               lineHeight: 1.5,
             }}
           >
-            Sign in to continue your interview preparation
+            Sign in to access your NEXA AI simulation telemetry and roadmaps
           </p>
         </div>
 
@@ -261,9 +253,9 @@ function Login() {
               style={{
                 minHeight: "44px",
                 borderRadius: "var(--radius-sm)",
-                background: "rgba(6, 18, 15, 0.8)",
-                border: "1px solid rgba(0, 245, 184, 0.2)",
-                color: "#FFFFFF",
+                background: "var(--bg-surface, rgba(6, 18, 15, 0.8))",
+                border: "1px solid var(--border-glass, rgba(0, 245, 184, 0.2))",
+                color: "var(--text-main, #FFFFFF)",
               }}
             />
           </label>
@@ -287,9 +279,9 @@ function Login() {
                 style={{
                   minHeight: "44px",
                   borderRadius: "var(--radius-sm)",
-                  background: "rgba(6, 18, 15, 0.8)",
-                  border: "1px solid rgba(0, 245, 184, 0.2)",
-                  color: "#FFFFFF",
+                  background: "var(--bg-surface, rgba(6, 18, 15, 0.8))",
+                  border: "1px solid var(--border-glass, rgba(0, 245, 184, 0.2))",
+                  color: "var(--text-main, #FFFFFF)",
                   paddingRight: "3rem",
                   width: "100%",
                 }}

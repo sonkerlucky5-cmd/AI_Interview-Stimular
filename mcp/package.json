@@ -1,0 +1,19 @@
+{
+  "name": "nexa-ai-mcp",
+  "version": "1.0.0",
+  "description": "NEXA AI Model Context Protocol (MCP) Server for LLM clients",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "interview-simulator",
+    "ai",
+    "nexa"
+  ],
+  "author": "NEXA AI",
+  "license": "MIT"
+}

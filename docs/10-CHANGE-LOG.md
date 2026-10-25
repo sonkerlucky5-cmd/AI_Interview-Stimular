@@ -1,4 +1,45 @@
 # 10 — Change Log
+ 
+## [NEXA AI Transformation — Stages 1–5] — 2026-10-25
+ 
+### Approved Scope
+- Full-stack brand transformation to **NEXA AI** ("Your Next Interview, Reimagined by AI.") inspired by the user reference design.
+- Implement dual design token system (Deep Obsidian Dark + Neon-Lime `#94FF00` / Futuristic Ice-White Laboratory + Emerald `#059669`).
+- Implement 3D Crystalline Neural Core Hero (faceted icosahedron, orbital rings, particle cloud, and mouse parallax inertia).
+- Build Interactive Simulation Terminal Preview component with multi-track tabs (Backend, DSA, Frontend, Behavioral), real-time speech waveform, code snippet editor, and rubric scorecard.
+- Unify global navigation, footer telemetry badge (`● NEXA v2.5 Engine Operational`), and authentication pages (`/login`, `/register`).
+- Build production-ready Model Context Protocol (MCP) server (`mcp/server.js`) with 10 developer tools over STDIO JSON-RPC 2.0.
+- Strict adherence to `RULES.md` (Ponytail Mode: Plan ➔ Build ➔ Test ➔ Launch, zero fake statistics, `GitHub push: NOT PERFORMED`).
+ 
+### Added
+- `frontend/src/components/NexaLogo.jsx`: 3D isometric ribbon neural logo with SVG gradients and neon glow.
+- `frontend/src/components/ThemeToggle.jsx`: Accessible sun/moon theme toggle switch with tactile micro-interactions.
+- `frontend/src/context/ThemeContext.jsx` & `frontend/src/hooks/useTheme.js`: React theme engine with local storage persistence and system preference detection.
+- `frontend/src/components/InterviewSimulationPreview.jsx`: Real-time interactive simulation preview terminal.
+- `mcp/server.js`: Pure Node.js STDIO MCP server implementing JSON-RPC 2.0 with 10 tools.
+- `mcp/package.json`: MCP metadata manifest.
+- `mcp/README.md`: Integration guide for Claude Desktop, Cursor, and Antigravity.
+- `mcp/test-mcp.js`: Standalone test suite for initialization, tool discovery, and health execution.
+ 
+### Modified
+- `frontend/src/styles/theme.css`: Dual-theme design tokens for dark and light modes.
+- `frontend/src/css/index.css`: Typography, body styling, and selection colors.
+- `frontend/src/css/layout.css`: Navbar, mobile drawer, and responsive layouts.
+- `frontend/src/components/HoloHero.jsx` & `HoloHero.css`: Rebuilt hero with telemetry badges, dynamic ticker, and 3D canvas.
+- `frontend/src/components/ThreeSphereCanvas.jsx`: 3D crystalline neural icosahedron core with orbital rings and particle cloud.
+- `frontend/src/components/Navbar.jsx` & `Footer.jsx`: Integrated NexaLogo, ThemeToggle, and telemetry status badge.
+- `frontend/src/pages/Home.jsx` & `mockData.js`: Updated feature bento, 3-step pathway, and simulation preview.
+- `frontend/src/pages/Login.jsx` & `Register.jsx`: Updated logo, theme tokens, and brand copy.
+- `docs/PROJECT-STATUS.md` & `docs/10-CHANGE-LOG.md`.
+ 
+### Verification
+- **Frontend Production Build:** `npm run build` executed via Vite. Built in 610ms, 139 modules transformed with 0 errors.
+- **MCP Test Suite:** `node mcp/test-mcp.js` executed with exit code 0; all 10 tools registered and executed successfully.
+- **Visual & Multi-Resolution QA:** Verified via browser subagent across 375px mobile, 768px tablet, 1280px desktop, and 1536px large screens.
+- **Theme Roundtrip:** Dark ➔ Light ➔ Dark verified with responsive token transitions.
+- **GitHub Push:** **NOT PERFORMED** (strictly local on disk per `RULES.md` Rule 2).
+ 
+---
 
 ## [DSA Runner Integration — gated] — 2026-10-22
 
