@@ -5,32 +5,42 @@ import useAuth from "../hooks/useAuth";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
   const { isAuthenticated, logout, user } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const navRef = useRef(null);
+  const dropdownRef = useRef(null);
 
-  const closeMenu = () => setIsMenuOpen(false);
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+    setIsDropdownOpen(false);
+  };
 
-  // Close menu on route change
+  // Close menu and dropdown on route change
   useEffect(() => {
     setIsMenuOpen(false);
+    setIsDropdownOpen(false);
   }, [location.pathname]);
 
-  // Close menu on click outside or Escape key
+  // Close menu and dropdown on click outside or Escape key
   useEffect(() => {
-    if (!isMenuOpen) return;
+    if (!isMenuOpen && !isDropdownOpen) return;
 
     const handleClickOutside = (e) => {
       if (navRef.current && !navRef.current.contains(e.target)) {
         setIsMenuOpen(false);
+      }
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setIsDropdownOpen(false);
       }
     };
 
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
         setIsMenuOpen(false);
+        setIsDropdownOpen(false);
       }
     };
 
@@ -51,7 +61,7 @@ function Navbar() {
       document.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("resize", handleResize);
     };
-  }, [isMenuOpen]);
+  }, [isMenuOpen, isDropdownOpen]);
 
   const handleLogout = async () => {
     setIsLoggingOut(true);
@@ -69,6 +79,7 @@ function Navbar() {
   const handleAnchorClick = (e, selector) => {
     e.preventDefault();
     closeMenu();
+    setIsDropdownOpen(false);
     if (location.pathname !== "/") {
       navigate("/");
       setTimeout(() => {
@@ -122,62 +133,7 @@ function Navbar() {
         {/* Nav panel */}
         <div className={`navbar__panel ${isMenuOpen ? "is-open" : ""}`}>
           <nav className="navbar__links" aria-label="Primary navigation">
-            <NavLink
-              className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
-              to="/"
-              end
-              onClick={closeMenu}
-              id="nav-home"
-            >
-              Home
-            </NavLink>
-
-            <a
-              href="#features"
-              className="navbar__link"
-              onClick={(e) => handleAnchorClick(e, "#features")}
-              id="nav-features"
-            >
-              Features
-            </a>
-
-            <a
-              href="#how-it-works"
-              className="navbar__link"
-              onClick={(e) => handleAnchorClick(e, "#how-it-works")}
-              id="nav-process"
-            >
-              How It Works
-            </a>
-
-            <a
-              href="#pricing"
-              className="navbar__link"
-              onClick={(e) => handleAnchorClick(e, "#pricing")}
-              id="nav-pricing"
-            >
-              Pricing
-            </a>
-
-            <a
-              href="#testimonials"
-              className="navbar__link"
-              onClick={(e) => handleAnchorClick(e, "#testimonials")}
-              id="nav-testimonials"
-            >
-              Testimonials
-            </a>
-
-            <a
-              href="#faq"
-              className="navbar__link"
-              onClick={(e) => handleAnchorClick(e, "#faq")}
-              id="nav-faq"
-            >
-              FAQ
-            </a>
-
-            {isAuthenticated && (
+            {isAuthenticated ? (
               <>
                 <NavLink
                   className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
@@ -187,6 +143,7 @@ function Navbar() {
                 >
                   Dashboard
                 </NavLink>
+
                 <NavLink
                   className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
                   to="/interview"
@@ -195,6 +152,156 @@ function Navbar() {
                 >
                   Practice Room
                 </NavLink>
+
+                {/* Explore Dropdown */}
+                <div className="navbar__dropdown" ref={dropdownRef}>
+                  <button
+                    type="button"
+                    className={`navbar__dropdown-trigger ${isDropdownOpen ? "is-open" : ""}`}
+                    onClick={() => setIsDropdownOpen((v) => !v)}
+                    aria-expanded={isDropdownOpen}
+                    aria-haspopup="true"
+                    id="nav-dropdown-trigger"
+                  >
+                    <span>Explore</span>
+                    <span className="navbar__dropdown-chevron" aria-hidden="true">▾</span>
+                  </button>
+
+                  {isDropdownOpen && (
+                    <div className="navbar__dropdown-menu" role="menu">
+                      <NavLink
+                        to="/"
+                        end
+                        className="navbar__dropdown-item"
+                        onClick={closeMenu}
+                      >
+                        <span className="navbar__dropdown-icon">🏠</span>
+                        <span>Home</span>
+                      </NavLink>
+
+                      <a
+                        href="#features"
+                        className="navbar__dropdown-item"
+                        onClick={(e) => handleAnchorClick(e, "#features")}
+                      >
+                        <span className="navbar__dropdown-icon">✨</span>
+                        <span>Features</span>
+                      </a>
+
+                      <a
+                        href="#how-it-works"
+                        className="navbar__dropdown-item"
+                        onClick={(e) => handleAnchorClick(e, "#how-it-works")}
+                      >
+                        <span className="navbar__dropdown-icon">⚡</span>
+                        <span>How It Works</span>
+                      </a>
+
+                      <a
+                        href="#pricing"
+                        className="navbar__dropdown-item"
+                        onClick={(e) => handleAnchorClick(e, "#pricing")}
+                      >
+                        <span className="navbar__dropdown-icon">💎</span>
+                        <span>Pricing</span>
+                      </a>
+
+                      <a
+                        href="#testimonials"
+                        className="navbar__dropdown-item"
+                        onClick={(e) => handleAnchorClick(e, "#testimonials")}
+                      >
+                        <span className="navbar__dropdown-icon">💬</span>
+                        <span>Testimonials</span>
+                      </a>
+
+                      <a
+                        href="#faq"
+                        className="navbar__dropdown-item"
+                        onClick={(e) => handleAnchorClick(e, "#faq")}
+                      >
+                        <span className="navbar__dropdown-icon">❓</span>
+                        <span>FAQ</span>
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </>
+            ) : (
+              <>
+                <NavLink
+                  className={({ isActive }) => `navbar__link${isActive ? " active" : ""}`}
+                  to="/"
+                  end
+                  onClick={closeMenu}
+                  id="nav-home"
+                >
+                  Home
+                </NavLink>
+
+                <a
+                  href="#features"
+                  className="navbar__link"
+                  onClick={(e) => handleAnchorClick(e, "#features")}
+                  id="nav-features"
+                >
+                  Features
+                </a>
+
+                <a
+                  href="#pricing"
+                  className="navbar__link"
+                  onClick={(e) => handleAnchorClick(e, "#pricing")}
+                  id="nav-pricing"
+                >
+                  Pricing
+                </a>
+
+                {/* More Dropdown for Guests */}
+                <div className="navbar__dropdown" ref={dropdownRef}>
+                  <button
+                    type="button"
+                    className={`navbar__dropdown-trigger ${isDropdownOpen ? "is-open" : ""}`}
+                    onClick={() => setIsDropdownOpen((v) => !v)}
+                    aria-expanded={isDropdownOpen}
+                    aria-haspopup="true"
+                    id="nav-dropdown-trigger"
+                  >
+                    <span>More</span>
+                    <span className="navbar__dropdown-chevron" aria-hidden="true">▾</span>
+                  </button>
+
+                  {isDropdownOpen && (
+                    <div className="navbar__dropdown-menu" role="menu">
+                      <a
+                        href="#how-it-works"
+                        className="navbar__dropdown-item"
+                        onClick={(e) => handleAnchorClick(e, "#how-it-works")}
+                      >
+                        <span className="navbar__dropdown-icon">⚡</span>
+                        <span>How It Works</span>
+                      </a>
+
+                      <a
+                        href="#testimonials"
+                        className="navbar__dropdown-item"
+                        onClick={(e) => handleAnchorClick(e, "#testimonials")}
+                      >
+                        <span className="navbar__dropdown-icon">💬</span>
+                        <span>Testimonials</span>
+                      </a>
+
+                      <a
+                        href="#faq"
+                        className="navbar__dropdown-item"
+                        onClick={(e) => handleAnchorClick(e, "#faq")}
+                      >
+                        <span className="navbar__dropdown-icon">❓</span>
+                        <span>FAQ</span>
+                      </a>
+                    </div>
+                  )}
+                </div>
               </>
             )}
           </nav>
