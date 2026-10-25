@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
+import NexaLogo from "./NexaLogo";
+import ThemeToggle from "./ThemeToggle";
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -102,18 +104,8 @@ function Navbar() {
     <header className="navbar" ref={navRef}>
       <div className="navbar__inner">
         {/* Brand */}
-        <Link className="brand" to="/" onClick={closeMenu} id="nav-brand" aria-label="AI Interview Simulator Home">
-          <img
-            src="/logo.png"
-            alt="AI Interview Simulator Logo"
-            className="brand__logo-img"
-          />
-          <span className="brand__text">
-            <strong className="brand__name">
-              AI Interview
-            </strong>
-            <small className="brand__sub" style={{ color: "var(--accent-mint)", letterSpacing: "0.08em" }}>Simulator</small>
-          </span>
+        <Link className="brand" to="/" onClick={closeMenu} id="nav-brand" aria-label="NEXA AI Home">
+          <NexaLogo variant="full" size={36} />
         </Link>
 
         {/* Mobile toggle */}
@@ -307,6 +299,7 @@ function Navbar() {
           </nav>
 
           <div className="navbar__actions">
+            <ThemeToggle id="nav-theme-toggle" />
             {isAuthenticated ? (
               <>
                 <Link to="/profile" className="navbar__user" aria-label="User info" onClick={closeMenu}>

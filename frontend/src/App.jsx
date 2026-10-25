@@ -6,6 +6,7 @@ import ScrollProgress from "./components/ScrollProgress";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
 import { AuthProvider } from "./context/AuthContext.jsx";
+import { ThemeProvider } from "./context/ThemeContext.jsx";
 import useSmoothScroll from "./hooks/useSmoothScroll";
 
 import Home from "./pages/Home";
@@ -75,20 +76,22 @@ function AppContent() {
 function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <AppContent />
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            style: {
-              background: "#0c1220",
-              color: "#ecf0ff",
-              border: "1px solid rgba(133, 155, 201, 0.16)",
-              borderRadius: "14px",
-            },
-          }}
-        />
-      </AuthProvider>
+      <ThemeProvider>
+        <AuthProvider>
+          <AppContent />
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              style: {
+                background: "var(--bg-card, #0c1220)",
+                color: "var(--text-primary, #ecf0ff)",
+                border: "1px solid var(--border-glass, rgba(133, 155, 201, 0.16))",
+                borderRadius: "14px",
+              },
+            }}
+          />
+        </AuthProvider>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }

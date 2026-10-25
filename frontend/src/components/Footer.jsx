@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import NexaLogo from "./NexaLogo";
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -12,145 +13,183 @@ export default function Footer() {
   return (
     <footer
       style={{
-        background: "linear-gradient(180deg, #050907 0%, #030604 100%)",
-        borderTop: "1px solid rgba(150, 255, 195, 0.12)",
+        background: "var(--bg-primary, #030806)",
+        borderTop: "1px solid var(--border-glass, rgba(0, 245, 184, 0.15))",
         padding: "4.5rem 6% 2.5rem",
-        color: "var(--text-muted)",
+        color: "var(--text-muted, #9CB5AD)",
         position: "relative",
         zIndex: 10,
+        transition: "background-color 0.25s ease, border-color 0.25s ease",
       }}
     >
       <div
         style={{
-          maxWidth: "1280px",
+          maxWidth: "1320px",
           margin: "0 auto",
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))",
           gap: "2.5rem",
-          marginBottom: "3rem",
+          marginBottom: "3.5rem",
         }}
       >
-        <div>
-          <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "1rem" }}>
+        {/* Brand Column */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+          <Link to="/" aria-label="NEXA AI Home" style={{ textDecoration: "none", width: "fit-content" }}>
+            <NexaLogo variant="full" size={34} />
+          </Link>
+          <p
+            style={{
+              fontSize: "0.88rem",
+              lineHeight: 1.65,
+              maxWidth: "320px",
+              color: "var(--text-muted, #9CB5AD)",
+              margin: 0,
+            }}
+          >
+            Next-generation AI Interview Simulator engineered to benchmark code correctness,
+            analyze speech delivery, and turn interview anxiety into offer letters.
+          </p>
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              padding: "0.35rem 0.85rem",
+              borderRadius: "999px",
+              background: "rgba(148, 255, 0, 0.08)",
+              border: "1px solid rgba(148, 255, 0, 0.25)",
+              color: "var(--accent-lime, #94FF00)",
+              fontSize: "0.75rem",
+              fontWeight: 700,
+              width: "fit-content",
+            }}
+          >
             <span
               style={{
-                width: "32px",
-                height: "32px",
-                borderRadius: "10px",
-                background: "rgba(98, 245, 160, 0.12)",
-                border: "1px solid rgba(98, 245, 160, 0.28)",
-                display: "grid",
-                placeItems: "center",
-                color: "#62F5A0",
-                fontWeight: 800,
-                fontSize: "14px",
+                width: "7px",
+                height: "7px",
+                borderRadius: "50%",
+                background: "#94FF00",
+                boxShadow: "0 0 8px #94FF00",
               }}
-            >
-              AI
-            </span>
-            <strong style={{ fontSize: "1.2rem", color: "#fff", letterSpacing: "-0.015em" }}>
-              Interview<span style={{ color: "var(--accent-mint)" }}>AI</span>
-            </strong>
+            />
+            <span>NEXA v2.5 Engine Operational</span>
           </div>
-          <p style={{ fontSize: "0.9rem", lineHeight: 1.65, maxWidth: "300px", color: "var(--text-muted)" }}>
-            The candidate-first AI interview simulator. Realistic questions, instant scoring, and tailored DSA practice.
-          </p>
         </div>
 
+        {/* Tracks Column */}
         <div>
-          <h4 style={{ color: "#fff", fontSize: "0.95rem", marginBottom: "1.1rem", letterSpacing: "0.06em" }}>
-            PRACTICE
+          <h4
+            style={{
+              color: "var(--text-main, #FFFFFF)",
+              fontSize: "0.85rem",
+              fontWeight: 800,
+              marginBottom: "1.2rem",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+            }}
+          >
+            SIMULATION TRACKS
           </h4>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: "0.65rem", fontSize: "0.88rem" }}>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: "0.75rem", fontSize: "0.88rem" }}>
             <li>
-              <Link to="/interview" style={{ color: "inherit", transition: "color 0.2s" }}>
-                🎙️ Mock Interview
+              <Link to="/interview" style={{ color: "inherit", textDecoration: "none", transition: "color 0.2s" }}>
+                🎙️ AI Mock Interviews
               </Link>
             </li>
             <li>
-              <Link to="/dsa" style={{ color: "inherit", transition: "color 0.2s" }}>
-                ⚡ DSA Practice
+              <Link to="/dsa" style={{ color: "inherit", textDecoration: "none", transition: "color 0.2s" }}>
+                ⚡ DSA Coding Lab
               </Link>
             </li>
             <li>
-              <Link to="/results" style={{ color: "inherit", transition: "color 0.2s" }}>
-                📊 Evaluation & Rubric
+              <Link to="/resumes" style={{ color: "inherit", textDecoration: "none", transition: "color 0.2s" }}>
+                📄 Resume Intelligence &amp; ATS
               </Link>
             </li>
             <li>
-              <Link to="/dashboard" style={{ color: "inherit", transition: "color 0.2s" }}>
-                📈 Performance Dashboard
+              <Link to="/roadmap" style={{ color: "inherit", textDecoration: "none", transition: "color 0.2s" }}>
+                🗺️ Targeted Roadmaps
               </Link>
             </li>
           </ul>
         </div>
 
+        {/* Platform Column */}
         <div>
-          <h4 style={{ color: "#fff", fontSize: "0.95rem", marginBottom: "1.1rem", letterSpacing: "0.06em" }}>
-            PLATFORM
+          <h4
+            style={{
+              color: "var(--text-main, #FFFFFF)",
+              fontSize: "0.85rem",
+              fontWeight: 800,
+              marginBottom: "1.2rem",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+            }}
+          >
+            CAPABILITIES
           </h4>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: "0.65rem", fontSize: "0.88rem" }}>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "grid", gap: "0.75rem", fontSize: "0.88rem" }}>
             <li>
-              <a
-                href="#features"
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.__lenis?.scrollTo("#features", { offset: -80 });
-                }}
-                style={{ color: "inherit" }}
-              >
-                Features
-              </a>
+              <Link to="/dashboard" style={{ color: "inherit", textDecoration: "none" }}>
+                📈 Candidate Dashboard
+              </Link>
+            </li>
+            <li>
+              <Link to="/results" style={{ color: "inherit", textDecoration: "none" }}>
+                📊 Rubric Analytics
+              </Link>
             </li>
             <li>
               <a
-                href="#how-it-works"
+                href="#simulation-preview"
                 onClick={(e) => {
                   e.preventDefault();
-                  window.__lenis?.scrollTo("#how-it-works", { offset: -80 });
+                  window.__lenis?.scrollTo("#simulation-preview", { offset: -80 });
                 }}
-                style={{ color: "inherit" }}
+                style={{ color: "inherit", textDecoration: "none" }}
               >
-                How It Works
+                ⚡ Live Terminal Preview
               </a>
             </li>
             <li>
-              <a
-                href="#pricing"
-                onClick={(e) => {
-                  e.preventDefault();
-                  window.__lenis?.scrollTo("#pricing", { offset: -80 });
-                }}
-                style={{ color: "inherit" }}
-              >
-                Pricing Plans
-              </a>
-            </li>
-            <li>
-              <Link to="/admin" style={{ color: "inherit" }}>
-                Admin Portal
+              <Link to="/admin" style={{ color: "inherit", textDecoration: "none" }}>
+                🛡️ Admin Portal
               </Link>
             </li>
           </ul>
         </div>
 
+        {/* Status & Back to Top */}
         <div>
-          <h4 style={{ color: "#fff", fontSize: "0.95rem", marginBottom: "1.1rem", letterSpacing: "0.06em" }}>
-            STAY CONNECTED
+          <h4
+            style={{
+              color: "var(--text-main, #FFFFFF)",
+              fontSize: "0.85rem",
+              fontWeight: 800,
+              marginBottom: "1.2rem",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+            }}
+          >
+            SYSTEM TELEMETRY
           </h4>
-          <p style={{ fontSize: "0.88rem", marginBottom: "1.2rem", color: "var(--text-muted)" }}>
-            Ready to ace your next technical or behavioral round?
+          <p style={{ fontSize: "0.84rem", marginBottom: "0.85rem", color: "var(--text-muted, #9CB5AD)", lineHeight: 1.6 }}>
+            Sub-second latency calibration benchmarked for FAANG &amp; tier-1 engineering interviews.
           </p>
+          <div style={{ fontSize: "0.8rem", color: "var(--accent-mint, #00F5B8)", marginBottom: "1.2rem", fontWeight: 600 }}>
+            Median AI Evaluation: ~120ms
+          </div>
           <button
             type="button"
             onClick={scrollToTop}
             style={{
               padding: "0.6rem 1.2rem",
               borderRadius: "999px",
-              background: "rgba(98, 245, 160, 0.08)",
-              border: "1px solid rgba(150, 255, 195, 0.22)",
-              color: "var(--accent-mint)",
-              fontSize: "0.85rem",
+              background: "rgba(148, 255, 0, 0.08)",
+              border: "1px solid rgba(148, 255, 0, 0.28)",
+              color: "var(--accent-lime, #94FF00)",
+              fontSize: "0.84rem",
               fontWeight: 700,
               cursor: "pointer",
               transition: "all 0.2s ease",
@@ -161,12 +200,13 @@ export default function Footer() {
         </div>
       </div>
 
+      {/* Bottom Bar */}
       <div
         style={{
-          maxWidth: "1280px",
+          maxWidth: "1320px",
           margin: "0 auto",
           paddingTop: "2rem",
-          borderTop: "1px solid rgba(150, 255, 195, 0.08)",
+          borderTop: "1px solid var(--border-glass, rgba(0, 245, 184, 0.1))",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
@@ -175,13 +215,14 @@ export default function Footer() {
           fontSize: "0.82rem",
         }}
       >
-        <div>© {new Date().getFullYear()} InterviewAI Inc. All rights reserved.</div>
+        <div>© {new Date().getFullYear()} NEXA AI Inc. All rights reserved.</div>
         <div style={{ display: "flex", gap: "1.5rem" }}>
           <span>Privacy Policy</span>
           <span>Terms of Service</span>
-          <span>Security</span>
+          <span>Security &amp; Encryption</span>
         </div>
       </div>
     </footer>
   );
 }
+

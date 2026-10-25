@@ -226,9 +226,23 @@
   box-shadow: 0 8px 24px rgba(0, 245, 184, 0.15);
 }
 
+.hero-pill-btn--demo {
+  background: rgba(148, 255, 0, 0.08);
+  color: var(--text-main, #F5FFFC);
+  border: 1px solid rgba(148, 255, 0, 0.3);
+  backdrop-filter: blur(12px);
+}
+
+.hero-pill-btn--demo:hover {
+  background: rgba(148, 255, 0, 0.16);
+  border-color: #94FF00;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(148, 255, 0, 0.2);
+}
+
 .hero-pill-btn__play {
   font-size: 0.75rem;
-  color: var(--accent-mint, #00F5B8);
+  color: #94FF00;
 }
 
 /* ── Right Column: 3D Stage & Floating Glass Cards ── */
@@ -359,6 +373,43 @@
   box-shadow: 0 0 15px rgba(0, 245, 184, 0.15);
 }
 
+.hero-card-icon-badge--bolt {
+  background: rgba(148, 255, 0, 0.12);
+  border: 1px solid rgba(148, 255, 0, 0.35);
+  color: #94FF00;
+  box-shadow: 0 0 15px rgba(148, 255, 0, 0.25);
+}
+
+.hero-card-readiness-circle {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.readiness-svg {
+  filter: drop-shadow(0 0 6px rgba(148, 255, 0, 0.45));
+}
+
+.hero-card-pill-tag {
+  display: inline-block;
+  padding: 0.18rem 0.5rem;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  background: rgba(148, 255, 0, 0.15);
+  color: #94FF00;
+  border: 1px solid rgba(148, 255, 0, 0.4);
+}
+
+.hero-floating-card--readiness {
+  gap: 0.85rem;
+  padding: 0.8rem 1.25rem;
+}
+
 .hero-card-text {
   display: flex;
   flex-direction: column;
@@ -376,7 +427,7 @@
   color: var(--text-muted, #9CB5AD);
 }
 
-/* ── 4 Glass Statistics Cards Row ── */
+/* ── Verified Capability Cards Row (Honest Platform Pillars) ── */
 .hero-stats-wrapper {
   position: relative;
   z-index: 1;
@@ -394,9 +445,9 @@
 
 .hero-stat-card {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 1.15rem;
-  padding: 1.4rem 1.6rem;
+  padding: 1.35rem 1.5rem;
   border-radius: 20px;
   background: rgba(10, 30, 26, 0.72);
   backdrop-filter: blur(16px);
@@ -408,16 +459,16 @@
 
 .hero-stat-card:hover {
   transform: translateY(-3px);
-  border-color: rgba(0, 245, 184, 0.4);
-  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 245, 184, 0.15);
+  border-color: rgba(148, 255, 0, 0.45);
+  box-shadow: 0 16px 45px rgba(0, 0, 0, 0.6), 0 0 25px rgba(148, 255, 0, 0.15);
 }
 
 .hero-stat-card__icon {
-  font-size: 2rem;
+  font-size: 1.6rem;
   line-height: 1;
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
   background: rgba(0, 245, 184, 0.08);
   border: 1px solid rgba(0, 245, 184, 0.2);
   display: grid;
@@ -432,16 +483,17 @@
 
 .hero-stat-card__value {
   font-family: var(--font-heading, "Inter", sans-serif);
-  font-size: 1.75rem;
-  font-weight: 800;
+  font-size: 1.05rem;
+  font-weight: 700;
   color: var(--text-main, #F5FFFC);
-  line-height: 1.15;
+  line-height: 1.25;
 }
 
 .hero-stat-card__label {
   font-size: 0.82rem;
   color: var(--text-muted, #9CB5AD);
-  margin-top: 0.15rem;
+  margin-top: 0.35rem;
+  line-height: 1.5;
 }
 
 /* ── Monochrome Partner Strip ── */
@@ -591,3 +643,150 @@
     animation: none !important;
   }
 }
+
+/* ── Partner label styling ── */
+.hero-partners-label {
+  text-align: center;
+  margin-bottom: 0.85rem;
+}
+
+.hero-partners-label span {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--text-muted, #9CB5AD);
+  opacity: 0.8;
+}
+
+/* ═════════════════════════════════════════════
+   LIGHT THEME OVERRIDES FOR HOLOHERO
+   ═════════════════════════════════════════════ */
+[data-theme="light"] .hero-saas {
+  background-color: var(--bg-primary, #F7FAF8);
+}
+
+[data-theme="light"] .hero-ambient-glow {
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, rgba(5, 150, 105, 0.04) 50%, transparent 70%);
+}
+
+[data-theme="light"] .hero-grid-overlay {
+  background-image:
+    linear-gradient(rgba(16, 185, 129, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(16, 185, 129, 0.05) 1px, transparent 1px);
+}
+
+[data-theme="light"] .hero-badge {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.3);
+  color: #15803D;
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.1);
+}
+
+[data-theme="light"] .hero-headline {
+  color: #0B1713;
+}
+
+[data-theme="light"] .hero-headline__accent {
+  color: #16A34A;
+  text-shadow: 0 0 30px rgba(22, 163, 74, 0.3);
+}
+
+[data-theme="light"] .hero-typing-bar {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(16, 185, 129, 0.25);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .hero-typing-label {
+  color: #4B6358;
+}
+
+[data-theme="light"] .hero-typing-text {
+  color: #15803D;
+}
+
+[data-theme="light"] .hero-description {
+  color: #3D534A;
+}
+
+[data-theme="light"] .hero-pill-btn--primary {
+  background: #16A34A;
+  color: #FFFFFF;
+  box-shadow: 0 10px 24px rgba(22, 163, 74, 0.3);
+}
+
+[data-theme="light"] .hero-pill-btn--primary:hover {
+  background: #15803D;
+  box-shadow: 0 14px 30px rgba(22, 163, 74, 0.4);
+}
+
+[data-theme="light"] .hero-pill-btn--ghost {
+  background: #FFFFFF;
+  color: #0B1713;
+  border-color: rgba(16, 185, 129, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .hero-pill-btn--ghost:hover {
+  background: #F0FDF4;
+  border-color: #16A34A;
+}
+
+[data-theme="light"] .hero-pill-btn--demo {
+  background: rgba(22, 163, 74, 0.08);
+  color: #15803D;
+  border-color: rgba(22, 163, 74, 0.3);
+}
+
+[data-theme="light"] .hero-floating-card {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(16, 185, 129, 0.22);
+  box-shadow: 0 16px 35px rgba(0, 0, 0, 0.08), 0 0 15px rgba(16, 185, 129, 0.08);
+}
+
+[data-theme="light"] .hero-floating-card strong {
+  color: #0B1713;
+}
+
+[data-theme="light"] .hero-floating-card small {
+  color: #4B6358;
+}
+
+[data-theme="light"] .hero-card-pill-tag {
+  background: rgba(22, 163, 74, 0.12);
+  color: #15803D;
+  border-color: rgba(22, 163, 74, 0.35);
+}
+
+[data-theme="light"] .hero-stat-card {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .hero-stat-card__value {
+  color: #0B1713;
+}
+
+[data-theme="light"] .hero-stat-card__label {
+  color: #4B6358;
+}
+
+[data-theme="light"] .hero-stat-card__icon {
+  background: rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+[data-theme="light"] .hero-partners-strip {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+}
+
+[data-theme="light"] .hero-partner-item {
+  color: rgba(11, 23, 19, 0.55);
+}
+
+[data-theme="light"] .hero-partner-item:hover {
+  color: #16A34A;
+}
+

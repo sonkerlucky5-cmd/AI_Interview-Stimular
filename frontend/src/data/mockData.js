@@ -27,27 +27,27 @@ export const faqItems = [
 
 export const features = [
   {
-    icon: "⚡",
-    title: "Real-Time AI Evaluator",
-    description: "Gemini-powered feedback evaluating technical depth, algorithm complexity, and communication clarity instantly.",
-    tag: "Instant Rubric",
-  },
-  {
-    icon: "🎯",
-    title: "Role-Specific Questions",
-    description: "Target Frontend (React), Backend (Node/Go), System Design, or HR Behavioral rounds calibrated to your target seniority.",
-    tag: "Targeted",
+    icon: "🎙️",
+    title: "AI Mock Interviews",
+    description: "Multi-turn spoken and text interviews with adaptive questioning, calibrated difficulty, and real-time guidance.",
+    tag: "Core Simulator",
   },
   {
     icon: "💻",
-    title: "Interactive DSA Arena",
-    description: "Curated problem bank with real-time test verification, time complexity auditing, and hint assistance.",
-    tag: "DSA Practice",
+    title: "DSA Coding Lab",
+    description: "In-browser Monaco editor with automated test validation, AST complexity analysis, and progressive hinting.",
+    tag: "Coding Arena",
   },
   {
-    icon: "📊",
+    icon: "📄",
+    title: "Resume Intelligence",
+    description: "Instant ATS scoring, keyword extraction, and custom interview scenarios calibrated to your real career projects.",
+    tag: "ATS & Context",
+  },
+  {
+    icon: "📈",
     title: "Competency Radar & Analytics",
-    description: "Track performance across rounds, identify weak spots, and monitor progress streaks with visual breakdowns.",
+    description: "Granular rubric breakdowns across technical depth, system architecture, and communication clarity.",
     tag: "Deep Insights",
   },
 ];
@@ -55,21 +55,21 @@ export const features = [
 export const howItWorksSteps = [
   {
     step: "01",
-    title: "Select Role & Seniority",
-    desc: "Pick your focus track (Frontend, Backend, DSA, or Behavioral) and select Junior, Mid-Level, or Senior difficulty.",
-    badge: "1 Click",
+    title: "1. Practice",
+    desc: "Select your target role, seniority level, and company benchmark to launch an adaptive AI simulation round.",
+    badge: "Adaptive Rounds",
   },
   {
     step: "02",
-    title: "Simulate Live Interview",
-    desc: "Face adaptive questions where the AI listens, questions edge-case reasoning, and challenges design trade-offs.",
-    badge: "Live Interactive",
+    title: "2. Analyze",
+    desc: "Review synchronized audio transcripts, code efficiency metrics, and multi-dimensional rubric scoring.",
+    badge: "Sub-Second Feedback",
   },
   {
     step: "03",
-    title: "Instant Scoring & Action Plan",
-    desc: "Receive deep score breakdown across 4 key dimensions with tailored suggestions and learning milestones.",
-    badge: "Actionable",
+    title: "3. Improve",
+    desc: "Follow auto-generated drill roadmaps to systematically close skill gaps before your actual hiring loop.",
+    badge: "Targeted Roadmaps",
   },
 ];
 

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import HoloHero from "../components/HoloHero";
+import InterviewSimulationPreview from "../components/InterviewSimulationPreview";
 import Reveal from "../components/Reveal";
 import Footer from "../components/Footer";
 import { features, howItWorksSteps, pricingPlans, faqItems } from "../data/mockData";
@@ -42,10 +43,10 @@ export default function Home() {
       >
         <button
           type="button"
-          onClick={() => handleScrollTo("#overview")}
-          style={{ background: "none", border: "none", color: "var(--text-muted)", cursor: "pointer", fontWeight: 600 }}
+          onClick={() => handleScrollTo("#simulation-preview")}
+          style={{ background: "none", border: "none", color: "var(--accent-lime, #94FF00)", cursor: "pointer", fontWeight: 700 }}
         >
-          Overview
+          Simulation Preview ⚡
         </button>
         <button
           type="button"
@@ -75,6 +76,9 @@ export default function Home() {
           Live Mock 🎙️
         </Link>
       </nav>
+
+      {/* ── INTERACTIVE PRODUCT PREVIEW SECTION ── */}
+      <InterviewSimulationPreview />
 
       {/* ── BENTO OVERVIEW SECTION (Matching Reference Section 1) ── */}
       <section id="features" style={{ padding: "6rem 4% 4rem", maxWidth: "1320px", margin: "0 auto" }}>
@@ -140,32 +144,32 @@ export default function Home() {
                 <div
                   style={{
                     fontFamily: "var(--font-heading)",
-                    fontSize: "clamp(3.8rem, 6vw, 5.5rem)",
+                    fontSize: "clamp(3.5rem, 5.5vw, 5rem)",
                     fontWeight: 900,
                     lineHeight: 1,
                     color: "#FFFFFF",
                     marginBottom: "0.5rem",
                   }}
                 >
-                  20k+
+                  4-Pillar
                 </div>
-                <div style={{ color: "var(--accent-mint)", fontSize: "1.2rem", fontWeight: 700, marginBottom: "1.5rem" }}>
-                  Practice Questions Completed
+                <div style={{ color: "var(--accent-lime, #94FF00)", fontSize: "1.2rem", fontWeight: 700, marginBottom: "1.5rem" }}>
+                  Granular Rubric Evaluation
                 </div>
 
                 <p style={{ color: "var(--text-muted)", fontSize: "1rem", lineHeight: 1.7, margin: "0 0 2rem" }}>
-                  We engineer realistic interview simulations that help software engineers think faster, answer with architectural precision, and speak with unwavering confidence.
+                  We engineer realistic, multi-turn AI interview simulations that test architectural depth, analyze live speech delivery, and benchmark code correctness against tier-1 engineering standards.
                 </p>
 
                 {/* Sub-Metrics Row */}
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginBottom: "2rem" }}>
                   <div style={{ padding: "1.2rem", borderRadius: "16px", background: "rgba(255, 255, 255, 0.03)", border: "1px solid rgba(150, 255, 195, 0.1)" }}>
-                    <div style={{ fontSize: "1.8rem", fontWeight: 800, color: "#FFFFFF" }}>130k+</div>
-                    <div style={{ fontSize: "0.82rem", color: "var(--text-muted)", textTransform: "uppercase", marginTop: "0.2rem" }}>Evaluations Run</div>
+                    <div style={{ fontSize: "1.8rem", fontWeight: 800, color: "#94FF00" }}>30+</div>
+                    <div style={{ fontSize: "0.82rem", color: "var(--text-muted)", textTransform: "uppercase", marginTop: "0.2rem" }}>Role Specializations</div>
                   </div>
                   <div style={{ padding: "1.2rem", borderRadius: "16px", background: "rgba(255, 255, 255, 0.03)", border: "1px solid rgba(150, 255, 195, 0.1)" }}>
-                    <div style={{ fontSize: "1.8rem", fontWeight: 800, color: "#FFFFFF" }}>24+</div>
-                    <div style={{ fontSize: "0.82rem", color: "var(--text-muted)", textTransform: "uppercase", marginTop: "0.2rem" }}>Roles Covered</div>
+                    <div style={{ fontSize: "1.8rem", fontWeight: 800, color: "#00F5B8" }}>&lt; 1.2s</div>
+                    <div style={{ fontSize: "0.82rem", color: "var(--text-muted)", textTransform: "uppercase", marginTop: "0.2rem" }}>Rubric Feedback Speed</div>
                   </div>
                 </div>
               </div>
@@ -554,37 +558,49 @@ export default function Home() {
           <div
             className="glass-panel"
             style={{
-              padding: "4rem 2rem",
+              padding: "4.5rem 2rem",
               borderRadius: "32px",
               textAlign: "center",
-              background: "radial-gradient(ellipse at 50% 0%, rgba(0, 245, 184, 0.18), transparent 70%), rgba(10, 30, 26, 0.72)",
-              border: "1px solid rgba(0, 245, 184, 0.3)",
-              boxShadow: "0 20px 60px rgba(0, 0, 0, 0.6), 0 0 35px rgba(0, 245, 184, 0.15)",
+              background: "radial-gradient(ellipse at 50% 0%, rgba(148, 255, 0, 0.16), transparent 70%), rgba(10, 30, 26, 0.75)",
+              border: "1px solid rgba(148, 255, 0, 0.35)",
+              boxShadow: "0 20px 60px rgba(0, 0, 0, 0.6), 0 0 35px rgba(148, 255, 0, 0.15)",
             }}
           >
-            <h2 style={{ fontSize: "clamp(2.2rem, 4vw, 3.2rem)", fontWeight: 800, margin: "0 0 1rem", color: "#FFFFFF" }}>
-              Ready to Ace Your Next <span style={{ color: "var(--accent-mint)" }}>Tech Interview</span>?
+            <h2 style={{ fontSize: "clamp(2.2rem, 4vw, 3.4rem)", fontWeight: 800, margin: "0 0 1rem", color: "#FFFFFF", letterSpacing: "-0.02em" }}>
+              Build confidence <span style={{ color: "var(--accent-lime, #94FF00)" }}>before the real interview.</span>
             </h2>
-            <p style={{ maxWidth: "560px", margin: "0 auto 2rem", color: "var(--text-muted)", fontSize: "1.05rem" }}>
-              Join thousands of developers using realistic AI mock rounds, algorithm testing, and rubric coaching.
+            <p style={{ maxWidth: "620px", margin: "0 auto 2.2rem", color: "var(--text-muted, #9CB5AD)", fontSize: "1.08rem", lineHeight: 1.65 }}>
+              Practice in a risk-free environment with intelligent feedback designed to turn interview anxiety into offer letters.
             </p>
-            <Link
-              to="/register"
-              className="pill-btn-primary"
-              style={{
-                display: "inline-flex",
-                padding: "0.95rem 2.5rem",
-                fontSize: "1.05rem",
-                borderRadius: "9999px",
-                background: "var(--accent-mint)",
-                color: "#030907",
-                fontWeight: 800,
-                textDecoration: "none",
-                boxShadow: "0 10px 30px rgba(0, 245, 184, 0.4)",
-              }}
-            >
-              Get Started Free →
-            </Link>
+            <div style={{ display: "flex", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
+              <Link
+                to="/interview"
+                className="hero-pill-btn hero-pill-btn--primary"
+                style={{
+                  display: "inline-flex",
+                  padding: "0.95rem 2.5rem",
+                  fontSize: "1.05rem",
+                  borderRadius: "9999px",
+                  background: "var(--accent-mint, #00F5B8)",
+                  color: "#030907",
+                  fontWeight: 800,
+                  textDecoration: "none",
+                  boxShadow: "0 10px 30px rgba(0, 245, 184, 0.4)",
+                }}
+              >
+                Start Your First Interview Free →
+              </Link>
+              <Link
+                to="/dsa"
+                className="hero-pill-btn hero-pill-btn--ghost"
+                style={{
+                  padding: "0.95rem 2rem",
+                  fontSize: "1.05rem",
+                }}
+              >
+                Explore DSA Arena
+              </Link>
+            </div>
           </div>
         </Reveal>
       </section>

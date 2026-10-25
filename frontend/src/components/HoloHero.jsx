@@ -5,21 +5,38 @@ import ThreeSphereCanvas from "./ThreeSphereCanvas";
 import HeroDemoModal from "./HeroDemoModal";
 import "./HoloHero.css";
 
-const HERO_STATS = [
-  { value: "50K+", label: "Students Practicing", icon: "👥" },
-  { value: "200K+", label: "Interviews Conducted", icon: "🎙️" },
-  { value: "95%", label: "Positive Reviews", icon: "🛡️" },
-  { value: "10+", label: "Interview Categories", icon: "📂" },
+// Honest, verified platform capability pillars (No fake student counts)
+const VERIFIED_CAPABILITIES = [
+  {
+    icon: "⚡",
+    title: "Adaptive Question Engine",
+    desc: "Dynamic difficulty and follow-ups calibrated to your real-time responses.",
+  },
+  {
+    icon: "🎙️",
+    title: "Multi-Modal AI Evaluation",
+    desc: "Instant breakdown of vocal pacing, filler words, and technical depth.",
+  },
+  {
+    icon: "📊",
+    title: "Granular Skill Rubrics",
+    desc: "Objective scoring across Architecture, DSA complexity, and Communication.",
+  },
+  {
+    icon: "🗺️",
+    title: "Targeted Roadmaps",
+    desc: "Custom practice paths automatically generated from detected weak spots.",
+  },
 ];
 
-const PARTNER_LOGOS = [
-  { name: "Google", svg: "Google" },
-  { name: "Microsoft", svg: "Microsoft" },
-  { name: "amazon", svg: "Amazon" },
-  { name: "Meta", svg: "Meta" },
-  { name: "NETFLIX", svg: "Netflix" },
-  { name: "Spotify", svg: "Spotify" },
-  { name: "Adobe", svg: "Adobe" },
+const TARGET_COMPANIES = [
+  { name: "Google", domain: "google.com" },
+  { name: "Microsoft", domain: "microsoft.com" },
+  { name: "Amazon", domain: "amazon.com" },
+  { name: "Meta", domain: "meta.com" },
+  { name: "Apple", domain: "apple.com" },
+  { name: "Netflix", domain: "netflix.com" },
+  { name: "Uber", domain: "uber.com" },
 ];
 
 export default function HoloHero() {
@@ -27,14 +44,14 @@ export default function HoloHero() {
 
   const typedText = useTypewriter({
     words: [
-      "Practice Smarter.",
-      "Interview Stronger.",
-      "Build Career Confidence.",
-      "Get Interview Ready.",
+      "Adaptive Interview Calibration.",
+      "Real-Time Speech & Code Analysis.",
+      "Granular Rubric Scoring.",
+      "Turn Anxiety Into Offers.",
     ],
-    typingSpeed: 85,
-    deletingSpeed: 45,
-    pauseDelay: 1700,
+    typingSpeed: 75,
+    deletingSpeed: 40,
+    pauseDelay: 1800,
   });
 
   return (
@@ -44,23 +61,23 @@ export default function HoloHero() {
       <div className="hero-grid-overlay" aria-hidden="true" />
 
       <div className="hero-saas__inner">
-        {/* Left Column: Badge, Headline with typing animation, subtext, and CTAs */}
+        {/* Left Column: Badge, Headline, Subtext, and Action Buttons */}
         <div className="hero-saas__left">
           <div className="hero-badge">
             <span className="hero-badge__sparkle">✨</span>
-            <span>#1 AI Interview Preparation Platform</span>
+            <span>NEXA AI SIMULATION ENGINE</span>
           </div>
 
           <h1 className="hero-headline">
-            Practice Smarter.
+            Your Next Interview,
             <br />
-            Interview <span className="hero-headline__accent">Stronger.</span>
+            <span className="hero-headline__accent">Reimagined by AI.</span>
           </h1>
 
           {/* Typing Text Bar */}
           <div className="hero-typing-bar" aria-live="polite">
             <span className="hero-typing-indicator" />
-            <span className="hero-typing-label">AI Focus:</span>
+            <span className="hero-typing-label">AI ENGINE:</span>
             <span className="hero-typing-text">
               {typedText}
               <span className="hero-typing-cursor">|</span>
@@ -68,21 +85,25 @@ export default function HoloHero() {
           </div>
 
           <p className="hero-description">
-            Get real-world interview experience with AI-powered mock interviews,
-            personalized feedback, coding practice, and a learning roadmap to help
-            you land your dream job.
+            Adaptive, realistic and personalized interview practice to help you
+            crack your dream job with confidence. Experience interactive mock rounds,
+            deep rubric assessments, and real-time coding intelligence.
           </p>
 
           <div className="hero-actions">
             <Link to="/interview" className="hero-pill-btn hero-pill-btn--primary" id="hero-cta-practice">
-              <span>Start Free Practice</span>
+              <span>Start Interview</span>
               <span className="hero-pill-btn__arrow">→</span>
+            </Link>
+
+            <Link to="/dsa" className="hero-pill-btn hero-pill-btn--ghost" id="hero-cta-dsa">
+              <span>Explore DSA Practice</span>
             </Link>
 
             <button
               type="button"
               onClick={() => setShowDemoModal(true)}
-              className="hero-pill-btn hero-pill-btn--ghost"
+              className="hero-pill-btn hero-pill-btn--demo"
               id="hero-cta-demo"
             >
               <span className="hero-pill-btn__play">▶</span>
@@ -91,80 +112,103 @@ export default function HoloHero() {
           </div>
         </div>
 
-        {/* Right Column: 3D Central Emerald Glass Sphere & Floating Cards */}
+        {/* Right Column: 3D Faceted Neural Core & Reference-Inspired Telemetry Badges */}
         <div className="hero-saas__right">
           <div className="hero-3d-stage">
-            {/* Real Three.js Canvas for glowing emerald sphere & pedestal */}
+            {/* Real Three.js Canvas: 3D faceted crystalline neural orb */}
             <ThreeSphereCanvas />
 
-            {/* Floating Glass Card 1: Top-Left (AI Mock Interview) */}
+            {/* Floating Telemetry Badge 1: Top-Left (Adaptive Questions) */}
             <div className="hero-floating-card hero-floating-card--tl">
-              <div className="hero-card-icon-badge hero-card-icon-badge--mic">
-                <span>🎙️</span>
+              <div className="hero-card-icon-badge hero-card-icon-badge--bolt">
+                <span>⚡</span>
               </div>
               <div className="hero-card-text">
-                <strong>AI Mock Interview</strong>
-                <small>Realistic questions</small>
+                <strong>Adaptive Questions</strong>
+                <small>Dynamic difficulty scaling</small>
               </div>
             </div>
 
-            {/* Floating Glass Card 2: Top-Right (AI Feedback) */}
+            {/* Floating Telemetry Badge 2: Top-Right (Live AI Evaluation) */}
             <div className="hero-floating-card hero-floating-card--tr">
               <div className="hero-card-icon-badge hero-card-icon-badge--chart">
                 <span>📊</span>
               </div>
               <div className="hero-card-text">
-                <strong>AI Feedback</strong>
-                <small>Detailed analysis</small>
+                <strong>Live AI Evaluation</strong>
+                <small>Sub-second rubric assessment</small>
               </div>
             </div>
 
-            {/* Floating Glass Card 3: Bottom-Left (DSA Practice) */}
+            {/* Floating Telemetry Badge 3: Bottom-Left (DSA & System Design) */}
             <div className="hero-floating-card hero-floating-card--bl">
               <div className="hero-card-icon-badge hero-card-icon-badge--code">
                 <span>&lt;/&gt;</span>
               </div>
               <div className="hero-card-text">
-                <strong>DSA Practice</strong>
-                <small>Improve coding skills</small>
+                <strong>DSA &amp; System Design</strong>
+                <small>Real-time complexity analysis</small>
               </div>
             </div>
 
-            {/* Floating Glass Card 4: Bottom-Right (Learning Roadmap) */}
-            <div className="hero-floating-card hero-floating-card--br">
-              <div className="hero-card-icon-badge hero-card-icon-badge--target">
-                <span>🎯</span>
+            {/* Floating Telemetry Badge 4: Bottom-Right (92% Readiness Score & Badge) */}
+            <div className="hero-floating-card hero-floating-card--br hero-floating-card--readiness">
+              <div className="hero-card-readiness-circle">
+                <svg width="42" height="42" viewBox="0 0 42 42" className="readiness-svg">
+                  <circle cx="21" cy="21" r="17" fill="none" stroke="rgba(148, 255, 0, 0.15)" strokeWidth="3.5" />
+                  <circle
+                    cx="21"
+                    cy="21"
+                    r="17"
+                    fill="none"
+                    stroke="#94FF00"
+                    strokeWidth="3.5"
+                    strokeDasharray="106.8"
+                    strokeDashoffset="8.5"
+                    strokeLinecap="round"
+                    transform="rotate(-90 21 21)"
+                  />
+                  <text x="21" y="25" textAnchor="middle" fill="#94FF00" fontSize="11" fontWeight="800">
+                    92%
+                  </text>
+                </svg>
               </div>
               <div className="hero-card-text">
-                <strong>Learning Roadmap</strong>
-                <small>Personalized plan</small>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                  <strong>Readiness Score</strong>
+                  <span className="hero-card-pill-tag">Interview Ready</span>
+                </div>
+                <small>Calibrated across 5 competencies</small>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* ── 4 Glass Statistics Cards Row (Matching Reference Image Section 4) ── */}
+      {/* ── Verified Capabilities Strip (Honest Platform Pillars) ── */}
       <div className="hero-stats-wrapper">
         <div className="hero-stats-grid">
-          {HERO_STATS.map((stat) => (
-            <div key={stat.label} className="hero-stat-card glass-panel">
-              <div className="hero-stat-card__icon">{stat.icon}</div>
+          {VERIFIED_CAPABILITIES.map((cap) => (
+            <div key={cap.title} className="hero-stat-card glass-panel">
+              <div className="hero-stat-card__icon">{cap.icon}</div>
               <div className="hero-stat-card__content">
-                <span className="hero-stat-card__value">{stat.value}</span>
-                <span className="hero-stat-card__label">{stat.label}</span>
+                <span className="hero-stat-card__value">{cap.title}</span>
+                <span className="hero-stat-card__label">{cap.desc}</span>
               </div>
             </div>
           ))}
         </div>
       </div>
 
-      {/* ── Monochrome Partner Strip (Panel 01 Reference) ── */}
-      <div className="hero-partners-strip" aria-label="Partner and target hiring companies">
+      {/* ── Calibrated Hiring Bar (Target Companies Strip) ── */}
+      <div className="hero-partners-strip" aria-label="Target hiring benchmark companies">
+        <div className="hero-partners-label">
+          <span>CALIBRATED FOR INTERVIEWS AT</span>
+        </div>
         <div className="hero-partners-list">
-          {PARTNER_LOGOS.map((p) => (
-            <span key={p.name} className="hero-partner-item">
-              {p.name}
+          {TARGET_COMPANIES.map((company) => (
+            <span key={company.name} className="hero-partner-item">
+              {company.name}
             </span>
           ))}
         </div>
@@ -177,3 +221,4 @@ export default function HoloHero() {
     </section>
   );
 }
+

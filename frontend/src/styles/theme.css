@@ -1,21 +1,32 @@
 /* ═════════════════════════════════════════════
-   AI INTERVIEW SIMULATOR — EMERALD/MINT FUTURISTIC DESIGN SYSTEM
-   Reference: Dark Obsidian + Mint Accents
+   NEXA AI — DUAL-THEME DESIGN SYSTEM (DARK & LIGHT)
+   Visual Reference: Deep Obsidian & Neon-Lime / Ice-White Laboratory
    ═════════════════════════════════════════════ */
-:root {
-  /* Background Hierarchy (Reference: #030907, #06120F) */
-  --bg-primary: #030907;
-  --bg-secondary: #06120F;
-  --bg-card: rgba(10, 30, 26, 0.72);
-  --bg-card-hover: rgba(14, 40, 35, 0.85);
-  --bg-glass: rgba(10, 30, 26, 0.72);
+
+/* ── DARK THEME (Default) ── */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Background Hierarchy */
+  --bg-primary: #030806;
+  --bg-secondary: #06120D;
+  --bg-surface: #0A1C15;
+  --bg-card: rgba(10, 28, 21, 0.75);
+  --bg-card-hover: rgba(14, 38, 29, 0.88);
+  --bg-glass: rgba(8, 22, 17, 0.82);
 
   /* Typography Colors */
+  --text-primary: #F5FFFC;
   --text-main: #F5FFFC;
-  --text-muted: #9CB5AD;
-  --text-dim: #6E857D;
+  --text-secondary: #9DBBB0;
+  --text-muted: #9DBBB0;
+  --text-dim: #6B887E;
+  --title: #F5FFFC;
 
-  /* Emerald & Neon Accent Palette */
+  /* Neon Lime & Emerald Accent Palette */
+  --accent-lime: #94FF00;
+  --accent-lime-soft: #A8FF2E;
   --accent-mint: #00F5B8;
   --accent-mint-soft: #00DDA5;
   --accent-emerald: #00F5B8;
@@ -23,32 +34,32 @@
   --accent-amber: #F5D062;
   --accent-coral: #FF4D6D;
 
-  /* Backward Compatibility Aliases for components referencing legacy tokens */
+  /* Backward Compatibility Aliases */
   --accent-cyan: #00F5B8;
-  --accent-violet: #00DDA5;
+  --accent-violet: #94FF00;
   --accent-pink: #FF4D6D;
   --accent-blue: #00F5B8;
 
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #00F5B8 0%, #00DDA5 100%);
-  --gradient-secondary: linear-gradient(135deg, #00DDA5 0%, #00F5B8 100%);
-  --gradient-accent: linear-gradient(135deg, #00F5B8 0%, #00DDA5 50%, #80FFDB 100%);
-  --gradient-card: linear-gradient(135deg, rgba(0, 245, 184, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
-  --gradient-glow: radial-gradient(circle at 50% 0%, rgba(0, 245, 184, 0.22) 0%, transparent 70%);
+  --gradient-primary: linear-gradient(135deg, #00F5B8 0%, #94FF00 100%);
+  --gradient-secondary: linear-gradient(135deg, #94FF00 0%, #00F5B8 100%);
+  --gradient-accent: linear-gradient(135deg, #00F5B8 0%, #94FF00 50%, #B8FF5C 100%);
+  --gradient-card: linear-gradient(135deg, rgba(148, 255, 0, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  --gradient-glow: radial-gradient(circle at 50% 0%, rgba(148, 255, 0, 0.22) 0%, transparent 70%);
 
-  /* Borders & Dividers (Reference: rgba(0, 245, 184, 0.25)) */
-  --border-glass: 1px solid rgba(0, 245, 184, 0.25);
+  /* Borders & Dividers */
+  --border-glass: 1px solid rgba(0, 245, 184, 0.22);
   --border-mint: 1px solid rgba(0, 245, 184, 0.35);
   --border-mint-soft: 1px solid rgba(0, 245, 184, 0.18);
   --border-neon-cyan: 1px solid rgba(0, 245, 184, 0.35);
-  --border-neon-violet: 1px solid rgba(0, 221, 165, 0.3);
+  --border-neon-violet: 1px solid rgba(148, 255, 0, 0.3);
 
   /* Shadows & Ambient Glows */
   --shadow-mint-glow: 0 0 35px rgba(0, 245, 184, 0.28);
   --shadow-neon-cyan: 0 0 25px rgba(0, 245, 184, 0.3);
-  --shadow-neon-violet: 0 15px 40px rgba(0, 221, 165, 0.25);
-  --shadow-glass: 0 24px 60px rgba(0, 0, 0, 0.7);
-  --shadow-pill: 0 10px 30px rgba(0, 245, 184, 0.35);
+  --shadow-neon-violet: 0 15px 40px rgba(148, 255, 0, 0.25);
+  --shadow-glass: 0 24px 60px rgba(0, 0, 0, 0.75);
+  --shadow-pill: 0 10px 30px rgba(148, 255, 0, 0.35);
 
   /* Typography & Layout */
   --font-family: "Inter", "Outfit", "Space Grotesk", system-ui, -apple-system, sans-serif;
@@ -65,4 +76,62 @@
   /* Transitions */
   --transition-fast: 0.18s ease;
   --transition-normal: 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── LIGHT THEME (Futuristic Ice-White Laboratory) ── */
+[data-theme="light"] {
+  color-scheme: light;
+
+  /* Background Hierarchy */
+  --bg-primary: #F7FAF8;
+  --bg-secondary: #FFFFFF;
+  --bg-surface: #EBF4F0;
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --bg-card-hover: rgba(255, 255, 255, 0.98);
+  --bg-glass: rgba(245, 251, 248, 0.88);
+
+  /* Typography Colors */
+  --text-primary: #0B1713;
+  --text-main: #0B1713;
+  --text-secondary: #3D5A50;
+  --text-muted: #4B685E;
+  --text-dim: #718D82;
+  --title: #0B1713;
+
+  /* Accessible High-Contrast Lime & Emerald Accent Palette */
+  --accent-lime: #16A34A;
+  --accent-lime-soft: #22C55E;
+  --accent-mint: #059669;
+  --accent-mint-soft: #10B981;
+  --accent-emerald: #059669;
+  --accent-emerald-dark: #047857;
+  --accent-amber: #D97706;
+  --accent-coral: #E11D48;
+
+  /* Backward Compatibility Aliases */
+  --accent-cyan: #059669;
+  --accent-violet: #16A34A;
+  --accent-pink: #E11D48;
+  --accent-blue: #059669;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #059669 0%, #16A34A 100%);
+  --gradient-secondary: linear-gradient(135deg, #16A34A 0%, #059669 100%);
+  --gradient-accent: linear-gradient(135deg, #059669 0%, #16A34A 50%, #65A30D 100%);
+  --gradient-card: linear-gradient(135deg, rgba(22, 163, 74, 0.04) 0%, rgba(0, 0, 0, 0.01) 100%);
+  --gradient-glow: radial-gradient(circle at 50% 0%, rgba(22, 163, 74, 0.15) 0%, transparent 70%);
+
+  /* Borders & Dividers */
+  --border-glass: 1px solid rgba(5, 150, 105, 0.18);
+  --border-mint: 1px solid rgba(5, 150, 105, 0.25);
+  --border-mint-soft: 1px solid rgba(5, 150, 105, 0.12);
+  --border-neon-cyan: 1px solid rgba(5, 150, 105, 0.22);
+  --border-neon-violet: 1px solid rgba(22, 163, 74, 0.22);
+
+  /* Shadows & Ambient Glows */
+  --shadow-mint-glow: 0 4px 20px rgba(5, 150, 105, 0.2);
+  --shadow-neon-cyan: 0 4px 16px rgba(5, 150, 105, 0.18);
+  --shadow-neon-violet: 0 8px 24px rgba(22, 163, 74, 0.16);
+  --shadow-glass: 0 16px 40px rgba(11, 23, 19, 0.08);
+  --shadow-pill: 0 8px 22px rgba(22, 163, 74, 0.24);
 }
