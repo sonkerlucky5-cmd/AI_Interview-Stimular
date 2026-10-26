@@ -56,13 +56,23 @@
   --font-body:    "Inter", "Outfit", system-ui, sans-serif;
   --font-heading: "Inter", "Space Grotesk", system-ui, sans-serif;
 
-  /* Brand Logo Tokens */
-  --logo-text-primary:    #FFFFFF;
-  --logo-text-secondary:  #9CB5AD;
-  --logo-accent:          #94FF00;
-  --logo-obsidian:        #06110B;
-  --logo-shadow:          drop-shadow(0 4px 14px rgba(148, 255, 0, 0.4));
-  --logo-glow:            0 0 16px rgba(148, 255, 0, 0.45);
+  /* Brand Logo Tokens (Dark Mode) */
+  --logo-text-primary:     #FFFFFF;
+  --logo-text-secondary:   #9CB5AD;
+  --logo-accent:           #94FF00;
+  --logo-capsule-start:    #CCFF00;
+  --logo-capsule-mid:      #94FF00;
+  --logo-capsule-end:      #059669;
+  --logo-ribbon-start:     #CCFF00;
+  --logo-ribbon-mid:       #94FF00;
+  --logo-ribbon-end:       #00F5B8;
+  --logo-obsidian-top:     #253A2F;
+  --logo-obsidian-mid:     #121F17;
+  --logo-obsidian-base:    #070E0A;
+  --logo-obsidian-rim:     #68F0AE;
+  --logo-obsidian-rim-op:  0.85;
+  --logo-shadow:           drop-shadow(0 2px 10px rgba(148, 255, 0, 0.35));
+  --logo-glow:             0 0 14px rgba(148, 255, 0, 0.45);
 
   /* Transitions */
   --ease-out:     cubic-bezier(0.16, 1, 0.3, 1);
@@ -104,13 +114,23 @@
   --glow-blue:    0 0 25px rgba(5, 150, 105, 0.18);
   --glow-purple:  0 0 25px rgba(22, 163, 74, 0.16);
 
-  /* Brand Logo Tokens (Light Mode) */
-  --logo-text-primary:    #030806;
-  --logo-text-secondary:  #3D534A;
-  --logo-accent:          #16A34A;
-  --logo-obsidian:        #030806;
-  --logo-shadow:          drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
-  --logo-glow:            none;
+  /* Brand Logo Tokens (Light Mode - Reference Match) */
+  --logo-text-primary:     #050C08;
+  --logo-text-secondary:   #334A40;
+  --logo-accent:           #16A34A;
+  --logo-capsule-start:    #84CC16;
+  --logo-capsule-mid:      #16A34A;
+  --logo-capsule-end:      #047857;
+  --logo-ribbon-start:     #84CC16;
+  --logo-ribbon-mid:       #16A34A;
+  --logo-ribbon-end:       #059669;
+  --logo-obsidian-top:     #1E2C24;
+  --logo-obsidian-mid:     #0B140F;
+  --logo-obsidian-base:    #030705;
+  --logo-obsidian-rim:     #426653;
+  --logo-obsidian-rim-op:  0.6;
+  --logo-shadow:           drop-shadow(0 2px 8px rgba(0, 0, 0, 0.08));
+  --logo-glow:             none;
 }
 
 /* ═══════════════════════════════════

@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 54" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 236 54" fill="none">
   <defs>
-    <!-- Front Ribbon Gradient -->
+    <!-- Front Emerald/Lime Ribbon Gradient -->
     <linearGradient id="nexa-ribbon" x1="10" y1="6" x2="44" y2="46" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stopColor="#CCFF00"/>
       <stop offset="45%" stopColor="#94FF00"/>
@@ -13,11 +13,18 @@
       <stop offset="100%" stopColor="#CCFF00"/>
     </linearGradient>
 
-    <!-- 3D Obsidian Diagonal -->
+    <!-- 3D Obsidian Diagonal Bar -->
     <linearGradient id="nexa-obsidian" x1="14" y1="18" x2="38" y2="44" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stopColor="#1B2A22"/>
-      <stop offset="50%" stopColor="#0A1610"/>
-      <stop offset="100%" stopColor="#040A07"/>
+      <stop offset="0%" stopColor="#253A2F"/>
+      <stop offset="40%" stopColor="#121F17"/>
+      <stop offset="100%" stopColor="#070E0A"/>
+    </linearGradient>
+
+    <!-- Top Bevel Specular Sheen on Obsidian Bar -->
+    <linearGradient id="nexa-obsidian-bevel" x1="18" y1="17" x2="38" y2="40" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#FFFFFF" stop-opacity="0.75"/>
+      <stop offset="40%" stopColor="#68F0AE" stop-opacity="0.5"/>
+      <stop offset="100%" stopColor="#000000" stop-opacity="0.2"/>
     </linearGradient>
 
     <!-- Sweeping Swoosh Loop -->
@@ -27,21 +34,24 @@
       <stop offset="100%" stopColor="#CCFF00"/>
     </linearGradient>
 
-    <!-- Metallic Green Capsule Gradient for N -->
-    <linearGradient id="nexa-capsule" x1="0" y1="0" x2="0" y2="20" gradientUnits="userSpaceOnUse">
+    <!-- Metallic Green Capsule Gradient for Letter N -->
+    <linearGradient id="nexa-capsule" x1="60" y1="12" x2="60" y2="35" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stopColor="#CCFF00"/>
       <stop offset="50%" stopColor="#94FF00"/>
       <stop offset="100%" stopColor="#059669"/>
     </linearGradient>
 
     <style>
-      .logo-nexa { fill: #FFFFFF; font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif; font-weight: 900; }
-      .logo-ai { fill: #94FF00; font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif; font-weight: 900; }
-      .logo-sub { fill: #9CB5AD; font-family: 'Inter', system-ui, sans-serif; font-weight: 700; letter-spacing: 0.16em; }
+      .logo-text-primary { fill: #FFFFFF; }
+      .logo-accent { fill: #94FF00; }
+      .logo-sub { fill: #9CB5AD; font-family: 'Inter', system-ui, sans-serif; font-weight: 700; letter-spacing: 0.18em; }
+      .obsidian-rim { stroke: #68F0AE; opacity: 0.85; }
+
       @media (prefers-color-scheme: light) {
-        .logo-nexa { fill: #030806; }
-        .logo-ai { fill: #16A34A; }
-        .logo-sub { fill: #3D534A; }
+        .logo-text-primary { fill: #050C08; }
+        .logo-accent { fill: #16A34A; }
+        .logo-sub { fill: #334A40; }
+        .obsidian-rim { stroke: #426653; opacity: 0.6; }
       }
     </style>
   </defs>
@@ -58,7 +68,8 @@
 
     <!-- Diagonal Obsidian Bar -->
     <polygon points="18,17 38,40 33,47 13,24" fill="url(#nexa-obsidian)"/>
-    <line x1="18" y1="17" x2="38" y2="40" stroke="#457059" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+    <polygon points="18,17 38,40 37,42 17,19" fill="url(#nexa-obsidian-bevel)"/>
+    <line x1="18" y1="17" x2="38" y2="40" stroke="#68F0AE" stroke-width="1.4" stroke-linecap="round" class="obsidian-rim"/>
 
     <!-- Right Pillar -->
     <polygon points="31,14 39,7 39,40 31,44" fill="url(#nexa-ribbon)"/>
@@ -72,15 +83,22 @@
   </g>
 
   <!-- Wordmark -->
-  <g transform="translate(62, 0)">
-    <!-- Metallic Green Capsule on first leg of N -->
-    <rect x="0" y="14" width="4.5" height="15" rx="2.25" fill="url(#nexa-capsule)"/>
+  <g class="nexa-logo__wordmark-group">
+    <!-- Letter 'N' with integrated Metallic Green Capsule Stem -->
+    <g class="nexa-logo__letter-n">
+      <rect x="58" y="12" width="5.5" height="22.5" rx="2.75" fill="url(#nexa-capsule)"/>
+      <ellipse cx="60.75" cy="14.8" rx="1.6" ry="2.1" fill="#FFFFFF" opacity="0.85"/>
+      <path d="M 62.5 12 L 68 12 L 74.5 21 L 74.5 12 L 80 12 L 80 34.5 L 74.5 34.5 L 62.5 17 Z" class="logo-text-primary"/>
+    </g>
 
-    <text x="7" y="30" font-size="22" letter-spacing="-0.02em">
-      <tspan class="logo-nexa">NEXA</tspan>
-      <tspan class="logo-ai" dx="5">AI</tspan>
+    <!-- Letters 'EXA' and 'AI' -->
+    <text x="84" y="34.5" font-family="'Space Grotesk', 'Inter', system-ui, sans-serif" font-weight="900" font-size="24.5" letter-spacing="-0.025em">
+      <tspan class="logo-text-primary">EXA</tspan>
+      <tspan class="logo-accent" dx="6">AI</tspan>
     </text>
-    <text x="1" y="44" font-size="7.5" class="logo-sub">
+
+    <!-- Subtitle: AI INTERVIEW SIMULATOR -->
+    <text x="58" y="47.5" font-size="7.4" class="logo-sub">
       AI INTERVIEW SIMULATOR
     </text>
   </g>

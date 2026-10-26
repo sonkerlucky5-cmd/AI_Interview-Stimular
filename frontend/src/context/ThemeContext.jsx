@@ -22,6 +22,7 @@ export function ThemeProvider({ children }) {
     return "dark";
   });
 
+  // Keep DOM attribute in sync
   useEffect(() => {
     try {
       document.documentElement.setAttribute("data-theme", theme);
@@ -32,12 +33,51 @@ export function ThemeProvider({ children }) {
     }
   }, [theme]);
 
+  // Listen to OS system theme changes automatically
+  useEffect(() => {
+    if (!window.matchMedia) return;
+    const mq = window.matchMedia("(prefers-color-scheme: light)");
+    const handleSystemChange = (e) => {
+      try {
+        const manual = localStorage.getItem("nexa_theme_manual");
+        if (!manual) {
+          setTheme(e.matches ? "light" : "dark");
+        }
+      } catch {
+        setTheme(e.matches ? "light" : "dark");
+      }
+    };
+    if (mq.addEventListener) {
+      mq.addEventListener("change", handleSystemChange);
+      return () => mq.removeEventListener("change", handleSystemChange);
+    }
+  }, []);
+
   const toggleTheme = () => {
-    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+    setTheme((prev) => {
+      const next = prev === "dark" ? "light" : "dark";
+      try {
+        localStorage.setItem("nexa_theme_manual", "true");
+      } catch {
+        // LocalStorage access restricted
+      }
+      return next;
+    });
+  };
+
+  const handleSetTheme = (newTheme) => {
+    if (newTheme === "light" || newTheme === "dark") {
+      try {
+        localStorage.setItem("nexa_theme_manual", "true");
+      } catch {
+        // LocalStorage access restricted
+      }
+      setTheme(newTheme);
+    }
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme, setTheme: handleSetTheme }}>
       {children}
     </ThemeContext.Provider>
   );

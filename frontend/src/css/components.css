@@ -794,84 +794,33 @@
 .nexa-logo {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
   text-decoration: none;
   line-height: 1;
   user-select: none;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.nexa-logo--icon {
-  gap: 0;
-}
-
-.nexa-logo__mark {
-  flex-shrink: 0;
+.nexa-logo__svg {
+  display: block;
+  height: auto;
   filter: var(--logo-shadow);
-  transition: filter 0.25s ease, transform 0.25s ease;
+  transition: filter 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: visible;
 }
 
-.nexa-logo:hover .nexa-logo__mark {
-  transform: scale(1.05);
+.nexa-logo:hover .nexa-logo__svg {
+  transform: scale(1.025);
 }
 
-.nexa-logo__wordmark {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.nexa-logo__title {
-  display: flex;
-  align-items: center;
-  font-family: var(--font-heading, "Space Grotesk", "Inter", sans-serif);
-  font-weight: 800;
-  letter-spacing: -0.025em;
-  color: var(--logo-text-primary);
-  transition: color 0.25s ease;
-}
-
-/* Metallic green capsule pip on the first leg of N (matching reference image) */
-.nexa-logo__n-capsule {
-  display: inline-block;
-  width: 4.5px;
-  height: 14px;
-  border-radius: 999px;
-  background: linear-gradient(180deg, #CCFF00 0%, #94FF00 50%, #059669 100%);
-  margin-right: 2.5px;
-  vertical-align: middle;
-  box-shadow: 0 0 8px rgba(148, 255, 0, 0.5);
-  transition: background 0.25s ease, box-shadow 0.25s ease;
-}
-
-[data-theme="light"] .nexa-logo__n-capsule {
-  background: linear-gradient(180deg, #84CC16 0%, #16A34A 50%, #059669 100%);
-  box-shadow: 0 0 4px rgba(22, 163, 74, 0.3);
-}
-
-.nexa-logo__nexa {
-  color: var(--logo-text-primary);
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  transition: color 0.25s ease;
-}
-
-.nexa-logo__ai {
-  color: var(--logo-accent);
-  text-shadow: var(--logo-glow);
-  font-weight: 900;
-  margin-left: 0.3rem;
-  transition: color 0.25s ease, text-shadow 0.25s ease;
-}
-
-.nexa-logo__subtitle {
-  font-family: var(--font-body, "Inter", sans-serif);
-  font-size: 0.62rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--logo-text-secondary);
-  transition: color 0.25s ease;
+/* Vector element transitions on theme toggle */
+.nexa-logo path,
+.nexa-logo rect,
+.nexa-logo polygon,
+.nexa-logo text,
+.nexa-logo tspan,
+.nexa-logo circle,
+.nexa-logo line {
+  transition: fill 0.25s ease, stroke 0.25s ease, opacity 0.25s ease;
 }
 
 
