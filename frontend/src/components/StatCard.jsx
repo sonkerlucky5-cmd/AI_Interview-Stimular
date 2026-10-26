@@ -37,7 +37,7 @@ export default function StatCard({ label, value, icon, change, badge, color = "c
         padding: "1.4rem 1.5rem",
         borderRadius: "20px",
         border: `1px solid ${currentTheme.border}`,
-        background: "rgba(10, 30, 26, 0.72)",
+        background: "var(--bg-card, rgba(10, 30, 26, 0.72))",
         boxShadow: `0 15px 35px rgba(0, 0, 0, 0.5), 0 0 20px ${currentTheme.shadow}`,
         backdropFilter: "blur(18px)",
         position: "relative",
@@ -66,7 +66,7 @@ export default function StatCard({ label, value, icon, change, badge, color = "c
       </div>
 
       <div style={{ display: "flex", flexDirection: "column", gap: "0.2rem" }}>
-        <strong style={{ fontSize: "2.1rem", fontWeight: 800, color: "#fff", lineHeight: 1.1 }}>
+        <strong style={{ fontSize: "2.1rem", fontWeight: 800, color: "var(--title)", lineHeight: 1.1 }}>
           {value}
         </strong>
         <span style={{ fontSize: "0.88rem", color: "var(--text-muted)", letterSpacing: "0.01em" }}>

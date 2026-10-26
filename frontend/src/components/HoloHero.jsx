@@ -5,38 +5,51 @@ import ThreeSphereCanvas from "./ThreeSphereCanvas";
 import HeroDemoModal from "./HeroDemoModal";
 import "./HoloHero.css";
 
-// Honest, verified platform capability pillars (No fake student counts)
+// Honest, verified platform capability pillars (No fake student counts or partnerships)
 const VERIFIED_CAPABILITIES = [
   {
-    icon: "⚡",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+      </svg>
+    ),
     title: "Adaptive Question Engine",
     desc: "Dynamic difficulty and follow-ups calibrated to your real-time responses.",
   },
   {
-    icon: "🎙️",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+        <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+        <line x1="12" y1="19" x2="12" y2="23" />
+        <line x1="8" y1="23" x2="16" y2="23" />
+      </svg>
+    ),
     title: "Multi-Modal AI Evaluation",
     desc: "Instant breakdown of vocal pacing, filler words, and technical depth.",
   },
   {
-    icon: "📊",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <line x1="18" y1="20" x2="18" y2="10" />
+        <line x1="12" y1="20" x2="12" y2="4" />
+        <line x1="6" y1="20" x2="6" y2="14" />
+      </svg>
+    ),
     title: "Granular Skill Rubrics",
-    desc: "Objective scoring across Architecture, DSA complexity, and Communication.",
+    desc: "Objective scoring across Architecture, DSA correctness, and Communication.",
   },
   {
-    icon: "🗺️",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6" />
+        <line x1="8" y1="2" x2="8" y2="18" />
+        <line x1="16" y1="6" x2="16" y2="22" />
+      </svg>
+    ),
     title: "Targeted Roadmaps",
     desc: "Custom practice paths automatically generated from detected weak spots.",
   },
-];
-
-const TARGET_COMPANIES = [
-  { name: "Google", domain: "google.com" },
-  { name: "Microsoft", domain: "microsoft.com" },
-  { name: "Amazon", domain: "amazon.com" },
-  { name: "Meta", domain: "meta.com" },
-  { name: "Apple", domain: "apple.com" },
-  { name: "Netflix", domain: "netflix.com" },
-  { name: "Uber", domain: "uber.com" },
 ];
 
 export default function HoloHero() {
@@ -64,7 +77,11 @@ export default function HoloHero() {
         {/* Left Column: Badge, Headline, Subtext, and Action Buttons */}
         <div className="hero-saas__left">
           <div className="hero-badge">
-            <span className="hero-badge__sparkle">✨</span>
+            <span className="hero-badge__sparkle" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z" />
+              </svg>
+            </span>
             <span>NEXA AI SIMULATION ENGINE</span>
           </div>
 
@@ -105,8 +122,13 @@ export default function HoloHero() {
               onClick={() => setShowDemoModal(true)}
               className="hero-pill-btn hero-pill-btn--demo"
               id="hero-cta-demo"
+              aria-label="Watch interactive demo"
             >
-              <span className="hero-pill-btn__play">▶</span>
+              <span className="hero-pill-btn__play" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="5 3 19 12 5 21 5 3" />
+                </svg>
+              </span>
               <span>Watch Demo</span>
             </button>
           </div>
@@ -121,7 +143,9 @@ export default function HoloHero() {
             {/* Floating Telemetry Badge 1: Top-Left (Adaptive Questions) */}
             <div className="hero-floating-card hero-floating-card--tl">
               <div className="hero-card-icon-badge hero-card-icon-badge--bolt">
-                <span>⚡</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
               </div>
               <div className="hero-card-text">
                 <strong>Adaptive Questions</strong>
@@ -132,26 +156,33 @@ export default function HoloHero() {
             {/* Floating Telemetry Badge 2: Top-Right (Live AI Evaluation) */}
             <div className="hero-floating-card hero-floating-card--tr">
               <div className="hero-card-icon-badge hero-card-icon-badge--chart">
-                <span>📊</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="20" x2="18" y2="10" />
+                  <line x1="12" y1="20" x2="12" y2="4" />
+                  <line x1="6" y1="20" x2="6" y2="14" />
+                </svg>
               </div>
               <div className="hero-card-text">
                 <strong>Live AI Evaluation</strong>
-                <small>Sub-second rubric assessment</small>
+                <small>Real-time rubric assessment</small>
               </div>
             </div>
 
             {/* Floating Telemetry Badge 3: Bottom-Left (DSA & System Design) */}
             <div className="hero-floating-card hero-floating-card--bl">
               <div className="hero-card-icon-badge hero-card-icon-badge--code">
-                <span>&lt;/&gt;</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="16 18 22 12 16 6" />
+                  <polyline points="8 6 2 12 8 18" />
+                </svg>
               </div>
               <div className="hero-card-text">
                 <strong>DSA &amp; System Design</strong>
-                <small>Real-time complexity analysis</small>
+                <small>Complexity analysis (Coming soon)</small>
               </div>
             </div>
 
-            {/* Floating Telemetry Badge 4: Bottom-Right (92% Readiness Score & Badge) */}
+            {/* Floating Telemetry Badge 4: Bottom-Right (Sample Readiness Score) */}
             <div className="hero-floating-card hero-floating-card--br hero-floating-card--readiness">
               <div className="hero-card-readiness-circle">
                 <svg width="42" height="42" viewBox="0 0 42 42" className="readiness-svg">
@@ -175,10 +206,10 @@ export default function HoloHero() {
               </div>
               <div className="hero-card-text">
                 <div style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}>
-                  <strong>Readiness Score</strong>
-                  <span className="hero-card-pill-tag">Interview Ready</span>
+                  <strong>Sample Readiness</strong>
+                  <span className="hero-card-pill-tag">Sample</span>
                 </div>
-                <small>Calibrated across 5 competencies</small>
+                <small>Calibrated benchmark preview</small>
               </div>
             </div>
           </div>
@@ -200,20 +231,6 @@ export default function HoloHero() {
         </div>
       </div>
 
-      {/* ── Calibrated Hiring Bar (Target Companies Strip) ── */}
-      <div className="hero-partners-strip" aria-label="Target hiring benchmark companies">
-        <div className="hero-partners-label">
-          <span>CALIBRATED FOR INTERVIEWS AT</span>
-        </div>
-        <div className="hero-partners-list">
-          {TARGET_COMPANIES.map((company) => (
-            <span key={company.name} className="hero-partner-item">
-              {company.name}
-            </span>
-          ))}
-        </div>
-      </div>
-
       {/* Interactive Hero Demo Modal */}
       {showDemoModal && (
         <HeroDemoModal isOpen={showDemoModal} onClose={() => setShowDemoModal(false)} />
@@ -221,4 +238,5 @@ export default function HoloHero() {
     </section>
   );
 }
+
 

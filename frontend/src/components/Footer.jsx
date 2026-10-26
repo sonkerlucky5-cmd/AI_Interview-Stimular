@@ -175,10 +175,10 @@ export default function Footer() {
             SYSTEM TELEMETRY
           </h4>
           <p style={{ fontSize: "0.84rem", marginBottom: "0.85rem", color: "var(--text-muted, #9CB5AD)", lineHeight: 1.6 }}>
-            Sub-second latency calibration benchmarked for FAANG &amp; tier-1 engineering interviews.
+            Real-time latency calibration for multi-turn technical engineering interviews.
           </p>
           <div style={{ fontSize: "0.8rem", color: "var(--accent-mint, #00F5B8)", marginBottom: "1.2rem", fontWeight: 600 }}>
-            Median AI Evaluation: ~120ms
+            Evaluation: Real-time rubric feedback
           </div>
           <button
             type="button"

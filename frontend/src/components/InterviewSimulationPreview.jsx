@@ -2,11 +2,38 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Reveal from "./Reveal";
 
+function TrackIcon({ id }) {
+  if (id === "backend") {
+    return (
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
+        <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
+        <line x1="6" y1="6" x2="6.01" y2="6" />
+        <line x1="6" y1="18" x2="6.01" y2="18" />
+      </svg>
+    );
+  }
+  if (id === "dsa") {
+    return (
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="16 18 22 12 16 6" />
+        <polyline points="8 6 2 12 8 18" />
+      </svg>
+    );
+  }
+  return (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+      <line x1="3" y1="9" x2="21" y2="9" />
+      <line x1="9" y1="21" x2="9" y2="9" />
+    </svg>
+  );
+}
+
 const SIMULATION_TRACKS = [
   {
     id: "backend",
     label: "Backend Systems",
-    icon: "⚙️",
     level: "Senior Systems Engineer (L5 / IC4)",
     timer: "04:18",
     question:

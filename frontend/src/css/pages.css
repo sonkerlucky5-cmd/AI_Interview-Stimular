@@ -675,3 +675,106 @@
     display: none;
   }
 }
+
+/* ════════════════════════════
+   NEXA AI — LIGHT THEME PAGE ADAPTATIONS
+   ════════════════════════════ */
+[data-theme="light"] .page--auth {
+  background:
+    radial-gradient(ellipse 70% 50% at 50% -5%, rgba(5, 150, 105, 0.08), transparent 70%),
+    radial-gradient(circle at 15% 85%, rgba(16, 185, 129, 0.05), transparent 50%),
+    var(--bg-primary);
+}
+
+[data-theme="light"] .dashboard-hero {
+  background:
+    radial-gradient(circle at top left, rgba(5, 150, 105, 0.08), transparent 55%),
+    radial-gradient(circle at right center, rgba(16, 185, 129, 0.05), transparent 50%),
+    var(--bg-card);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+  box-shadow: 0 16px 40px rgba(11, 23, 19, 0.06), 0 0 20px rgba(5, 150, 105, 0.05);
+}
+
+[data-theme="light"] .dashboard-topbar {
+  background: var(--bg-card);
+  border: 1px solid rgba(5, 150, 105, 0.18);
+  box-shadow: 0 4px 16px rgba(11, 23, 19, 0.04);
+}
+
+[data-theme="light"] .dashboard-search-wrap {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+
+[data-theme="light"] .dashboard-search-input {
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .dashboard-search-wrap:focus-within {
+  background: #ffffff;
+  border-color: var(--accent-mint);
+  box-shadow: 0 0 10px rgba(5, 150, 105, 0.2);
+}
+
+[data-theme="light"] .dashboard-icon-btn {
+  background: rgba(5, 150, 105, 0.06);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .dashboard-user-chip {
+  background: var(--bg-surface);
+  border: 1px solid rgba(5, 150, 105, 0.18);
+}
+
+[data-theme="light"] .ai-assistant-card {
+  background: rgba(5, 150, 105, 0.06);
+  border: 1px solid rgba(5, 150, 105, 0.18);
+}
+
+[data-theme="light"] .room-topbar,
+[data-theme="light"] .speaking-tip-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+  box-shadow: 0 16px 40px rgba(11, 23, 19, 0.06);
+}
+
+[data-theme="light"] .question-card-stage {
+  background:
+    radial-gradient(circle at top left, rgba(5, 150, 105, 0.08), transparent 50%),
+    var(--bg-card);
+  border: 1px solid rgba(5, 150, 105, 0.22);
+  box-shadow: 0 16px 40px rgba(11, 23, 19, 0.06);
+}
+
+[data-theme="light"] .question-card-stage h2 {
+  color: var(--title);
+}
+
+[data-theme="light"] .speaking-tip-item {
+  background: rgba(5, 150, 105, 0.05);
+  border: 1px solid rgba(5, 150, 105, 0.15);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .setup-option-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(5, 150, 105, 0.18);
+}
+
+[data-theme="light"] .setup-option-card:hover {
+  background: rgba(5, 150, 105, 0.06);
+  border-color: rgba(5, 150, 105, 0.35);
+}
+
+[data-theme="light"] .setup-option-card--selected {
+  background: rgba(5, 150, 105, 0.1) !important;
+  border-color: var(--accent-mint) !important;
+}
+
+[data-theme="light"] .wizard-step-node {
+  background: var(--bg-card);
+  border-color: rgba(5, 150, 105, 0.2);
+  color: var(--text-muted);
+}
+

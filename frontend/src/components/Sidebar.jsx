@@ -10,7 +10,7 @@ function Sidebar() {
         <span className="eyebrow" style={{ color: "var(--accent-mint)", fontSize: "0.72rem", letterSpacing: "0.08em" }}>
           Workspace
         </span>
-        <h2 style={{ fontSize: "1.05rem", fontWeight: 800, color: "#fff", margin: "0.2rem 0 0.15rem" }}>
+        <h2 style={{ fontSize: "1.05rem", fontWeight: 800, color: "var(--title)", margin: "0.2rem 0 0.15rem" }}>
           {user?.name || "Candidate"}
         </h2>
         <p style={{ fontSize: "0.78rem", color: "var(--text-muted)", margin: 0, textOverflow: "ellipsis", overflow: "hidden", whiteSpace: "nowrap" }}>

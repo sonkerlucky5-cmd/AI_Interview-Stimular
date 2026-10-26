@@ -35,7 +35,7 @@ export const features = [
   {
     icon: "💻",
     title: "DSA Coding Lab",
-    description: "In-browser Monaco editor with automated test validation, AST complexity analysis, and progressive hinting.",
+    description: "In-browser Monaco editor with automated test validation, complexity analysis (Coming soon), and progressive hinting.",
     tag: "Coding Arena",
   },
   {
@@ -63,7 +63,7 @@ export const howItWorksSteps = [
     step: "02",
     title: "2. Analyze",
     desc: "Review synchronized audio transcripts, code efficiency metrics, and multi-dimensional rubric scoring.",
-    badge: "Sub-Second Feedback",
+    badge: "Real-Time Feedback",
   },
   {
     step: "03",

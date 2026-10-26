@@ -710,3 +710,81 @@
   animation: spin 0.7s linear infinite;
   flex-shrink: 0;
 }
+
+/* ════════════════════════════
+   NEXA AI — LIGHT THEME COMPONENT OVERRIDES
+   ════════════════════════════ */
+[data-theme="light"] .glass-card,
+[data-theme="light"] .auth-card,
+[data-theme="light"] .sidebar__card,
+[data-theme="light"] .metric-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(5, 150, 105, 0.18);
+  box-shadow: 0 12px 35px rgba(11, 23, 19, 0.06);
+}
+
+[data-theme="light"] .sidebar__card h2 {
+  color: var(--title);
+}
+
+[data-theme="light"] .metric-card strong {
+  color: var(--title);
+}
+
+[data-theme="light"] .field input,
+[data-theme="light"] .field select,
+[data-theme="light"] .field textarea,
+[data-theme="light"] .auth-input {
+  background: #ffffff;
+  border: 1px solid rgba(5, 150, 105, 0.22);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .field input:hover,
+[data-theme="light"] .field select:hover,
+[data-theme="light"] .field textarea:hover {
+  border-color: rgba(5, 150, 105, 0.4);
+  background: #ffffff;
+}
+
+[data-theme="light"] .field input:focus,
+[data-theme="light"] .field select:focus,
+[data-theme="light"] .field textarea:focus {
+  border-color: var(--accent-mint);
+  box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.12);
+  background: #ffffff;
+}
+
+[data-theme="light"] .sidebar__link {
+  background: rgba(5, 150, 105, 0.04);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .sidebar__link:hover,
+[data-theme="light"] .sidebar__link.active {
+  background: rgba(5, 150, 105, 0.12);
+  border-color: rgba(5, 150, 105, 0.3);
+  color: var(--accent-mint-soft);
+}
+
+[data-theme="light"] .detail-list div {
+  background: rgba(5, 150, 105, 0.04);
+  border: 1px solid rgba(5, 150, 105, 0.12);
+}
+
+[data-theme="light"] .auth-deco-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+  box-shadow: 0 12px 35px rgba(11, 23, 19, 0.08);
+}
+
+[data-theme="light"] .glass-panel.tilt-card-3d {
+  background: var(--bg-card) !important;
+  border: 1px solid rgba(5, 150, 105, 0.2) !important;
+  box-shadow: 0 12px 30px rgba(11, 23, 19, 0.06) !important;
+}
+
+[data-theme="light"] .glass-panel.tilt-card-3d strong {
+  color: var(--title) !important;
+}
+

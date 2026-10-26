@@ -411,7 +411,7 @@ function InterviewRoom() {
               </button>
             </div>
 
-            <h2 style={{ fontSize: "clamp(1.3rem, 2.5vw, 1.65rem)", lineHeight: 1.5, color: "#fff", margin: 0, fontWeight: 700 }}>
+            <h2 style={{ fontSize: "clamp(1.3rem, 2.5vw, 1.65rem)", lineHeight: 1.5, color: "var(--title)", margin: 0, fontWeight: 700 }}>
               {currentQuestion?.question_text}
             </h2>
           </div>
@@ -423,7 +423,7 @@ function InterviewRoom() {
               padding: "1.8rem 2rem",
               borderRadius: "24px",
               border: "1px solid rgba(0, 245, 184, 0.22)",
-              background: "rgba(10, 30, 26, 0.72)",
+              background: "var(--bg-card, rgba(10, 30, 26, 0.72))",
               backdropFilter: "blur(20px)",
               boxShadow: "0 20px 50px rgba(0, 0, 0, 0.5)",
             }}
