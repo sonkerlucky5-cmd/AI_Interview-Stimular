@@ -30,9 +30,9 @@ export default function Home() {
           justifyContent: "center",
           gap: "1.5rem",
           padding: "1rem",
-          borderTop: "1px solid rgba(150, 255, 195, 0.1)",
-          borderBottom: "1px solid rgba(150, 255, 195, 0.1)",
-          background: "rgba(5, 9, 7, 0.85)",
+          borderTop: "1px solid var(--border-glass, rgba(150, 255, 195, 0.15))",
+          borderBottom: "1px solid var(--border-glass, rgba(150, 255, 195, 0.15))",
+          background: "var(--bg-card, rgba(5, 9, 7, 0.88))",
           backdropFilter: "blur(14px)",
           position: "sticky",
           top: 0,
@@ -46,7 +46,7 @@ export default function Home() {
           onClick={() => handleScrollTo("#simulation-preview")}
           style={{ background: "none", border: "none", color: "var(--accent-lime, #94FF00)", cursor: "pointer", fontWeight: 700 }}
         >
-          Simulation Preview ⚡
+          Simulation Preview
         </button>
         <button
           type="button"
@@ -73,7 +73,7 @@ export default function Home() {
           DSA Arena →
         </Link>
         <Link to="/interview" style={{ color: "var(--accent-mint-soft)", fontWeight: 700, textDecoration: "none" }}>
-          Live Mock 🎙️
+          Live Mock →
         </Link>
       </nav>
 
@@ -164,12 +164,12 @@ export default function Home() {
                 {/* Sub-Metrics Row */}
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginBottom: "2rem" }}>
                   <div style={{ padding: "1.2rem", borderRadius: "16px", background: "rgba(255, 255, 255, 0.03)", border: "1px solid rgba(150, 255, 195, 0.1)" }}>
-                    <div style={{ fontSize: "1.8rem", fontWeight: 800, color: "#94FF00" }}>30+</div>
-                    <div style={{ fontSize: "0.82rem", color: "var(--text-muted)", textTransform: "uppercase", marginTop: "0.2rem" }}>Role Specializations</div>
+                    <div style={{ fontSize: "1.35rem", fontWeight: 800, color: "#94FF00" }}>Adaptive</div>
+                    <div style={{ fontSize: "0.82rem", color: "var(--text-muted)", textTransform: "uppercase", marginTop: "0.2rem" }}>Dynamic Questioning</div>
                   </div>
                   <div style={{ padding: "1.2rem", borderRadius: "16px", background: "rgba(255, 255, 255, 0.03)", border: "1px solid rgba(150, 255, 195, 0.1)" }}>
-                    <div style={{ fontSize: "1.8rem", fontWeight: 800, color: "#00F5B8" }}>&lt; 1.2s</div>
-                    <div style={{ fontSize: "0.82rem", color: "var(--text-muted)", textTransform: "uppercase", marginTop: "0.2rem" }}>Rubric Feedback Speed</div>
+                    <div style={{ fontSize: "1.35rem", fontWeight: 800, color: "#00F5B8" }}>Real-time</div>
+                    <div style={{ fontSize: "0.82rem", color: "var(--text-muted)", textTransform: "uppercase", marginTop: "0.2rem" }}>Rubric Feedback</div>
                   </div>
                 </div>
               </div>
@@ -362,7 +362,7 @@ export default function Home() {
                       textTransform: "uppercase",
                     }}
                   >
-                    Best Deal ⭐
+                    Recommended
                   </div>
                 )}
 
@@ -403,8 +403,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── TESTIMONIALS (Matching Reference Section 4) ── */}
-      <section id="testimonials" style={{ padding: "5rem 4% 6rem", maxWidth: "1320px", margin: "0 auto" }}>
+      {/* ── EVALUATION METHODOLOGY (Replacing Fake Testimonials) ── */}
+      <section id="rubric-methodology" style={{ padding: "5rem 4% 6rem", maxWidth: "1320px", margin: "0 auto" }}>
         <Reveal>
           <div
             className="glass-panel"
@@ -422,56 +422,56 @@ export default function Home() {
           >
             <div>
               <span className="pill-tag" style={{ marginBottom: "1rem" }}>
-                COMMUNITY SUCCESS
+                EVALUATION FRAMEWORK
               </span>
               <h2 style={{ fontSize: "clamp(2rem, 3.5vw, 2.8rem)", fontWeight: 800, margin: "0 0 1rem", color: "#FFFFFF" }}>
-                What Our Candidates Say —{" "}
-                <span className="italic-accent">Real engineers. Real results.</span>
+                How Your Responses Are Evaluated —{" "}
+                <span className="italic-accent">Objective engineering criteria.</span>
               </h2>
               <p style={{ color: "var(--text-muted)", fontSize: "1.05rem", lineHeight: 1.7, margin: "0 0 2rem" }}>
-                Join engineers practicing across Frontend, Backend, System Design, and Behavioral tracks.
+                Every answer is analyzed across standard technical dimensions without subjective bias. Detailed rubric breakdowns help you pinpoint exact growth areas before actual interview loops.
               </p>
               <Link to="/interview" className="pill-btn-primary">
-                <span>Start Free Practice</span>
+                <span>Start Practice</span>
                 <span className="arrow-circle">→</span>
               </Link>
             </div>
 
-            {/* Testimonial Quote Card */}
+            {/* Rubric Breakdown Grid */}
             <div
               style={{
                 padding: "2.2rem",
                 borderRadius: "24px",
                 background: "rgba(3, 9, 7, 0.75)",
                 border: "1px solid rgba(0, 245, 184, 0.2)",
+                display: "grid",
+                gap: "1.1rem",
               }}
             >
-              <div style={{ color: "var(--accent-mint)", fontSize: "1.2rem", marginBottom: "1rem" }}>
-                ★★★★★
-              </div>
-              <p style={{ color: "#E2E8F0", fontSize: "1.05rem", lineHeight: 1.65, fontStyle: "italic", margin: "0 0 1.5rem" }}>
-                &ldquo;The real-time speech dictation and rubric score breakdowns helped me identify my weak spots in system design before my Google round. Landed the L5 offer!&rdquo;
-              </p>
-              <div style={{ display: "flex", alignItems: "center", gap: "0.85rem" }}>
-                <div
-                  style={{
-                    width: "42px",
-                    height: "42px",
-                    borderRadius: "50%",
-                    background: "var(--accent-mint)",
-                    color: "#030907",
-                    fontWeight: 800,
-                    display: "grid",
-                    placeItems: "center",
-                  }}
-                >
-                  SK
+              {[
+                { name: "Technical Accuracy", desc: "Correctness of algorithmic logic, API usage, and system boundaries" },
+                { name: "System Depth", desc: "Understanding of failure modes, concurrency, scalability, and latency" },
+                { name: "Reasoning Structure", desc: "Clear step-by-step problem breakdown from requirements to solution" },
+                { name: "Trade-off Analysis", desc: "Explicit comparison of competing approaches, costs, and constraints" },
+                { name: "Communication Clarity", desc: "Structured, concise technical articulation without rambling" },
+              ].map((dim) => (
+                <div key={dim.name} style={{ display: "flex", gap: "0.8rem", alignItems: "flex-start" }}>
+                  <div
+                    style={{
+                      width: "8px",
+                      height: "8px",
+                      borderRadius: "50%",
+                      background: "var(--accent-mint)",
+                      marginTop: "0.45rem",
+                      flexShrink: 0,
+                    }}
+                  />
+                  <div>
+                    <strong style={{ color: "#FFFFFF", fontSize: "0.95rem", display: "block" }}>{dim.name}</strong>
+                    <span style={{ color: "var(--text-muted)", fontSize: "0.83rem", lineHeight: 1.5 }}>{dim.desc}</span>
+                  </div>
                 </div>
-                <div>
-                  <strong style={{ color: "#FFFFFF", display: "block", fontSize: "0.95rem" }}>Sarah K.</strong>
-                  <span style={{ color: "var(--accent-mint)", fontSize: "0.82rem" }}>Senior Full Stack Engineer</span>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </Reveal>

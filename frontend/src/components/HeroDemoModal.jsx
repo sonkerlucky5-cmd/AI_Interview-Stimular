@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import aiAvatar from "../assets/ai_interviewer_avatar.jpg";
+import aiAvatar from "../assets/ai_interviewer_avatar.webp";
 
 function HeroDemoModal({ isOpen, onClose }) {
   const [step, setStep] = useState(0);
@@ -204,7 +204,7 @@ function HeroDemoModal({ isOpen, onClose }) {
             >
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
                 <strong style={{ color: "var(--accent-mint)", fontSize: "0.95rem" }}>
-                  ⭐ Real-Time Rubric Evaluation
+                  Sample Rubric Evaluation (Demo)
                 </strong>
                 <span style={{ fontSize: "1.4rem", fontWeight: 800, color: "var(--accent-mint)" }}>
                   94 / 100

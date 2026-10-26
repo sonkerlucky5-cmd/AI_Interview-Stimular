@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 54" fill="none">
+  <defs>
+    <linearGradient id="fav-ribbon" x1="10" y1="6" x2="44" y2="46" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#CCFF00"/>
+      <stop offset="45%" stopColor="#94FF00"/>
+      <stop offset="100%" stopColor="#00F5B8"/>
+    </linearGradient>
+    <linearGradient id="fav-top" x1="14" y1="6" x2="28" y2="16" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="100%" stopColor="#CCFF00"/>
+    </linearGradient>
+    <linearGradient id="fav-obsidian" x1="14" y1="18" x2="38" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#1B2A22"/>
+      <stop offset="50%" stopColor="#0A1610"/>
+      <stop offset="100%" stopColor="#040A07"/>
+    </linearGradient>
+    <linearGradient id="fav-swoosh" x1="4" y1="46" x2="32" y2="22" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stopColor="#00F5B8" stop-opacity="0.85"/>
+      <stop offset="60%" stopColor="#94FF00"/>
+      <stop offset="100%" stopColor="#CCFF00"/>
+    </linearGradient>
+    <style>
+      .fav-bg { fill: #030806; }
+      @media (prefers-color-scheme: light) {
+        .fav-bg { fill: #F0FDF4; }
+      }
+    </style>
+  </defs>
+
+  <rect width="54" height="54" rx="14" class="fav-bg"/>
+
+  <!-- Back Loop -->
+  <path d="M 6 36 C 4 24, 11 15, 23 11 C 28 9, 32 11, 30 14 C 27 18, 17 21, 13 32 C 10 39, 13 45, 21 44 C 27 43, 31 38, 34 32" stroke="url(#fav-swoosh)" stroke-width="3.2" stroke-linecap="round" opacity="0.9"/>
+
+  <!-- Left Pillar -->
+  <polygon points="14,14 22,7 22,43 14,47" fill="url(#fav-ribbon)"/>
+  <polygon points="14,14 22,7 28,12 20,19" fill="url(#fav-top)"/>
+  <polygon points="22,7 28,12 28,37 22,43" fill="#08160F" opacity="0.95"/>
+
+  <!-- Diagonal Obsidian Bar -->
+  <polygon points="18,17 38,40 33,47 13,24" fill="url(#fav-obsidian)"/>
+  <line x1="18" y1="17" x2="38" y2="40" stroke="#457059" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- Right Pillar -->
+  <polygon points="31,14 39,7 39,40 31,44" fill="url(#fav-ribbon)"/>
+  <polygon points="31,14 39,7 45,12 37,19" fill="url(#fav-top)"/>
+  <polygon points="39,7 45,12 45,35 39,40" fill="#06120C" opacity="0.95"/>
+
+  <!-- Front Swoosh Loop -->
+  <path d="M 5 31 C 3 41, 15 48, 29 42 C 37 38, 43 30, 46 22" stroke="url(#fav-ribbon)" stroke-width="2.8" stroke-linecap="round"/>
+  <circle cx="46" cy="22" r="2.4" fill="#CCFF00"/>
+  <circle cx="6" cy="31" r="1.8" fill="#00F5B8"/>
+</svg>

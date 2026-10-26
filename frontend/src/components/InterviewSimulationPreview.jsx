@@ -59,7 +59,6 @@ function shouldRegenerate(key, ttlSeconds, beta = 1.0) {
   {
     id: "dsa",
     label: "DSA & Algorithms",
-    icon: "⚡",
     level: "Full-Stack / Algorithms Track",
     timer: "08:42",
     question:
@@ -89,7 +88,6 @@ function shouldRegenerate(key, ttlSeconds, beta = 1.0) {
   {
     id: "frontend",
     label: "Frontend Architecture",
-    icon: "🎨",
     level: "Staff Frontend Architect",
     timer: "06:05",
     question:
@@ -238,7 +236,7 @@ export default function InterviewSimulationPreview() {
                     transition: "all 0.2s ease",
                   }}
                 >
-                  <span>{track.icon}</span>
+                  <TrackIcon id={track.id} />
                   <span>{track.label}</span>
                 </button>
               );
@@ -272,7 +270,7 @@ export default function InterviewSimulationPreview() {
               gap: "1rem",
             }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: "0.8rem" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.8rem", flexWrap: "wrap" }}>
               <div style={{ display: "flex", gap: "6px" }}>
                 <span style={{ width: "11px", height: "11px", borderRadius: "50%", background: "#FF5F56" }} />
                 <span style={{ width: "11px", height: "11px", borderRadius: "50%", background: "#FFBD2E" }} />
@@ -287,6 +285,21 @@ export default function InterviewSimulationPreview() {
                 }}
               >
                 NEXA_TERMINAL_v2.5 // {current.label.toUpperCase()}
+              </span>
+              <span
+                style={{
+                  fontSize: "0.68rem",
+                  fontWeight: 700,
+                  letterSpacing: "0.06em",
+                  textTransform: "uppercase",
+                  padding: "0.15rem 0.55rem",
+                  borderRadius: "999px",
+                  background: "rgba(148, 255, 0, 0.12)",
+                  border: "1px solid rgba(148, 255, 0, 0.35)",
+                  color: "var(--accent-lime, #94FF00)",
+                }}
+              >
+                Demo preview
               </span>
             </div>
 

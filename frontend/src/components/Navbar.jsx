@@ -199,12 +199,12 @@ function Navbar() {
                       </a>
 
                       <a
-                        href="#testimonials"
+                        href="#rubric-methodology"
                         className="navbar__dropdown-item"
-                        onClick={(e) => handleAnchorClick(e, "#testimonials")}
+                        onClick={(e) => handleAnchorClick(e, "#rubric-methodology")}
                       >
-                        <span className="navbar__dropdown-icon">💬</span>
-                        <span>Testimonials</span>
+                        <span className="navbar__dropdown-icon">📋</span>
+                        <span>Rubric</span>
                       </a>
 
                       <a

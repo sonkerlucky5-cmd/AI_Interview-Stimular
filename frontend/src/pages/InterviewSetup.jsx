@@ -464,6 +464,7 @@ function InterviewSetup() {
                 {currentStep < 3 ? (
                   <button
                     type="submit"
+                    id="wizard-next-step"
                     className="button button--primary pill-btn-primary"
                     style={{
                       padding: "0.85rem 1.8rem",
@@ -478,6 +479,7 @@ function InterviewSetup() {
                 ) : (
                   <button
                     type="button"
+                    id="wizard-launch-interview"
                     onClick={handleLaunch}
                     className="button button--primary pill-btn-primary"
                     disabled={isStarting}
@@ -490,7 +492,7 @@ function InterviewSetup() {
                       boxShadow: "0 4px 25px rgba(0, 245, 184, 0.4)",
                     }}
                   >
-                    {isStarting ? "Initializing Interview Environment..." : "🚀 Launch Practice Interview Room ↗"}
+                    {isStarting ? "Initializing Interview Environment..." : "Launch Practice Interview Room →"}
                   </button>
                 )}
               </div>

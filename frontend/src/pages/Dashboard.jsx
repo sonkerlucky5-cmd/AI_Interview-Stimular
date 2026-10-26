@@ -12,7 +12,7 @@ import { getAnalyticsOverviewRequest } from "../services/analyticsService";
 import { getInterviewsRequest } from "../services/interviewService";
 import { getDsaProblemsRequest } from "../services/dsaService";
 import { getLearningPlansRequest } from "../services/learningPlanService";
-import robotMascot from "../assets/robot_mascot.png";
+import robotMascot from "../assets/robot_mascot.webp";
 
 const emptyWeek = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((day) => ({
   day,

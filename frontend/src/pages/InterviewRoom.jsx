@@ -510,6 +510,7 @@ function InterviewRoom() {
 
                 <button
                   type="submit"
+                  id="submit-answer-btn"
                   className="button button--primary pill-btn-primary"
                   disabled={isSubmitting || !answerText.trim()}
                   style={{
@@ -528,7 +529,7 @@ function InterviewRoom() {
                       Evaluating Answer…
                     </>
                   ) : currentQuestion?.position === session?.question_limit ? (
-                    "Submit & Finish Interview 🏁"
+                    "Submit & Finish Interview →"
                   ) : (
                     "Submit & Next Question →"
                   )}
